@@ -1,0 +1,24 @@
+{
+  "Menus": [
+    {
+      "name": "Index",
+      "path": "/",
+      "title": "首页"
+    },
+    {
+      "name": "About",
+      "path": "/about",
+      "title": "关于"
+    },
+    {
+      "name": "Login",
+      "path": "/login",
+      "title": "登陆"
+    },
+    {
+      "name": "Signin",
+      "path": "/signin",
+      "title": "注册"
+    }
+  ]
+}

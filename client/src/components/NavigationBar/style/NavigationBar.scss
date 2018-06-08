@@ -1,0 +1,50 @@
+.ant-layout-header{
+  height: 50px;
+  background-color: #444444;
+  display: flex;
+  justify-content: space-between;
+  min-width: 1024px;
+  .title{
+    width: 300px;
+    display: flex;
+    a, .logo{
+      display: inline-block;
+      height: 100%;
+      width: 100px;
+      margin:0;
+      padding:0;
+      float: left;
+    }
+    .search{
+      height: 100%;
+      display: inline-block;
+      flex: 1;
+      line-height: 50px;
+      .ant-input{
+        border-radius: 15px;
+      }
+    }
+  }
+}
+.ant-menu{
+  background-color: transparent;
+  border: none;
+}
+.ant-menu-horizontal{
+  .ant-menu-item{
+    transition: none;
+    line-height: 50px;
+    &>a{
+      color: #ccc;
+      &:before{
+        bottom: 0;
+      }
+      &:hover{
+        color: #fff;
+      }
+    }
+  }
+}
+.ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-submenu-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected{
+  border: none;
+}

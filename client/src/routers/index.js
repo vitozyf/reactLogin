@@ -1,13 +1,15 @@
 import React from 'react';
-
 import { Route } from 'react-router-dom';
 
-import App from '../components/App';
-import Signup from '../components/Signup';
+import RouterConfig from 'routers/router-config.json'
+const Menus = RouterConfig.Menus
 
 export default (
   <div className = "container">
-    <Route exact path = "/" component = { App }></Route>
-    <Route path = "/signup" component = { Signup }></Route>
+    {
+      Menus.map(item => {
+        return <Route exact key = {item.name} path = { item.path } component = { require(`components/${item.name}`).default }></Route>
+      })
+    }
   </div>
 )
