@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import NavigationBar from './components/NavigationBar'
 import routes from './routers'
 import createStore from 'src/store/index'
+import './assets/style/index.css'
 
 const store = createStore()
 
@@ -13,7 +14,7 @@ ReactDOM.render(
   <Provider store = { store }>
 
     <Router>
-      <div>
+      <div className = "blog-app">
         <NavigationBar />
         { routes }
       </div>
