@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routers/index';
+import createRouter from './routers/index';
 import bodyParser from 'body-parser';
 // import './test/mysql_test.js'
 
@@ -18,7 +18,8 @@ app.all('*',function (req, res, next) {
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(router)
+
+createRouter(app)
 
 app.listen(6060, () => {
   console.log('Running on http://localhost:6060')

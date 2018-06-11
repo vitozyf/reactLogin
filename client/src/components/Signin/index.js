@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import SigninForm from './SigninForm'
+import './style/blog-signin.css'
 
 class Signin extends Component {
   render() {
     return (
-      <div>456</div>
+      <div className = "blog-signin">
+        <SigninForm />
+      </div>
     )
   }
 }

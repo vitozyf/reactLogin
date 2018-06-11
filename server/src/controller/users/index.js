@@ -5,9 +5,10 @@ export default {
   showIndex(req, res)  {
     usersMedel.getAllUsers((err, data) => {
       if (err) {
-        res.send('错误页面')
+        res.send('读取数据失败')
       } else {
-        res.send('成功')
+        console.log(data)
+        res.send('读取数据成功')
       }
     })
   },
@@ -23,5 +24,9 @@ export default {
       console.log(234, data, querystring.parse(data))
     })
     res.send('ok')
+  },
+  signin (req, res) {
+     let loginInfo = req.body
+    console.log('注册', loginInfo)
   }
 }

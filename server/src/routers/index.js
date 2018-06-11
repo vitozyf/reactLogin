@@ -1,12 +1,12 @@
-import express from 'express';
-import Controllers from '../controller/index.js'
+import fs from 'fs';
+import path from 'path';
 
-let {users} = Controllers
-
-let router = express.Router();
-
-router
-  .get('/', users.showIndex)
-  .post('/login', users.login)
-
-export default router
+export default (app) => {
+  fs.readdir(path.join(__dirname, './routerModules'), (err, fileNames) => {
+    if(err) throw err;
+    fileNames.map(fileName => {
+      let filePath = path.join(__dirname, './routerModules', fileName);
+      app.use(require(filePath).default)
+    })
+  })
+}
