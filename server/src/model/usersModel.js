@@ -8,5 +8,12 @@ export default {
       if(err) return cb(err)
       cb(null, res)
     })
+  },
+  adduser (name,password,cb) {
+    let sqlStr = "INSERT INTO users (username,password) VALUES (?,?);"
+    connection.query(sqlStr, [name, password],(err, res) => {
+      if(err) return cb(err)
+      cb(null, res)
+    })
   }
 }

@@ -1,14 +1,28 @@
 import usersMedel from '../../model/usersModel.js'
 import querystring from 'querystring'
+// md5加密
+import md5 from 'blueimp-md5';
 
 export default {
   showIndex(req, res)  {
     usersMedel.getAllUsers((err, data) => {
       if (err) {
-        res.send('读取数据失败')
+        res.json('读取数据失败')
       } else {
-        console.log(data)
-        res.send('读取数据成功')
+        res.json({
+          code: 0,
+          data:data
+         })
+      }
+    })
+  },
+  adduser (req, res) {
+    let password = md5('123456', 'avkj**()_)+_$#@@!')
+    usersMedel.adduser('zyf', password, (err, data) => {
+      if (err) {
+        res.send('添加失败')
+      } else {
+        res.send('添加成功')
       }
     })
   },
