@@ -16,39 +16,29 @@ export default {
       }
     })
   },
-  adduser (req, res) {
-    let password = md5('123456', config.passwordKey)
-    usersMedel.adduser('zyf', password, (err, data) => {
+  //登录
+  login(req, res) {
+    let loginInfo = req.body;
+    loginInfo.PassWord =  md5(loginInfo.PassWord, config.passwordKey);
+    usersMedel.login(loginInfo, (err, data) => {
+      if(err || data.length !== 1) return res.json({Code: 1, Msg: '登录失败'});
+
+      // 保存登录状态和数据到session
+      req.session.IsLogin = true;
+      req.session.UserInfo = data[0];
+      res.json({'Code': 0});
+    })
+  },
+  signin (req, res) {
+    // 缺少注册验证
+    let userInfo = req.body
+    userInfo.PassWord =  md5(userInfo.PassWord, config.passwordKey) 
+    usersMedel.signInUser(userInfo, (err, data) => {
       if (err) {
         res.send('添加失败')
       } else {
         res.send('添加成功')
       }
     })
-  },
-  //登录
-  login(req, res) {
-    let loginInfo = req.body
-    console.log(123, loginInfo)
-    let data = ''
-    req.on('data', (chunk) => {
-      data += chunk
-    })
-    req.on('end', () => {
-      console.log(234, data, querystring.parse(data))
-    })
-    res.send('ok')
-  },
-  signin (req, res) {
-     let loginInfo = req.body
-    console.log('注册', loginInfo)
-    let data = ''
-    req.on('data', (chunk) => {
-      data += chunk
-    })
-    req.on('end', () => {
-      console.log('注册2', data)
-    })
-    res.json({test: 'test'})
   }
 }

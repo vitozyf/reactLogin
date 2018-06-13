@@ -9,6 +9,5 @@ router
   .get('/', users.showIndex)
   .post('/login', users.login)
   .post('/signin', users.signin)
-  .get('/adduser', users.adduser)
 
 export default router

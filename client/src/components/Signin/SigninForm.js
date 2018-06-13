@@ -14,7 +14,6 @@ class NormalLoginForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         http.$post(config.signin, values, (res) => {
           console.log(123, res)
         })
@@ -28,14 +27,14 @@ class NormalLoginForm extends Component {
         onSubmit={this.handleSubmit} 
         className="login-form">
         <FormItem>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('UserName', {
             rules: [{ required: true, message: '请输入用户名' }],
           })(
             <Input autoComplete="off" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('password', {
+          {getFieldDecorator('PassWord', {
             rules: [{ required: true, message: '请输入密码' }],
           })(
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />

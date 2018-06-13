@@ -9,11 +9,20 @@ export default {
       cb(null, res)
     })
   },
-  adduser (name,password,cb) {
-    let sqlStr = "INSERT INTO users (username,password) VALUES (?,?);"
-    connection.query(sqlStr, [name, password],(err, res) => {
+  //注册用户
+  signInUser (user,cb) {
+    let sqlStr = "INSERT INTO users set ?;"
+    connection.query(sqlStr, user,(err, res) => {
       if(err) return cb(err)
       cb(null, res)
+    })
+  },
+  // 登录
+  login (user, cb) {
+    let sqlStr = "select * from users where username=? and password=?"
+    connection.query(sqlStr, [user.UserName, user.PassWord], (err, res) => {
+      if (err) return cb(err);
+      cb(null,res)
     })
   }
 }
