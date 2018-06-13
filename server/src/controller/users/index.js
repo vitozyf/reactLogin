@@ -1,7 +1,7 @@
 import usersMedel from '../../model/usersModel.js'
 import querystring from 'querystring'
-// md5加密
 import md5 from 'blueimp-md5';
+import config from '../../../config'
 
 export default {
   showIndex(req, res)  {
@@ -17,7 +17,7 @@ export default {
     })
   },
   adduser (req, res) {
-    let password = md5('123456', 'avkj**()_)+_$#@@!')
+    let password = md5('123456', config.passwordKey)
     usersMedel.adduser('zyf', password, (err, data) => {
       if (err) {
         res.send('添加失败')
@@ -41,6 +41,13 @@ export default {
   },
   signin (req, res) {
      let loginInfo = req.body
-    console.log('注册', loginInfo)
+    console.log('注册', loginInfo, req)
+    let data = ''
+    req.on('data', (chunk) => {
+      data += chunk
+    })
+    req.on('end', () => {
+      console.log('注册2', data)
+    })
   }
 }

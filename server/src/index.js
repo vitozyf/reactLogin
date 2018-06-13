@@ -1,8 +1,10 @@
 import express from 'express';
 import createRouter from './routers/index';
 import bodyParser from 'body-parser';
-// import './test/mysql_test.js'
+import cookieParser from 'cookie-parser';
 
+// import './test/mysql_test.js'
+let path = require('path')
 let app = express();
 
 app.all('*',function (req, res, next) {
@@ -16,7 +18,7 @@ app.all('*',function (req, res, next) {
     next();
   }
 });
-
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 createRouter(app)

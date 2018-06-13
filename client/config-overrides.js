@@ -9,7 +9,9 @@ const AliasConfig = {
   'reducers': resolve('src/reducers'),
   'utils': resolve('src/utils'),
   '~routers': resolve('src/routers'),
-  'routers': resolve('src/routers')
+  'routers': resolve('src/routers'),
+  'store': resolve('src/routers'),
+  'public': resolve('public')
 }
 
 module.exports = function override(config, env) {

@@ -3,7 +3,7 @@ import { Layout, Menu, Input, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
 import RouterConfig from 'routers/router-config.json'
-import Logo from '~assets/images/vito.jpg'
+import Logo from 'assets/images/vito.jpg'
 import './style/NavigationBar.css'
 
 const { Header } = Layout;
@@ -25,10 +25,9 @@ class NavigationBar extends Component{
   }
 
   onChange = event => {
-    let value = event.target.value
-    this.setState({
-      searchKeyword: value
-    })
+    let data = {};
+    data[event.target.name] = event.target.value;
+    this.setState(data);
   }
 
   render () {
@@ -37,12 +36,13 @@ class NavigationBar extends Component{
         <Header>
           <div className="title">
             <Link to = "/">
-              <img scr= { Logo } className = "logo" alt="Logo"/>
+              <img src = { Logo } className = "logo" alt="Logo" />
             </Link>
             <div className="search">
               <Input
                prefix = { <Icon type="search" style={{ color: 'rgba(0,0,0,.25)'}}></Icon> }
                value = { this.state.searchKeyword }
+               name = "searchKeyword"
                placeholder = "输入搜索条件"
                onPressEnter = { event => this.onPressEnter(event) }
                onChange = { event => {this.onChange(event)} }

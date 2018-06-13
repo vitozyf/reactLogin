@@ -3,24 +3,27 @@
   background-color: #444444;
   display: flex;
   justify-content: space-between;
-  min-width: 1024px;
   .title{
     width: 300px;
     display: flex;
+    align-items: center;
     a, .logo{
       display: inline-block;
       height: 100%;
-      width: 100px;
+      width: 30px;
+      height: 30px;
       margin:0;
       padding:0;
       float: left;
     }
     .search{
+      margin: 0 10px;
       height: 100%;
       display: inline-block;
       flex: 1;
       line-height: 50px;
       .ant-input{
+        height: 26px;
         border-radius: 15px;
       }
     }
