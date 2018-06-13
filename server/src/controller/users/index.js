@@ -41,7 +41,7 @@ export default {
   },
   signin (req, res) {
      let loginInfo = req.body
-    console.log('注册', loginInfo, req)
+    console.log('注册', loginInfo)
     let data = ''
     req.on('data', (chunk) => {
       data += chunk
@@ -49,5 +49,6 @@ export default {
     req.on('end', () => {
       console.log('注册2', data)
     })
+    res.json({test: 'test'})
   }
 }
