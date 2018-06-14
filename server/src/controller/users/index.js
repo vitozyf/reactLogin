@@ -24,13 +24,15 @@ export default {
       if(err || data.length !== 1) return res.json({Code: 1, Msg: '登录失败'});
 
       // 保存登录状态和数据到session
+      // console.log(1, req.session)
       req.session.IsLogin = true;
       req.session.UserInfo = data[0];
+      // console.log(2, req.session)
+      
       res.json({'Code': 0, 'Msg': '登录成功'});
     })
   },
   signin (req, res) {
-    // 缺少注册验证
     let userInfo = req.body
     userInfo.PassWord =  md5(userInfo.PassWord, config.passwordKey)
     usersMedel.searchUser(userInfo.UserName, (err, data) => {

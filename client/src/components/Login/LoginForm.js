@@ -16,7 +16,9 @@ class NormalLoginForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         http.$post(config.login, values, (res) => {
-          console.log(123, res)
+          if (res.Code === 0) {
+            this.props.history.push('/') 
+          }
         })
       }
     });

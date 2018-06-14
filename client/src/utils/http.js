@@ -17,7 +17,7 @@ export default {
       url: baseUrl + url,
       data: data
     })).then(res => {
-      typeof success === 'function' && success(res)
+      typeof success === 'function' && success(res.data)
     }).catch(err => {
       typeof errcb === 'function' && errcb(err)
     })

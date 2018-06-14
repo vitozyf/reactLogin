@@ -3,10 +3,13 @@ import LoginForm from './LoginForm'
 import './style/login.css'
 
 class Login extends Component {
+  componentWillMount () {
+
+  }
   render() {
     return (
       <div className = "blog-login">
-        <LoginForm />
+        <LoginForm history={ this.props.history } />
       </div>
     )
   }

@@ -25,14 +25,10 @@ app.use(Session({
   name: config.SessionId,
   secret: config.SessionSecret,
   resave:false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge : 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
-  }
-  // store: new MongoStore({ //创建新的mongodb数据库
-  //     url: `mongodb://cha:${config.mysqlConfig.user}@${config.mysqlConfig.host}:3306/${config.mysqlConfig.database}`, //比如：'mongodb://cha:root@localhost:27017/ch_db'
-  //     collection: config.sessionCollection //比如：'ch_sessions'
-  // }),
+  saveUninitialized: false
+  // cookie: {
+  //   maxAge : 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
+  // }
 }))
 
 app.use(bodyParser.json());
