@@ -24,5 +24,13 @@ export default {
       if (err) return cb(err);
       cb(null,res)
     })
+  },
+  // 查找用户（按用户名）
+  searchUser(UserName, cb) {
+    let sqlStr = "select * from users where username=?"
+    connection.query(sqlStr, UserName, (err, res) => {
+      if(err) return cb(err);
+      cb(null, res)
+    })
   }
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
+const debug = process.env.NODE_ENV !== 'production'
 
-let baseUrl = 'http://localhost:6060/'
+const baseUrl = debug ? 'http://localhost:6060/' : 'http://http://47.98.240.182:6061:6060/'
 
 const options = {
   method: 'POST',

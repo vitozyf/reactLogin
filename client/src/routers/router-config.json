@@ -13,7 +13,7 @@
     {
       "name": "Login",
       "path": "/login",
-      "title": "登陆"
+      "title": "登录"
     },
     {
       "name": "Signin",
