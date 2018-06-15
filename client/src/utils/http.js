@@ -15,7 +15,8 @@ export default {
   $post (url, data, success, errcb) {
     axios(Object.assign({}, options, {
       url: baseUrl + url,
-      data: data
+      data: data,
+      withCredentials: true
     })).then(res => {
       typeof success === 'function' && success(res.data)
     }).catch(err => {

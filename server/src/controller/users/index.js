@@ -22,12 +22,10 @@ export default {
     loginInfo.PassWord =  md5(loginInfo.PassWord, config.passwordKey);
     usersMedel.login(loginInfo, (err, data) => {
       if(err || data.length !== 1) return res.json({Code: 1, Msg: '登录失败'});
-
+      console.log(loginInfo)
       // 保存登录状态和数据到session
-      // console.log(1, req.session)
       req.session.IsLogin = true;
       req.session.UserInfo = data[0];
-      // console.log(2, req.session)
       
       res.json({'Code': 0, 'Msg': '登录成功'});
     })

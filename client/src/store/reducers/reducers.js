@@ -1,27 +1,18 @@
-export const users = (state = '', action) => {
+export const user = (state = '', action) => {
   switch (action.type) {
-    case 'CHANGEUSER':
-      return Object.assign({}, state, {isFetching: !state.isFetching})
+    case 'SetLogin':
+      return Object.assign({}, state, {IsLogin: true})
+    case 'SetLogout':
+      return Object.assign({}, state, {IsLogin: false})
     default:
       return state
   }
 }
 
-export const auth =  (state = '', action) => {
+export const todos = (state = '', action) => {
   switch (action.type) {
-    case 'CHANGEAUTH':
-      return Object.assign({}, state, {isFetching: !state.isFetching})
-    default:
-      return state
-  }
-}
-
-export const count = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
+    case 'ChangeTodos':
+      return Object.assign({}, state, {test: !state.test})
     default:
       return state
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Layout, Menu, Input, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import RouterConfig from 'routers/router-config.json'
 import Logo from 'assets/images/vito.jpg'
@@ -73,6 +74,10 @@ class NavigationBar extends Component{
     )
   }
 
+}
+
+NavigationBar.propTypes = {
+  user: PropTypes.object
 }
 
 export default NavigationBar;

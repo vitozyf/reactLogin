@@ -1,38 +1,20 @@
 import express from 'express';
 import createRouter from './routers/index';
 import bodyParser from 'body-parser';
-// import cookieParser from 'cookie-parser';
-import Session from 'express-session';
-import config from '../config'
+import {session, userRemember} from './middlewares/session';
+import SessionValidation from './middlewares/sessionValidation';
+import AccessControl from './middlewares/accessControl'
 
-// import './test/mysql_test.js'
 let path = require('path')
 let app = express();
 
-app.all('*',function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  if (req.method == 'OPTIONS') {
-    res.send(200);
-  }
-  else {
-    next();
-  }
-});
-// app.use(cookieParser());
-app.use(Session({
-  name: config.SessionId,
-  secret: config.SessionSecret,
-  resave:false,
-  saveUninitialized: false
-  // cookie: {
-  //   maxAge : 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
-  // }
-}))
-
+app.all('*', AccessControl);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session);
+app.use(SessionValidation);
+app.use(userRemember);
+
 
 createRouter(app)
 
