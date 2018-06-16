@@ -9,7 +9,4 @@ export default (app) => {
       app.use(require(filePath).default)
     })
   })
-  // app.use('*', (res, req) => {
-  //   console.log(res)
-  // })
 }

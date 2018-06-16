@@ -4,6 +4,9 @@ import md5 from 'blueimp-md5';
 import config from '../../../config'
 
 export default {
+  test (req, res) {
+    res.json({'Code': 0,'Data': 'test'})
+  },
   showIndex(req, res)  {
     usersMedel.getAllUsers((err, data) => {
       if (err) {
@@ -21,8 +24,8 @@ export default {
     let loginInfo = req.body;
     loginInfo.PassWord =  md5(loginInfo.PassWord, config.passwordKey);
     usersMedel.login(loginInfo, (err, data) => {
-      if(err || data.length !== 1) return res.json({Code: 1, Msg: '登录失败'});
-      console.log(loginInfo)
+
+      if(err || data.length !== 1) return res.json({Code: 1, Msg: '登录失败,请检查账号密码是否正确', Err: err});
       // 保存登录状态和数据到session
       req.session.IsLogin = true;
       req.session.UserInfo = data[0];
@@ -40,6 +43,13 @@ export default {
         if (err) return res.json({'Code': 1, 'Msg': '注册失败'})
         res.json({'Code': 0, 'Msg': '注册成功'});
       })
+    })
+  },
+  signout (req, res) {
+    req.session.destroy();
+    res.json({
+      'Code': 0,
+      'Msg': '注销成功'
     })
   }
 }

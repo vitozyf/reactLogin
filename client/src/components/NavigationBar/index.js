@@ -1,14 +1,27 @@
 import React, {Component} from 'react';
-import { Layout, Menu, Input, Icon } from 'antd';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import NavigationBarUi from './NavigationBarUi'
+import { connect } from 'react-redux';
+import http from 'utils/http';
+import { message } from 'antd';
 
-import RouterConfig from 'routers/router-config.json'
-import Logo from 'assets/images/vito.jpg'
 import './style/NavigationBar.css'
 
-const { Header } = Layout;
-const Menus = RouterConfig.Menus
+const urlConfig = {
+  signout: '/signout'
+}
+
+const NavigationBarComnect = connect((state, props) => {
+  return Object.assign({}, state.user, props) 
+  }, dispatch => {
+    return {
+      SetUserInfo: (IsLogin) => {
+        return dispatch({
+          type: 'SetUserInfo',
+          IsLogin: IsLogin
+        })
+      }
+    }
+})(NavigationBarUi)
 
 let state = {
   searchKeyword: ''
@@ -31,53 +44,26 @@ class NavigationBar extends Component{
     this.setState(data);
   }
 
-  render () {
-    return (
-      <Layout>
-        <Header>
-          <div className="title">
-            <Link to = "/">
-              <img src = { Logo } className = "logo" alt="Logo" />
-            </Link>
-            <div className="search">
-              <Input
-               prefix = { <Icon type="search" style={{ color: 'rgba(0,0,0,.25)'}}></Icon> }
-               value = { this.state.searchKeyword }
-               name = "searchKeyword"
-               placeholder = "输入搜索条件"
-               onPressEnter = { event => this.onPressEnter(event) }
-               onChange = { event => {this.onChange(event)} }
-               >
-              </Input>
-            </div>
-          </div>
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            style={{ lineHeight: '64px' }}
-          >
-          {
-            Menus.map(item => {
-              return (
-                <Menu.Item key = { item.name }>
-                  <Link to = { item.path }>
-                    { item.title }
-                  </Link>
-                </Menu.Item>
-              )
-            })
-          }
-          </Menu>
-        </Header>
-      </Layout>
-    )
+  signOut = () => {
+    http.$post(urlConfig.signout).then(data => {
+      if (data.Code === 0) {
+        message.success('退出成功')
+      }
+    })
   }
 
-}
+  render () {
+    return (
+      <NavigationBarComnect
+      searchKeyword = {this.state.searchKeyword}
+      onPressEnter = {this.onPressEnter}
+      onChange = {this.onChange}
+      signOut = { this.signOut }
+      >
 
-NavigationBar.propTypes = {
-  user: PropTypes.object
+      </NavigationBarComnect>
+    )
+  }
 }
 
 export default NavigationBar;

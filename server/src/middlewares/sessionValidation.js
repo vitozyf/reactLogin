@@ -5,7 +5,7 @@ export default function (req, res, next) {
   if (config.NoValidationRequiredList.indexOf(req.url) > -1) {
     next();
   } else {
-    if (!session.IsLogin) return res.json({Code: 1, Msg: '未登录'});
+    if (!session.IsLogin) return res.json({Code: 401, Msg: '用户未登录'});
     next();
   }
 }

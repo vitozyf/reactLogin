@@ -37,6 +37,10 @@
   .ant-menu-item{
     transition: none;
     line-height: 50px;
+    color: #ccc;
+    &:hover{
+      color: #fff;
+    }
     &>a{
       color: #ccc;
       &:before{

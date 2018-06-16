@@ -1,4 +1,5 @@
-const path = require("path")
+var webpack =  require('webpack');
+const path = require("path");
 const { injectBabelPlugin } = require('react-app-rewired');
 
 const AliasConfig = {
@@ -12,12 +13,22 @@ const AliasConfig = {
   'routers': resolve('src/routers'),
   'store': resolve('src/routers'),
   'public': resolve('public')
-}
+};
+
+// const plugins = [
+//   new webpack.ProvidePlugin({
+//     '_': 'underscore'
+//   })
+// ];
 
 module.exports = function override(config, env) {
   // do stuff with the webpack config...
   extend(config.resolve.alias, AliasConfig)
+  
   config = injectBabelPlugin(['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }], config);
+  
+  // config.plugins.push(plugins[0]);
+
   return config;
 };
 

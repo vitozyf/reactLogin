@@ -7,7 +7,9 @@ let router = express.Router();
 
 router
   .get('/', users.showIndex)
+  .post('/test', users.test)
   .post('/login', users.login)
   .post('/signin', users.signin)
+  .post('/signout', users.signout)
 
 export default router

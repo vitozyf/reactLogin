@@ -11,14 +11,24 @@
       "title": "关于"
     },
     {
+      "name": "Signin",
+      "path": "/signin",
+      "title": "注册"
+    },
+    {
       "name": "Login",
       "path": "/login",
       "title": "登录"
     },
     {
-      "name": "Signin",
-      "path": "/signin",
-      "title": "注册"
+      "name": "Personal",
+      "path": "/personal",
+      "title": "个人中心"
+    },
+    {
+      "name": "Test",
+      "path": "/test",
+      "title": "测试"
     }
   ]
 }

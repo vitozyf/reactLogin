@@ -3,6 +3,7 @@ export default {
   NoValidationRequiredList: [
     '/',
     '/signin',
-    '/login'
+    '/login',
+    '/signout'
   ]
 }
