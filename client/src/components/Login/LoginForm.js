@@ -19,7 +19,7 @@ class NormalLoginForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         http.$post(config.login, values).then((res) => {
-          if (res.Code === 0) {
+          if (res && res.Code === 0) {
             this.props.SetUserInfo(true)
             this.props.history.push('/') 
           } else {

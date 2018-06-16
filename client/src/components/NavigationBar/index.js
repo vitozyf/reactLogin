@@ -46,9 +46,8 @@ class NavigationBar extends Component{
 
   signOut = () => {
     http.$post(urlConfig.signout).then(data => {
-      if (data.Code === 0) {
-        message.success('退出成功')
-      }
+      if (!data || data.Code !== 0) return message.error('退出失败')
+      message.success('退出成功')
     })
   }
 
