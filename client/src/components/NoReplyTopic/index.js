@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import AllTopicUI from './AllTopic';
+import NoReplyTopicUI from './NoReplyTopicUI';
 import {connect} from 'react-redux';
-import http from 'utils/http';
+// import http from 'utils/http';
 
-const httpConfig = {
-  search: '/topic/search'
-}
+// const httpConfig = {
+//   search: '/topic/search'
+// }
 
 const mapStateToProps = (state, props) => {
   return props
@@ -19,30 +19,26 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const AllTopic = connect(
+const NoReplyTopic = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AllTopicUI) 
+)(NoReplyTopicUI) 
 
 class Index extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      topicList: []
+
     }
   }
 
   componentWillMount(){
-    http.$post(httpConfig.search).then(data => {
-      this.setState({
-        topicList: data.Data || []
-      })
-    })
+
   }
 
   render() {
     return (
-      <AllTopic topicList={this.state.topicList}/>
+      <NoReplyTopic/>
     )
   }
 }

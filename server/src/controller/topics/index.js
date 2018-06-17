@@ -7,11 +7,14 @@ export default {
   search(req, res)  {
     topicModel.getAllTopics((err, data) => {
       if (err) {
-        res.json('读取数据失败')
+        res.json({
+          Code: 1,
+          Data: []
+        })
       } else {
         res.json({
           Code: 0,
-          data:data
+          Data:data
          })
       }
     })

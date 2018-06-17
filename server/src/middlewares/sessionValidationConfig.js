@@ -4,6 +4,7 @@ export default {
     '/',
     '/signin',
     '/login',
-    '/signout'
+    '/signout',
+    '/topic/search'
   ]
 }

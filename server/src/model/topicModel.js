@@ -1,7 +1,7 @@
 import connection from './baseDb';
 
 export default {
-  // 获取所有用户数据
+  // 获取所有话题数据
   getAllTopics (cb) {
     let sqlStr = 'select * from topics where IsDelete=0 order by LastReplyTime DESC'
     connection.query(sqlStr, (err, res) => {

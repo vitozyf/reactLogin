@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
-import AllTopic from 'components/AllTopic/index'
+import AllTopic from 'components/AllTopic/index';
+import Info from 'components/Info/index';
 import {connect} from 'react-redux';
 import './style/index.css';
 
 const TabPane = Tabs.TabPane;
 
 const mapStateToProps = (state, props) => {
-  return Object.assign({}, state, props);
+  return Object.assign({}, props);
 }
 
 const AllTopicComponent = connect(
@@ -16,6 +17,10 @@ const AllTopicComponent = connect(
   //   return
   // }
 )(AllTopic)
+
+const InfoComponent = connect(
+  mapStateToProps,
+)(Info)
 
 class App extends Component {
 
@@ -43,6 +48,8 @@ class App extends Component {
 
           <TabPane tab="问答" key="4">Content of Tab Pane 3</TabPane>
         </Tabs>
+
+        <InfoComponent />
       </div>
     );
   }
