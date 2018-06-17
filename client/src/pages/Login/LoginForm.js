@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import http from 'utils/http'
-import {removeCookie} from 'src/utils/cookie';
-import Configs from 'src/utils/config';
 import './style/login-form.css'
 
 const FormItem = Form.Item;
@@ -16,14 +14,18 @@ class NormalLoginForm extends Component {
   handleSubmit = (e) => {
     // console.log(this)
     e.preventDefault();
+    const SetUserInfo = this.props.SetUserInfo
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        SetUserInfo(true);
         http.$post(config.login, values).then((res) => {
           if (res && res.Code === 0) {
             this.props.SetUserInfo(true)
             this.props.history.push('/') 
           } else {
-            removeCookie(Configs.SessionIdName)
+            setTimeout(() => {
+              SetUserInfo(false);            
+            }, 200)
           }
         })
       }

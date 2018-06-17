@@ -1,8 +1,16 @@
+.ant-layout{
+  background: #444444;
+  display: block;
+}
 .ant-layout-header{
   height: 50px;
   background-color: #444444;
   display: flex;
   justify-content: space-between;
+  max-width: 1024px;
+  min-width: 960px;
+  margin: 0 auto;
+  padding: 0;
   .title{
     width: 300px;
     display: flex;

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import RouterConfig from 'routers/router-config.json'
+
 const Menus = RouterConfig.Menus
+// const containerHeight = document.body.offsetHeight - 50
 
 export default (
-  <div className = "container">
+  <div className = "container" >
     {
       Menus.map(item => {
         return (
@@ -13,7 +15,7 @@ export default (
             key = {item.name} 
             path = { item.path } 
             component = { 
-              require(`components/${item.name}`).default
+              require(`pages/${item.name}`).default
             }>
           </Route>
         )

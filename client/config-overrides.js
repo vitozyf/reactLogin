@@ -5,6 +5,7 @@ const { injectBabelPlugin } = require('react-app-rewired');
 const AliasConfig = {
   'src': resolve('src'),
   'components': resolve('src/components'),
+  'pages': resolve('src/pages'),
   'assets': resolve('src/assets'),
   '~assets': resolve('src/assets'),
   'reducers': resolve('src/reducers'),

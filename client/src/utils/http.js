@@ -50,6 +50,7 @@ let httpRequest = async (config) => {
 }
 
 async function successReponseHandler (data) {
+
   if (data.Code === 0) return data
   let errorMsg = ''
   switch (data.Code) {

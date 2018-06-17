@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button } from 'antd';
 import http from 'utils/http'
+import { message } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -14,8 +15,10 @@ class NormalLoginForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        http.$post(config.signin, values, (res) => {
-          console.log(123, res)
+        http.$post(config.signin, values).then((res) => {
+          if (!res || res.Code !== 0) return message.error('注册失败，请稍后再试');
+          message.success('注册成功');
+          this.props.history.push('/login');
         })
       }
     });

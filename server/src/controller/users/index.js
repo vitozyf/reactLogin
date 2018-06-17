@@ -3,6 +3,8 @@ import querystring from 'querystring'
 import md5 from 'blueimp-md5';
 import config from '../../../config'
 
+const uuidv1 = require('uuid/v1');
+
 export default {
   test (req, res) {
     res.json({'Code': 0,'Data': 'test'})
@@ -36,8 +38,10 @@ export default {
   signin (req, res) {
     let userInfo = req.body
     userInfo.PassWord =  md5(userInfo.PassWord, config.passwordKey)
+    userInfo.UserId = uuidv1()
+
     usersMedel.searchUser(userInfo.UserName, (err, data) => {
-      if (err) res.json({'Code': 1, 'Msg': '注册失败'})
+      if (err || !data) res.json({'Code': 1, 'Msg': '注册失败'})
       if (data.length === 1) return res.json({'Code': 0, 'Msg': '用户名已存在'});
       usersMedel.signInUser(userInfo, (err, data) => {
         if (err) return res.json({'Code': 1, 'Msg': '注册失败'})

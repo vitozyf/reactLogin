@@ -5,8 +5,8 @@ import './style/blog-signin.css'
 class Signin extends Component {
   render() {
     return (
-      <div className = "blog-signin">
-        <SigninForm />
+      <div className = "blog-signin"  >
+        <SigninForm history={ this.props.history } />
       </div>
     )
   }
