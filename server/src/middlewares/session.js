@@ -14,7 +14,7 @@ const session = Session({
 })
 
 const userRemember = (req, res, next) => {
-  // 用户是否勾选remember验证
+  // 用户勾选remember则将seesionid有效期设为两天
   if ((req.url === '/login' && req.body.remember)) {
     req.session.cookie.maxAge = 1000 * 60 * 60 * 48; 
     next()
