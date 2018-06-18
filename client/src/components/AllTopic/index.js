@@ -35,7 +35,7 @@ class Index extends Component {
   componentWillMount(){
     http.$post(httpConfig.search).then(data => {
       this.setState({
-        topicList: data.Data || []
+        topicList: data ? data.Data : []
       })
     })
   }
