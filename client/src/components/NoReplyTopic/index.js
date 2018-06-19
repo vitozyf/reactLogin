@@ -32,13 +32,13 @@ class Index extends Component {
     }
   }
 
-  componentWillMount(){
+  refCb = (el) => {
 
   }
 
   render() {
     return (
-      <NoReplyTopic/>
+      <NoReplyTopic domref={this.refCb}/>
     )
   }
 }
