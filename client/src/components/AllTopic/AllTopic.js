@@ -3,7 +3,7 @@ import './style/index.css';
 
 class Index extends Component {
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const {topicList} = this.props
     return (
       topicList.map((topic, index) => {

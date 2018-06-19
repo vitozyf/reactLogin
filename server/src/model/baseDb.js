@@ -10,14 +10,15 @@ import Config from '../../config'
 
 var pool = mysql.createPool(Config.mysqlConfig);
 
-var query = (sql, callback) => {
+var query = (sql, options, callback) => {
+    let cb = typeof options === 'function' ? options : callback
     pool.getConnection((err, conn) => {
       if(err) {
-          callback(err, null);
+          cb(err, null);
       } else {
-          conn.query(sql, (err, results) => {
+          conn.query(sql, options, (err, results) => {
             //事件驱动回调
-            callback(err, results);
+            cb(err, results);
             //释放连接
             conn.release();
           });

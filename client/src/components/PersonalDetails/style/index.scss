@@ -1,0 +1,67 @@
+.PersonalDetails{
+  width: 230px;
+  height: 100%;
+  background-color: #E9F2FC;
+  border-radius: 10px;
+  padding: 10px;
+  .header, .person_info_wraper{
+    border-bottom: solid 1px #d0dbed;
+  }
+  .title{
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 700;
+    color: #000;
+  }
+  .setting{
+    
+  }
+
+  .person_info_wraper{
+    margin: 10px 0;
+    padding: 10px 0 50px;
+    .aside_userface_wraper{
+      display: flex;
+    }
+    .aside_userface_border{
+      border: 1px solid #D4D4D4;
+      padding: 1px;
+      background: #fff;
+      text-align: center;
+      width: 64px;
+      height: 64px;
+      img{
+        max-width: 64px;
+        max-height: 64px;
+        width: 60px;
+        height: 60px;
+        visibility: visible;
+        margin-top: 0px;
+      }
+    }
+    .aside_user_profile{
+      margin-left: 10px;
+      .aside_user_name {
+        color: #0449be;
+        font-weight: 700;
+      }
+      .aside_user_info {
+        color: #999;
+      }
+      .aside_user_fans {
+        margin-top: 5px;
+      }
+      .aside_interact_num{
+        color: #0449be;
+      }
+    }
+  }
+  .aside_menu li{
+    padding-left: 10px;
+    line-height: 30px;
+  }
+  .new_reply_num_tip{
+    font-size: 12px;
+    color: red;
+  }
+}

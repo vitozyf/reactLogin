@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PersonalDetails from 'components/PersonalDetails/index';
+import './style/index.css';
 
 class Personal extends Component {
  render () {
    return (
-     <div>个人中心</div>
+     <div className="Personal">
+       <PersonalDetails />
+     </div>
    )
  }
 }
