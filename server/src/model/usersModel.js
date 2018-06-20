@@ -32,5 +32,13 @@ export default {
       if(err) return cb(err);
       cb(null, res)
     })
+  },
+  // 获取用户信息
+  getUserInfo(id, cb){
+    let sql = 'select Email, Phone, UserHeaderPortrait, UserID, UserName from users where UserID=?'
+    query(sql, id, (err, res) => {
+      if(err) return cb(err);
+      cb(null, res)
+    })
   }
 }

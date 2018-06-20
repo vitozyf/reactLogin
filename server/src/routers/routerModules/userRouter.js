@@ -11,5 +11,6 @@ router
   .post('/login', users.login)
   .post('/signin', users.signin)
   .post('/signout', users.signout)
+  .post('/getUserInfo', users.getUserInfo)
 
 export default router

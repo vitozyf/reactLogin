@@ -4,6 +4,12 @@
   flex-direction: column;
   border-radius: 10px;
   background-color: #FFF;
+  .ant-tabs-ink-bar{
+    display: none!important;
+  }
+  .peleaseTopic{
+    color: #333;
+  }
 }
 .ant-tabs-bar{
   margin: 0;

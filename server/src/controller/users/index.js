@@ -55,5 +55,15 @@ export default {
       'Code': 0,
       'Msg': '注销成功'
     })
+  },
+  getUserInfo (req, res) {
+    if (!req.session || !req.session.UserInfo) return res.json({Code: 1, Msg: '用户身份失效'})
+    usersMedel.getUserInfo(req.session.UserInfo.UserID, (err, data) => {
+      if(err || data.length !== 1) return res.json({Code: 1, Msg: '获取失败'})
+      res.json({
+        Code: 0, 
+        data: data[0]
+      })
+    })
   }
 }

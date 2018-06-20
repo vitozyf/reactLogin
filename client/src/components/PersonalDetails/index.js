@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import './style/index.css';
 
 class PersonalDetails extends Component {
+  // componentWillMount() {
+  //   console.log(this)
+  // }
+
  render () {
+   const {userInfo} = this.props
+  //  SetUserInfo(userInfo)
    return (
     <div className="PersonalDetails">
 
@@ -14,11 +20,11 @@ class PersonalDetails extends Component {
       <div className="person_info_wraper">
         <div className="aside_userface_wraper">
           <div className="aside_userface_border">
-            <img src='http://tb.himg.baidu.com/sys/portrait/item/640cd2bbd6bdd5e6d0c45fa41f' alt="userName"/>
+            <img src={ userInfo.UserHeaderPortrait } alt="userName"/>
           </div>
 
           <div className="aside_user_profile">
-            <p className="aside_user_name">皮卡丘丘</p>
+            <p className="aside_user_name">{ userInfo.UserName }</p>
             <p className="aside_user_info">
               <span>男</span><span></span>
             </p>

@@ -37,8 +37,9 @@ class Index extends Component {
   }
 
   render() {
+    const {releaseTopic} = this.props
     return (
-      <Info/>
+      <Info releaseTopic={releaseTopic}/>
     )
   }
 }

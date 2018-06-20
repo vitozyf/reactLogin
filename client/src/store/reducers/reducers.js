@@ -8,9 +8,14 @@ export const user = (state = '', action) => {
       if (typeof action.IsLogin !== 'undefined' && !action.IsLogin) {
         removeCookie(config.SessionIdName)
       }
+      let UserInfo
+      if (action.userInfo) {
+         UserInfo = action.userInfo
+      }
       return Object.assign({}, state, {
         IsLogin: action.IsLogin,
-        Name: action.Name
+        Name: action.Name,
+        UserInfo: UserInfo ? UserInfo : state.UserInfo
       })
     default:
       return state
