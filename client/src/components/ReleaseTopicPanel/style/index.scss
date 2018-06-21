@@ -1,0 +1,15 @@
+.m-ui-ReactMde{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  .title{
+    height: 50px;
+  }
+  .m-ReleaseTopicPanel{
+    flex: 1;
+    max-height: 500px;
+  }
+  .footer{
+    height: 50px;
+  }
+}
