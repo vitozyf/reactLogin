@@ -8,28 +8,21 @@ class Index extends Component {
   // }
 
   render() {
-    const {domref} = this.props;
-
+    const {domref, topicList} = this.props;
+    // console.log(topicList)
     return (
       <div className="app-info_NoReplyTopicUI app-info_model"  ref={domref}>
         <div className="title">无人回复的话题</div>
         <div className="body">
-          <div className="row">
-            <a>Node.js Server之一：概述Node.js Server之一：概述</a>
-          </div>
-
-          <div className="row">
-            <a>Node.js Server之一：概述</a>
-          </div>
-
-          <div className="row">
-            <a>Node.js Server之一：概述</a>
-          </div>
-           <div className="row">
-            <a>Node.js Server之一：概述</a>
-          </div> <div className="row">
-            <a>Node.js Server之一：概述</a>
-          </div>
+          {
+            topicList.map(item => {
+              return (
+                <div className="row" key={item.TopicId}>
+                  <a>{item.TopicName}</a>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     )

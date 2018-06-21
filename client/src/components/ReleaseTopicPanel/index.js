@@ -37,7 +37,9 @@ class ReleaseTopicPanel extends Component {
       TopicName: this.state.Title,
       TopicContent: this.state.mdeState.html
     }).then((data) => {
-      console.log(123, data)
+      if(data && data.Code === 0) {
+        this.props.backHOme()
+      }
     })
   }
 

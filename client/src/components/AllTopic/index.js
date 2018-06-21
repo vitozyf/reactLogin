@@ -33,7 +33,9 @@ class Index extends Component {
   }
 
   componentWillMount(){
-    http.$post(httpConfig.search).then(data => {
+    http.$post(httpConfig.search, {
+      type: 'All'
+    }).then(data => {
       this.setState({
         topicList: data ? data.Data : []
       })

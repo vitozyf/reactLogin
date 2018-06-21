@@ -9,6 +9,7 @@ import './style/index.css';
 const TabPane = Tabs.TabPane;
 
 const mapStateToProps = (state, props) => {
+  // console.log(2, props, Object.assign({}, props))
   return Object.assign({}, props);
 }
 
@@ -37,7 +38,6 @@ class App extends Component {
   }
 
   releaseTopic = (event) => {
-    console.log(123, event.type)
     this.setState({
       componentType: 'pelease'
     })
@@ -77,7 +77,7 @@ class App extends Component {
             <span className="peleaseTopic"><a onClick={this.backHOme}>主页</a> / 发布话题</span>
           } 
           key="pelease">
-          <ReleaseTopicPanel></ReleaseTopicPanel>
+          <ReleaseTopicPanel backHOme={this.backHOme}></ReleaseTopicPanel>
         </TabPane>
       </Tabs>
     )
@@ -89,7 +89,7 @@ class App extends Component {
           type === 'topics' ? topicsCom : type === 'pelease' ? peleaseCom : null
         }
 
-        <InfoComponent releaseTopic={this.releaseTopic} />
+        <InfoComponent releaseTopic={this.releaseTopic} componentType={this.state.componentType}/>
       </div>
     );
   }

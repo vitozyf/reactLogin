@@ -37,8 +37,10 @@ class Index extends Component {
   }
 
   render() {
+    // console.log(123, this.props)
+    const {topicList} = this.props;
     return (
-      <NoReplyTopic domref={this.refCb}/>
+      <NoReplyTopic domref={this.refCb} topicList={topicList}/>
     )
   }
 }

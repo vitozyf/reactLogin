@@ -29,13 +29,16 @@
 
   .topic_title{
     color: #888;
-    max-width: 70%;
+    max-width: 350px;
     white-space: nowrap;
     display: inline-block;
     vertical-align: middle;
     font-size: 16px;
     line-height: 30px;
     padding: 0 10px;
+    overflow:hidden; /*超出的部分隐藏起来。*/ 
+    white-space:nowrap;/*不显示的地方用省略号...代替*/
+    text-overflow:ellipsis;/* 支持 IE */
   }
 
   .put_top, .put_ask, .put_share{

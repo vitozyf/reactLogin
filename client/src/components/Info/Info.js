@@ -7,11 +7,14 @@ import './style/index.css';
 class Index extends Component {
 
   render() {
-    const {releaseTopic} = this.props
+    // console.log(this.props)
+    const {releaseTopic, componentType, topicList} = this.props
     return (
       <div className="app-info">
-        <NoReplyTopic />
-        <ReleaseTopic releaseTopic={releaseTopic}/>
+        <NoReplyTopic topicList={topicList} />
+        {
+          componentType === 'topics' ?  <ReleaseTopic releaseTopic={releaseTopic}/> : null
+        }
         <BlogRoll />
       </div>
     )

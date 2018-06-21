@@ -5,26 +5,29 @@ const uuidv1 = require('uuid/v1');
 
 export default {
   search(req, res) {
-    topicModel.getAllTopics((err, data) => {
-      if (err) {
-        res.json({
-          Code: 1,
-          Data: []
+    const parama = req.body
+    // console.log(req.body)
+    switch(req.body.type){
+      case 'All':
+        topicModel.getAllTopics((err, data) => {
+          if (err) return res.json({Code: 1,Data: []})
+          return res.json({Code: 0,Data:data})
         })
-      } else {
-        res.json({
-          Code: 0,
-          Data:data
-         })
-      }
-    })
+        break;
+      case 'NoRevert':
+        topicModel.getNoRevertTopics((err, data) => {
+          if (err) return res.json({Code: 1,Data: []})
+          return res.json({Code: 0,Data:data})
+        })
+        break;
+    }
   },
   releaseTopic (req, res) {
     let newTopic = Object.assign({}, req.body, {
       UserID: req.session.UserInfo.UserID,
       TopicID: uuidv1()
     })
-    console.log(newTopic, req.session);
+    // console.log(newTopic, req.session);
     
     topicModel.releaseTopic(newTopic, (err, data) => {
       if(err) return res.json({Code: 1, Msg: '发布失败'})
