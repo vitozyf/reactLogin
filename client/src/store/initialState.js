@@ -6,9 +6,5 @@ export default {
     Name: '',
     UserInfo: {}
   },
-  todos: {
-    test: false,
-    test2: 'abc'
-  },
   pageLoading: false
 };

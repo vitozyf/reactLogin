@@ -7,5 +7,6 @@ let router = express.Router();
 
 router
   .post('/topic/search', topics.search)
+  .post('/releaseTopic', topics.releaseTopic)
 
 export default router

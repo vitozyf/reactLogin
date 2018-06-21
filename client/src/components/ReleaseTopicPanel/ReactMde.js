@@ -11,11 +11,11 @@ class ReleaseTopicPanel extends Component {
   }
 
   render() {
-    const {converter, mdeState, handleValueChange} = this.props;
+    const {converter, mdeState, handleValueChange, onChangeHandler, Title, releaseTopic} = this.props;
     return(
       <div className="m-ui-ReactMde">
           <div className="title">
-            <Input></Input>
+            <Input onChange={onChangeHandler} name="Title" value={Title}></Input>
           </div>
           <ReactMde
             layout="horizontal"
@@ -25,7 +25,7 @@ class ReleaseTopicPanel extends Component {
             generateMarkdownPreview={(markdown) => Promise.resolve(converter.makeHtml(markdown))}
           />
           <div className="footer">
-            <Button>发布</Button>
+            <Button onClick={releaseTopic}>发布</Button>
           </div>
       </div>
     )

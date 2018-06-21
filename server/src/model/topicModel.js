@@ -9,5 +9,13 @@ export default {
       if(err) return cb(err)
       cb(null, res)
     })
+  },
+  // 发布新话题
+  releaseTopic (topic, cb) {
+    let sql = 'INSERT INTO topics (TopicName, TopicContent, UserID, TopicID) values (?,?,?,?)';
+    query(sql, [topic.TopicName, topic.TopicContent, topic.UserID, topic.TopicID], (err, res) => {
+      if(err) return cb(err);
+      cb(null, res)
+    })
   }
 }
