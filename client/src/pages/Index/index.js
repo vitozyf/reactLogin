@@ -37,9 +37,9 @@ class App extends Component {
     console.log(key)
   }
 
-  releaseTopic = (event) => {
+  releaseTopic = (type) => {
     this.setState({
-      componentType: 'pelease'
+      componentType: type
     })
   }
 
@@ -50,12 +50,14 @@ class App extends Component {
   }
 
   render() {
-    let topicsCom = (
+    const type = this.state.componentType
+    
+    let TopicsCom = (
       <Tabs defaultActiveKey="allTopic" onChange={this.callback}>
         <TabPane 
           tab = {<span>全部</span>} 
           key="allTopic">
-          <AllTopicComponent></AllTopicComponent>
+          <AllTopicComponent releaseTopic={this.releaseTopic}></AllTopicComponent>
         </TabPane>
 
         <TabPane 
@@ -70,7 +72,7 @@ class App extends Component {
       </Tabs>
     )
 
-    let peleaseCom = (
+    let PeleaseCom = (
       <Tabs defaultActiveKey="pelease" onChange={this.callback} >
         <TabPane 
           tab = {
@@ -82,12 +84,25 @@ class App extends Component {
       </Tabs>
     )
 
-    const type = this.state.componentType
+    let ComponentCom
+
+    switch (type) {
+      case 'topics': 
+        ComponentCom = TopicsCom;
+        break;
+      case 'pelease': 
+        ComponentCom = PeleaseCom;
+        break;
+      case 'topicLine': 
+        ComponentCom = PeleaseCom;
+        break;
+      default:
+        ComponentCom = null;
+    }
+
     return (
       <div className="App">
-        {
-          type === 'topics' ? topicsCom : type === 'pelease' ? peleaseCom : null
-        }
+        {ComponentCom}
 
         <InfoComponent releaseTopic={this.releaseTopic} componentType={this.state.componentType}/>
       </div>

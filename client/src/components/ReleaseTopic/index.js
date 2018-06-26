@@ -10,7 +10,7 @@ class Index extends Component {
     return (
       <div className="app-info_ReleaseTopic app-info_model"  ref={domref}>
         <div className="body">
-         <Button type="primary" onClick={releaseTopic}>发布新话题</Button>
+         <Button type="primary" onClick={() => {releaseTopic('pelease')}}>发布新话题</Button>
         </div>
       </div>
     )

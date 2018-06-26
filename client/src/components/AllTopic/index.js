@@ -42,9 +42,14 @@ class Index extends Component {
     })
   }
 
+  enterIntoTopic = (event) => {
+    const {releaseTopic} = this.props
+    releaseTopic('topicLine', event.target.dataset.id)
+  }
+
   render() {
     return (
-      <AllTopic topicList={this.state.topicList}/>
+      <AllTopic topicList={this.state.topicList} enterIntoTopic={this.enterIntoTopic}/>
     )
   }
 }
