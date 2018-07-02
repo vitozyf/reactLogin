@@ -1,8 +1,6 @@
 import Config from './config'
 import { getCookie } from './cookie'
 
-const IsLogin = !!getCookie(Config.SessionIdName);
-
-export {
-  IsLogin
-}
+export const IsLogin = () => {
+  return !!getCookie(Config.SessionIdName);
+};

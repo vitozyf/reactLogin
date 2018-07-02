@@ -3,7 +3,7 @@ import NavigationBarUi from './NavigationBarUi'
 import { connect } from 'react-redux';
 import http from 'utils/http';
 import { message } from 'antd';
-
+import PropTypes from "prop-types";
 import './style/NavigationBar.css'
 
 const urlConfig = {
@@ -29,8 +29,11 @@ let state = {
 
 class NavigationBar extends Component{
 
-  constructor (props) {
-    super(props); 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  constructor (props, context) {
+    super(props, context); 
     this.state = state
   }
 
@@ -47,6 +50,7 @@ class NavigationBar extends Component{
   signOut = () => {
     http.$post(urlConfig.signout).then(data => {
       if (!data || data.Code !== 0) return message.error('退出失败')
+      // this.context.router.history.push('/');
       message.success('退出成功')
     })
   }

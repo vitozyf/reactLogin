@@ -4,6 +4,8 @@ import AllTopic from 'components/AllTopic/index';
 import Info from 'components/Info/index';
 import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
 import {connect} from 'react-redux';
+import {IsLogin} from 'utils/utils';
+import {Message} from 'antd';
 import './style/index.css';
 
 const TabPane = Tabs.TabPane;
@@ -38,9 +40,13 @@ class App extends Component {
   }
 
   releaseTopic = (type) => {
-    this.setState({
-      componentType: type
-    })
+    if (IsLogin()) {
+      this.setState({
+        componentType: type
+      })
+    } else {
+      Message.error('请先登录')
+    }
   }
 
   backHOme = () => {

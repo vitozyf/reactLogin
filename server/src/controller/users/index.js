@@ -50,11 +50,19 @@ export default {
     })
   },
   signout (req, res) {
-    req.session.destroy();
-    res.json({
-      'Code': 0,
-      'Msg': '注销成功'
-    })
+    // 销毁session
+    req.session.destroy((err) => {
+      if (err) return res.json({
+        'Code': 1,
+        'Msg': '注销失败'
+      })
+      // 清除cookie
+      res.clearCookie(config.SessionId);
+      res.json({
+        'Code': 0,
+        'Msg': '注销成功'
+      })
+    });
   },
   getUserInfo (req, res) {
     if (!req.session || !req.session.UserInfo) return res.json({Code: 1, Msg: '用户身份失效'})
