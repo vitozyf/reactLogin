@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import AllTopic from 'components/AllTopic/index';
 import Info from 'components/Info/index';
 import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
+// import TopicDetails from 'components/TopicDetails/index';
 import {connect} from 'react-redux';
 import {IsLogin} from 'utils/utils';
 import {Message} from 'antd';
@@ -90,6 +91,11 @@ class App extends Component {
       </Tabs>
     )
 
+    let TopicDetailsCom = (
+      <div></div>
+          // <TopicDetails backHOme={this.backHOme}></TopicDetails>
+    )
+
     let ComponentCom
 
     switch (type) {
@@ -100,7 +106,7 @@ class App extends Component {
         ComponentCom = PeleaseCom;
         break;
       case 'topicLine': 
-        ComponentCom = PeleaseCom;
+        ComponentCom = TopicDetailsCom;
         break;
       default:
         ComponentCom = null;
@@ -109,7 +115,6 @@ class App extends Component {
     return (
       <div className="App">
         {ComponentCom}
-
         <InfoComponent releaseTopic={this.releaseTopic} componentType={this.state.componentType}/>
       </div>
     );

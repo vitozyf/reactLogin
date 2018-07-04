@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class About extends Component {
 
   componentWillMount () {
@@ -7,6 +6,7 @@ class About extends Component {
   }
   
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <h1>about</h1>

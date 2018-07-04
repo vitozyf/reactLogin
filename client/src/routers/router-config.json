@@ -8,7 +8,13 @@
     {
       "name": "About",
       "path": "/about",
-      "title": "关于"
+      "title": "关于",
+      "routes": [
+        {
+          "path": "/about/child",
+          "name": "Child"
+        }
+      ]
     },
     {
       "name": "Signin",
