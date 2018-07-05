@@ -27,6 +27,7 @@ module.exports = function override(config, env) {
   extend(config.resolve.alias, AliasConfig)
   
   config = injectBabelPlugin(['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }], config);
+  // config = injectBabelPlugin(['transform-decorators-legacy'], config);
   
   // config.plugins.push(plugins[0]);
 

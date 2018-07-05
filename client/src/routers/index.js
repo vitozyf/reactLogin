@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import RouterConfig from 'routers/router-config.json'
+// import RouterConfig from 'routers/router-config.json'
 
 import Index from 'pages/Index'
 import About from 'pages/About'
@@ -10,23 +10,22 @@ import Personal from 'pages/Personal'
 import Test from 'pages/Test'
 import TopicDetails from 'components/TopicDetails/index';
 
-const Menus = RouterConfig.Menus
+// const Menus = RouterConfig.Menus
 
 export default (
   <div className = "container" >
     <Switch>
       <Route exact  path = "/" component = {Index}></Route>
       <Route 
-        exact 
         path = "/about" 
-   
         render = {({history,location,match}) => (
-          <div history={history} location={location} match={location}>
-              <Route path="/about" exact component={About} />
-              <Route path="/about/pro" exact component={TopicDetails} />
+          <div>
+              <Route path="/about" exact render = {() => (<About></About>)} />
+              <Route path="/about/pro" exact  render = {() => (<TopicDetails></TopicDetails>)} />
           </div>
         )}
         >
+         {/*component = {About}*/}
       </Route>
       <Route exact path = "/signin" component = {Signin}></Route>
       <Route exact path = "/login" component = {Login}> </Route>
