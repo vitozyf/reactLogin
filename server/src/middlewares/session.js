@@ -8,7 +8,7 @@ const session = Session({
   saveUninitialized: false,
   cookie: {
     // Domain: `http://${config.mysqlConfig.host}`,
-    maxAge : 1000 * 60 * 60 * 2,
+    maxAge : 0,
     httpOnly: false
   }
 })

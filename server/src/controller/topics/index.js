@@ -5,11 +5,11 @@ const uuidv1 = require('uuid/v1');
 
 export default {
   search(req, res) {
-    const parama = req.body
+    const params = req.body
     // console.log(req.body)
     switch(req.body.type){
       case 'All':
-        topicModel.getAllTopics((err, data) => {
+        topicModel.getAllTopics(params, (err, data) => {
           if (err) return res.json({Code: 1,Data: []})
           return res.json({Code: 0,Data:data})
         })

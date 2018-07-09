@@ -10,6 +10,7 @@ let path = require('path');
 let app = express();
 
 app.all('*', AccessControl);
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session);

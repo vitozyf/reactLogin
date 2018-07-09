@@ -5,6 +5,7 @@ export default {
     '/signin',
     '/login',
     '/signout',
-    '/topic/search'
+    '/topic/search',
+    '/api-docs'
   ]
 }

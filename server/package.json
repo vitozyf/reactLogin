@@ -19,6 +19,7 @@
     "log4js": "^2.9.0",
     "mysql": "^2.15.0",
     "querystring": "^0.2.0",
+    "swagger-jsdoc": "^1.9.7",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

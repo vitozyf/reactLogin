@@ -2,9 +2,17 @@ import query from './baseDb';
 
 export default {
   // 获取所有话题数据
-  getAllTopics (cb) {
-    let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC'
-    query(sqlStr, (err, res) => {
+  getAllTopics (params, cb) {
+    let {PageIndex, PageSize} = params;
+    if (!PageIndex) {PageIndex = 1};
+    if (!PageSize) {PageSize = 10};
+    PageIndex = Number(PageIndex);
+    PageSize = Number(PageSize);
+
+    let Offset = (PageIndex - 1) * PageSize;
+
+    let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC LIMIT ?, ?'
+    query(sqlStr, [Offset, PageSize], (err, res) => {
       if(err) return cb(err)
       cb(null, res)
     })
