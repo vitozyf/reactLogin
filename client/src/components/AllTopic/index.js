@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AllTopicUI from './AllTopic';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import http from 'utils/http';
 
 const httpConfig = {
@@ -43,8 +44,7 @@ class Index extends Component {
   }
 
   enterIntoTopic = (event) => {
-    const {releaseTopic} = this.props
-    releaseTopic('topicLine', event.target.dataset.id)
+    console.log(123, this.props)
   }
 
   render() {
@@ -53,4 +53,4 @@ class Index extends Component {
     )
   }
 }
-export default Index
+export default withRouter(Index)

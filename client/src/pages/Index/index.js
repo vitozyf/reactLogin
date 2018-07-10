@@ -31,7 +31,7 @@ class App extends Component {
 
     }
   }
-
+  // tab切换
   callback = (key) => {
     console.log(key)
   }
@@ -44,7 +44,7 @@ class App extends Component {
         <TabPane 
           tab = {<span>全部</span>} 
           key="allTopic">
-          <AllTopicComponent releaseTopic={this.releaseTopic}></AllTopicComponent>
+          <AllTopicComponent></AllTopicComponent>
         </TabPane>
 
         <TabPane 
