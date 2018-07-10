@@ -2,22 +2,29 @@ import React, {Component} from 'react';
 import NoReplyTopic from 'components/NoReplyTopic/index';
 import BlogRoll from 'components/BlogRoll/index';
 import ReleaseTopic from 'components/ReleaseTopic/index';
+import {withRouter} from 'react-router-dom';
 import './style/index.css';
 
 class Index extends Component {
+  componentWillMount() {
+    const {changeSendState} = this.props
+    this.props.history.listen((route) => {
+      changeSendState(route.pathname === '/home' || route.pathname === '/')
+    })
+  }
 
   render() {
-    // console.log(this.props)
-    const {releaseTopic, componentType, topicList} = this.props
+    const {topicList, showSendBtn} = this.props
+
     return (
       <div className="app-info">
         <NoReplyTopic topicList={topicList} />
         {
-          componentType === 'topics' ?  <ReleaseTopic releaseTopic={releaseTopic}/> : null
+          showSendBtn ? <ReleaseTopic /> : null
         }
         <BlogRoll />
       </div>
     )
   }
 }
-export default Index
+export default withRouter(Index)

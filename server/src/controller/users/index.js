@@ -6,21 +6,6 @@ import config from '../../../config'
 const uuidv1 = require('uuid/v1');
 
 export default {
-  test (req, res) {
-    res.json({'Code': 0,'Data': 'test'})
-  },
-  showIndex(req, res)  {
-    usersMedel.getAllUsers((err, data) => {
-      if (err) {
-        res.json('读取数据失败')
-      } else {
-        res.json({
-          code: 0,
-          data:data
-         })
-      }
-    })
-  },
   //登录
   login(req, res) {
     let loginInfo = req.body;
@@ -35,11 +20,11 @@ export default {
       res.json({'Code': 0, 'Msg': '登录成功'});
     })
   },
+  // 注册
   signin (req, res) {
     let userInfo = req.body
-    userInfo.PassWord =  md5(userInfo.PassWord, config.passwordKey)
+    userInfo.PassWord = md5(userInfo.PassWord, config.passwordKey)
     userInfo.UserId = uuidv1()
-
     usersMedel.searchUser(userInfo.UserName, (err, data) => {
       if (err || !data) res.json({'Code': 1, 'Msg': '注册失败'})
       if (data.length === 1) return res.json({'Code': 0, 'Msg': '用户名已存在'});
@@ -49,6 +34,7 @@ export default {
       })
     })
   },
+  // 登出
   signout (req, res) {
     // 销毁session
     req.session.destroy((err) => {
@@ -64,6 +50,7 @@ export default {
       })
     });
   },
+  // 获取用户信息
   getUserInfo (req, res) {
     if (!req.session || !req.session.UserInfo) return res.json({Code: 1, Msg: '用户身份失效'})
     usersMedel.getUserInfo(req.session.UserInfo.UserID, (err, data) => {

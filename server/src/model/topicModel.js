@@ -33,5 +33,13 @@ export default {
       if(err) return cb(err);
       cb(null, res)
     })
+  },
+  // 获取话题详情
+  getTopicDetails (topicId, cb) {
+    let sql = 'select * from topics where TopicId=? and IsDelete=0 ';
+    query(sql, topicId, (err, res) => {
+      if(err) return cb(err);
+      cb(null, res)
+    })
   }
 }

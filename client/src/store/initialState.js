@@ -6,5 +6,6 @@ export default {
     Name: '',
     UserInfo: {}
   },
-  pageLoading: false
+  pageLoading: false,
+  showSendBtn: true
 };

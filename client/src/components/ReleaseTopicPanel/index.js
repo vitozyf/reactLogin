@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import ReactMde from './ReactMde';
 import * as Showdown from "showdown";
 import http from 'utils/http';
+import { Message } from 'antd';
 
 const Config = {
-  releaseTopic: '/releaseTopic'
+  releaseTopic: '/topic/release'
 }
 
 class ReleaseTopicPanel extends Component {
@@ -23,7 +24,6 @@ class ReleaseTopicPanel extends Component {
 
   handleValueChange = (mdeState) => {
     this.setState({mdeState});
-    console.log(mdeState)
   }
 
   onChangeHandler = (event) => {
@@ -38,7 +38,7 @@ class ReleaseTopicPanel extends Component {
       TopicContent: this.state.mdeState.html
     }).then((data) => {
       if(data && data.Code === 0) {
-        this.props.backHOme()
+        console.log(this.$props, data)
       }
     })
   }

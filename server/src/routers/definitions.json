@@ -1,0 +1,59 @@
+{
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "UserName": {
+          "type": "string"
+        },
+        "PassWord": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "TopicSearch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "PageIndex": {
+          "type": "number"
+        },
+        "PageSize": {
+          "type": "number"
+        }
+      },
+      "xml": {
+        "name": "TopicSearch"
+      }
+    },
+    "Topic": {
+      "type": "object",
+      "properties": {
+        "TopicContent": {
+          "type": "string"
+        },
+        "TopicName": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "TopicSearch"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "User",
+      "description": "用户相关"
+    },
+    {
+      "name": "Topic",
+      "description": "话题相关"
+    }
+  ]
+}

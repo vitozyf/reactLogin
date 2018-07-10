@@ -8,13 +8,16 @@ const httpConfig = {
 }
 
 const mapStateToProps = (state, props) => {
-  return props
+  return Object.assign({}, {showSendBtn: state.showSendBtn}, props)
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    xxx : () => {
-      return {}
+    changeSendState : (state) => {
+      return dispatch({
+        type: 'ChangeSendState',
+        State: state
+      })
     }
   }
 }
@@ -43,9 +46,8 @@ class Index extends Component {
   }
 
   render() {
-    const {releaseTopic, componentType} = this.props
     return (
-      <Info releaseTopic={releaseTopic} componentType={componentType} topicList={this.state.topicList} />
+      <Info topicList={this.state.topicList} />
     )
   }
 }

@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
-import { Button } from 'antd';
+import {withRouter} from 'react-router-dom';
+import {IsLogin} from 'utils/utils';
+import { Button, Message } from 'antd';
 import './style/index.css';
 
 class Index extends Component {
+  releaseNewTopic = () => {
+    if (IsLogin()) {
+      this.props.history.push('/home/release')
+    } else {
+      Message.warning('请先登录')
+    }
+  }
 
   render() {
-    const {domref, releaseTopic} = this.props;
-
     return (
-      <div className="app-info_ReleaseTopic app-info_model"  ref={domref}>
+      <div className="app-info_ReleaseTopic app-info_model">
         <div className="body">
-         <Button type="primary" onClick={() => {releaseTopic('pelease')}}>发布新话题</Button>
+         <Button type="primary" onClick={() => {this.releaseNewTopic()}}>发布新话题</Button>
         </div>
       </div>
     )
   }
 }
-export default Index
+export default withRouter(Index)

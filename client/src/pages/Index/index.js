@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
+import { Route } from 'react-router-dom';
 import AllTopic from 'components/AllTopic/index';
 import Info from 'components/Info/index';
 import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
 // import TopicDetails from 'components/TopicDetails/index';
 import {connect} from 'react-redux';
-import {IsLogin} from 'utils/utils';
-import {Message} from 'antd';
+// import {IsLogin} from 'utils/utils';
 import './style/index.css';
 
 const TabPane = Tabs.TabPane;
 
 const mapStateToProps = (state, props) => {
-  // console.log(2, props, Object.assign({}, props))
   return Object.assign({}, props);
 }
 
 const AllTopicComponent = connect(
   mapStateToProps,
-  // dispatch => {
-  //   return
-  // }
 )(AllTopic)
 
 const InfoComponent = connect(
@@ -32,7 +28,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      componentType: 'topics'
+
     }
   }
 
@@ -40,26 +36,10 @@ class App extends Component {
     console.log(key)
   }
 
-  releaseTopic = (type) => {
-    if (IsLogin()) {
-      this.setState({
-        componentType: type
-      })
-    } else {
-      Message.error('请先登录')
-    }
-  }
-
-  backHOme = () => {
-    this.setState({
-      componentType: 'topics'
-    })
-  }
-
   render() {
-    const type = this.state.componentType
+    const {history} = this.props
     
-    let TopicsCom = (
+    let TopicsCom = () => (
       <Tabs defaultActiveKey="allTopic" onChange={this.callback}>
         <TabPane 
           tab = {<span>全部</span>} 
@@ -79,11 +59,11 @@ class App extends Component {
       </Tabs>
     )
 
-    let PeleaseCom = (
+    let PeleaseCom = () => (
       <Tabs defaultActiveKey="pelease" onChange={this.callback} >
         <TabPane 
           tab = {
-            <span className="peleaseTopic"><a onClick={this.backHOme}>主页</a> / 发布话题</span>
+            <span className="peleaseTopic"><a onClick={() => {history.push('/home')}}>主页</a> / 发布话题</span>
           } 
           key="pelease">
           <ReleaseTopicPanel backHOme={this.backHOme}></ReleaseTopicPanel>
@@ -91,31 +71,19 @@ class App extends Component {
       </Tabs>
     )
 
-    let TopicDetailsCom = (
-      <div></div>
-          // <TopicDetails backHOme={this.backHOme}></TopicDetails>
-    )
+    // let TopicDetailsCom = (
+    //   <div></div>
+    // )
 
-    let ComponentCom
+    // let ComponentCom
 
-    switch (type) {
-      case 'topics': 
-        ComponentCom = TopicsCom;
-        break;
-      case 'pelease': 
-        ComponentCom = PeleaseCom;
-        break;
-      case 'topicLine': 
-        ComponentCom = TopicDetailsCom;
-        break;
-      default:
-        ComponentCom = null;
-    }
+
 
     return (
       <div className="App">
-        {ComponentCom}
-        <InfoComponent releaseTopic={this.releaseTopic} componentType={this.state.componentType}/>
+        <Route exact path="/home" render={()=>(<TopicsCom></TopicsCom>)} />
+        <Route exact path="/home/release" name="release" render={()=>(<PeleaseCom></PeleaseCom>)} />
+        <InfoComponent />
       </div>
     );
   }

@@ -33,5 +33,12 @@ export default {
       if(err) return res.json({Code: 1, Msg: '发布失败'})
       res.json({Code: 0, Msg: '发布成功'})
     })
+  },
+  getTopicDetails (req, res) {
+    const TopicId = req.body.TopicId
+    topicModel.getTopicDetails(TopicId, (err, data) => {
+      if(err) return res.json({Code: 1, Msg: '获取话题详情失败'})
+      res.json({Code: 0, Data: {TopicDetail: data[0]}})
+    })
   }
 }

@@ -13,7 +13,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeName: (name) => {
-      console.log(name)
       return dispatch({
         type: 'SetUserInfo',
         Name: name

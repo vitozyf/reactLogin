@@ -25,3 +25,12 @@ export const pageLoading = (state = false, action) => {
       return state
   }
 }
+
+export const showSendBtn = (state = true, action) => {
+  switch (action.type) {
+    case 'ChangeSendState':
+      return action.State
+    default:
+      return state
+  }
+}

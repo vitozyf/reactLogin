@@ -2,7 +2,7 @@
   "Menus": [
     {
       "name": "Index",
-      "path": "/",
+      "path": "/home",
       "title": "首页"
     },
     {
