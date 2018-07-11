@@ -21,7 +21,7 @@ class TopicDetails extends Component {
       TopicId: TopicId
     }).then(data => {
       if (data.Code === 0) {
-        // console.log(data.Data.TopicDetail)
+        console.log(data.Data.TopicDetail)
         this.setState({
           topicDetail: data.Data.TopicDetail
         })
@@ -42,8 +42,8 @@ class TopicDetails extends Component {
 
           <div className="topic-info">
             <span className="info"><i className="iconfont icon-dot1"></i>发布于 4 个月前</span>
-            <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>nswbmw</a></span>
-            <span className="info"><i className="iconfont icon-dot1"></i>13426 次浏览</span>
+            <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>{topicDetail.UserName}</a></span>
+            <span className="info"><i className="iconfont icon-dot1"></i>{topicDetail.TopicHits} 次浏览</span>
             <span className="info"><i className="iconfont icon-dot1"></i>最后一次编辑是 1 个月前</span>
             <span className="info"><i className="iconfont icon-dot1"></i>来自 分享</span>
             <Button type="primary" className="collect" size="small">收藏</Button>

@@ -36,7 +36,7 @@ export default {
   },
   // 获取话题详情
   getTopicDetails (topicId, cb) {
-    let sql = 'select * from topics where TopicId=? and IsDelete=0 ';
+    let sql = 'select topics.*, users.UserName from topics left join users on topics.UserID=users.UserID where topics.TopicId=? and topics.IsDelete=0 ';
     query(sql, topicId, (err, res) => {
       if(err) return cb(err);
       cb(null, res)
