@@ -1,4 +1,57 @@
 .m-TopicDetails{
   flex: 1;
   background-color: #fff;
+  padding: 10px 5px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  .bottom-line{
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  .header{
+    padding: 5px 0 20px;
+  }
+
+  .title{
+    height: 30px;
+    line-height: 30px;
+    margin: 0 5px;
+    position: relative;
+    padding: 10px 0;
+    box-sizing: content-box;
+    .state{
+      position: absolute;
+      background-color: #80bd01;
+      height: 18px;
+      line-height: 18px;
+      color: #fff;
+      padding: 0px 5px;
+      bottom: 14px;
+      left: 5px;
+      border-radius: 2px;
+    }
+    h2{
+      font-weight: 900;
+      margin-left: 50px;
+    }
+  }
+
+  .topic-info{
+    font-size: 12px;
+    position: relative;
+    .info{
+      margin-right: 3px;
+    }
+    .iconfont{
+      font-weight: 900;
+    }
+    .collect{
+      position: absolute;
+      right: 5px;
+    }
+  }
+
+  .topic-content, .revert, .addrevert{
+    min-height: 300px;
+  }
 }

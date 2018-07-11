@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactMde from './ReactMde';
 import * as Showdown from "showdown";
 import http from 'utils/http';
-import { Message } from 'antd';
+// import { Message } from 'antd';
 
 const Config = {
   releaseTopic: '/topic/release'

@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import AllTopic from 'components/AllTopic/index';
 import Info from 'components/Info/index';
 import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
-// import TopicDetails from 'components/TopicDetails/index';
+import TopicDetails from 'components/TopicDetails/index';
 import {connect} from 'react-redux';
 // import {IsLogin} from 'utils/utils';
 import './style/index.css';
@@ -71,18 +71,11 @@ class App extends Component {
       </Tabs>
     )
 
-    // let TopicDetailsCom = (
-    //   <div></div>
-    // )
-
-    // let ComponentCom
-
-
-
     return (
       <div className="App">
         <Route exact path="/home" render={()=>(<TopicsCom></TopicsCom>)} />
-        <Route exact path="/home/release" name="release" render={()=>(<PeleaseCom></PeleaseCom>)} />
+        <Route exact path="/home/release" render={()=>(<PeleaseCom></PeleaseCom>)} />
+        <Route exact path="/home/topicDetails/:id" render={()=>(<TopicDetails></TopicDetails>)} />
         <InfoComponent />
       </div>
     );

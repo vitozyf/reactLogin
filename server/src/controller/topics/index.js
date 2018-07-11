@@ -38,6 +38,7 @@ export default {
     const TopicId = req.body.TopicId
     topicModel.getTopicDetails(TopicId, (err, data) => {
       if(err) return res.json({Code: 1, Msg: '获取话题详情失败'})
+      if(data.length === 0) return res.json({Code: 1, Msg: 'id错误'})
       res.json({Code: 0, Data: {TopicDetail: data[0]}})
     })
   }

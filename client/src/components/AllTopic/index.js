@@ -44,7 +44,8 @@ class Index extends Component {
   }
 
   enterIntoTopic = (event) => {
-    console.log(123, this.props)
+    const id = event.target.dataset.id
+    this.props.history.push(`/home/topicDetails/${id}`)
   }
 
   render() {
