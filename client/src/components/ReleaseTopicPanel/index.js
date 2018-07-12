@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import ReactMde from './ReactMde';
 import * as Showdown from "showdown";
 import http from 'utils/http';
-// import { Message } from 'antd';
+import {Message} from 'antd';
+import {withRouter} from 'react-router-dom';
 
 const Config = {
   releaseTopic: '/topic/release'
@@ -17,7 +18,8 @@ class ReleaseTopicPanel extends Component {
     super(props);
     this.state = {
         mdeState: null,
-        Title: ''
+        Title: '',
+        Plate: 1
     };
     this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
   }
@@ -32,13 +34,22 @@ class ReleaseTopicPanel extends Component {
     this.setState(Obj)
   }
 
+  handleChange = (value) => {
+    console.log(this.props)
+    this.setState({
+      Plate: value
+    })
+  }
+
   releaseTopic = () => {
     http.$post(Config.releaseTopic, {
       TopicName: this.state.Title,
-      TopicContent: this.state.mdeState.html
+      TopicContent: this.state.mdeState.html,
+      Plate: this.state.Plate
     }).then((data) => {
       if(data && data.Code === 0) {
-        console.log(this.$props, data)
+        Message.success('发布成功！')
+        this.props.history.push('/')
       }
     })
   }
@@ -47,7 +58,9 @@ class ReleaseTopicPanel extends Component {
     return(
       <ReactMde 
         Title={this.state.Title}
+        Plate={this.state.Plate}
         onChangeHandler={this.onChangeHandler}
+        handleChange={this.handleChange}
         releaseTopic={this.releaseTopic}
         converter={this.converter}
         mdeState={this.state.mdeState} 
@@ -55,4 +68,4 @@ class ReleaseTopicPanel extends Component {
     )
   }
 }
-export default ReleaseTopicPanel;
+export default withRouter(ReleaseTopicPanel);

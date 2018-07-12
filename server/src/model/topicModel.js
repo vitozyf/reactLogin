@@ -41,5 +41,13 @@ export default {
       if(err) return cb(err);
       cb(null, res)
     })
+  },
+  // 更新点击量
+  updateTopicHits (id, cb) {
+    let sql = 'update topics set TopicHits=TopicHits+1 where topics.topicId=?';
+    query(sql, id, (err, res) => {
+      if(err) return cb(err);
+      cb(null, res)
+    })
   }
 }

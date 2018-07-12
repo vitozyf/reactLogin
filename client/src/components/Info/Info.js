@@ -7,7 +7,8 @@ import './style/index.css';
 
 class Index extends Component {
   componentWillMount() {
-    const {changeSendState} = this.props
+    const {changeSendState, location} = this.props
+    changeSendState(location.pathname === '/home' || location.pathname === '/')
     this.props.history.listen((route) => {
       changeSendState(route.pathname === '/home' || route.pathname === '/')
     })

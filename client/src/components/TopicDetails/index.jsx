@@ -21,7 +21,6 @@ class TopicDetails extends Component {
       TopicId: TopicId
     }).then(data => {
       if (data.Code === 0) {
-        console.log(data.Data.TopicDetail)
         this.setState({
           topicDetail: data.Data.TopicDetail
         })
@@ -31,6 +30,20 @@ class TopicDetails extends Component {
 
   render () {
     const topicDetail = this.state.topicDetail
+    let fromPlate = ''
+    switch (topicDetail.Plate) {
+      case 2:
+        fromPlate = '问答'
+        break;
+
+      case 3:
+        fromPlate = '测试'
+        break;
+    
+      default:
+        fromPlate = '分享'
+        break;
+    }
     return (
       <div className = "m-TopicDetails">
         {/* 标题 */}
@@ -45,7 +58,7 @@ class TopicDetails extends Component {
             <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>{topicDetail.UserName}</a></span>
             <span className="info"><i className="iconfont icon-dot1"></i>{topicDetail.TopicHits} 次浏览</span>
             <span className="info"><i className="iconfont icon-dot1"></i>最后一次编辑是 1 个月前</span>
-            <span className="info"><i className="iconfont icon-dot1"></i>来自 分享</span>
+            <span className="info"><i className="iconfont icon-dot1"></i>来自 {fromPlate}</span>
             <Button type="primary" className="collect" size="small">收藏</Button>
           </div>
         </div>

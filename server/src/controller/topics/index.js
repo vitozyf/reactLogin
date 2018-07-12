@@ -24,8 +24,7 @@ export default {
   },
   releaseTopic (req, res) {
     let newTopic = Object.assign({}, req.body, {
-      UserID: req.session.UserInfo.UserID,
-      TopicID: uuidv1()
+      UserID: req.session.UserInfo.UserID
     })
     // console.log(newTopic, req.session);
     
@@ -39,6 +38,9 @@ export default {
     topicModel.getTopicDetails(TopicId, (err, data) => {
       if(err) return res.json({Code: 1, Msg: '获取话题详情失败'})
       if(data.length === 0) return res.json({Code: 1, Msg: 'id错误'})
+      topicModel.updateTopicHits(TopicId, (err, res) => {
+        if(err) console.log(err)
+      })
       res.json({Code: 0, Data: {TopicDetail: data[0]}})
     })
   }

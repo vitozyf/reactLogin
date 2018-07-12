@@ -66,7 +66,7 @@ class App extends Component {
             <span className="peleaseTopic"><a onClick={() => {history.push('/home')}}>主页</a> / 发布话题</span>
           } 
           key="pelease">
-          <ReleaseTopicPanel backHOme={this.backHOme}></ReleaseTopicPanel>
+          <ReleaseTopicPanel></ReleaseTopicPanel>
         </TabPane>
       </Tabs>
     )

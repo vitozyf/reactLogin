@@ -2,8 +2,12 @@
   display: flex;
   height: 100%;
   flex-direction: column;
+  padding: 0 5px;
   .title{
-    height: 50px;
+    // height: 50px;
+    .plate{
+      padding: 5px 0;
+    }
   }
   .m-ReleaseTopicPanel{
     flex: 1;
@@ -11,5 +15,7 @@
   }
   .footer{
     height: 50px;
+    display: flex;
+    align-items: center;
   }
 }
