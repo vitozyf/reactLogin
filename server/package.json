@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src --exec babel-node -- src/index.js",
-    "pm2": "pm2 start ./pm2.json"
+    "start": "./build/developmentStart.sh",
+    "pm2": "./build/productionStart.sh"
   },
   "keywords": [],
   "author": "",

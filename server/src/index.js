@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import {session, userRemember} from './middlewares/session';
 import SessionValidation from './middlewares/sessionValidation';
 import AccessControl from './middlewares/accessControl';
+import Config from '../config';
 import './log4js.js';
 
 let path = require('path');
@@ -18,7 +19,7 @@ app.use(SessionValidation); // 全局登录验证
 app.use(userRemember); // 用户是否勾选remeber
 
 createRouter(app)
-
-app.listen(6060, () => {
+// console.log(process.env.NODE_ENV)
+app.listen(Config.port, () => {
   console.log('Running on http://localhost:6060/api-docs')
 })

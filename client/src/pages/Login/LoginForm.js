@@ -18,7 +18,7 @@ class NormalLoginForm extends Component {
       if (!err) {
         SetUserInfo(true);
         http.$post(config.login, values).then((res) => {
-          if (res && res.Code === 0) {
+          if (res) {
             this.props.SetUserInfo(true)
             this.props.history.push('/') 
           } else {

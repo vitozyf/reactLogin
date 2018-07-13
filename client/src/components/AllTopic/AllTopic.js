@@ -38,7 +38,7 @@ class Index extends Component {
 
                       <a className="last_time" href="/topic/5b04dbe55cd02be640900dd7#5b24e4ee5cd02be6409014ec">
                         <img className="user_small_avatar" src="https://avatars2.githubusercontent.com/u/18753430?v=4&amp;s=120" alt="userName"/>
-                        <span className="last_active_time">{topic.LastReplyTime}</span>
+                        <span className="last_active_time">{topic.LastReplyTimeStr}</span>
                       </a>
                     </div>
                 )

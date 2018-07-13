@@ -39,8 +39,8 @@ class Index extends Component {
     http.$post(httpConfig.search, {
       type: 'NoRevert'
     }).then(data => {
-      this.setState({
-        topicList: data ? data.Data : []
+      data && this.setState({
+        topicList: data ? data.TopicList : []
       })
     })
   }

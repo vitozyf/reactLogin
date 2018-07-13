@@ -50,8 +50,7 @@ let httpRequest = async (config) => {
 }
 
 async function successReponseHandler (data) {
-
-  if (data.Code === 0) return data
+  if (data.Code === 0) return data.Data
   let errorMsg = ''
   switch (data.Code) {
     case 1: 
@@ -71,7 +70,7 @@ async function successReponseHandler (data) {
       errorMsg = '系统异常,请联系管理员';
   }
   message.error(errorMsg)
-  return data
+  return null
 }
 
 let $httpPost = async (url, data, config) => {

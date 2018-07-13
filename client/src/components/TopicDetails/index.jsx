@@ -20,12 +20,36 @@ class TopicDetails extends Component {
     http.$post(httpConfig.getTopicDetails, {
       TopicId: TopicId
     }).then(data => {
-      if (data.Code === 0) {
+      if (data) {
         this.setState({
-          topicDetail: data.Data.TopicDetail
+          topicDetail: data.TopicDetail
         })
       }
     })
+  }
+
+  operateHandler = (event) => {
+    const type = event.target.dataset.name
+    switch (type) {
+      case 'edit':
+        this.editTopic()
+        break;
+
+      case 'delete':
+        this.deleteTopic()
+        break;
+    
+      default:
+        break;
+    }
+  }
+
+  editTopic = () => {
+    console.log('edit', this.props)
+  }
+
+  deleteTopic = () => {
+    console.log('delete')
   }
 
   render () {
@@ -51,10 +75,15 @@ class TopicDetails extends Component {
           <div className = "title">
             <span className = "state">置顶</span>
             <h2>{topicDetail.TopicName}</h2>
+
+            <div className="operate" onClick={this.operateHandler}>
+              <i className="iconfont icon-edit" title="编辑" data-name="edit"></i>
+              <i className="iconfont icon-delete" title="删除" data-name="delete"></i>
+            </div>
           </div>
 
           <div className="topic-info">
-            <span className="info"><i className="iconfont icon-dot1"></i>发布于 4 个月前</span>
+            <span className="info"><i className="iconfont icon-dot1"></i>发布于 {topicDetail.CreateTimeStr}</span>
             <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>{topicDetail.UserName}</a></span>
             <span className="info"><i className="iconfont icon-dot1"></i>{topicDetail.TopicHits} 次浏览</span>
             <span className="info"><i className="iconfont icon-dot1"></i>最后一次编辑是 1 个月前</span>

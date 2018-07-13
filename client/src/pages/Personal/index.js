@@ -31,9 +31,8 @@ class Personal extends Component {
 
   componentWillMount () {
     http.$post(config.getUserInfo).then(data => {
-
-      this.setState({
-        userInfo: data.data || {}
+      data && this.setState({
+        userInfo: data.UserInfo
       })
     })
   }

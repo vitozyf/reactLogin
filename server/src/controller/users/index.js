@@ -17,7 +17,7 @@ export default {
       req.session.IsLogin = true;
       req.session.UserInfo = data[0];
       
-      res.json({'Code': 0, 'Msg': '登录成功'});
+      res.json({Code: 0, Data: {Msg: '登录成功'}});
     })
   },
   // 注册
@@ -30,7 +30,7 @@ export default {
       if (data.length === 1) return res.json({'Code': 0, 'Msg': '用户名已存在'});
       usersMedel.signInUser(userInfo, (err, data) => {
         if (err) return res.json({'Code': 1, 'Msg': '注册失败'})
-        res.json({'Code': 0, 'Msg': '注册成功'});
+        res.json({Code: 0, Data: {Msg: '注册成功'}});
       })
     })
   },
@@ -46,7 +46,9 @@ export default {
       res.clearCookie(config.SessionId);
       res.json({
         'Code': 0,
-        'Msg': '注销成功'
+        Data: {
+          'Msg': '注销成功'
+        }
       })
     });
   },
@@ -57,7 +59,9 @@ export default {
       if(err || data.length !== 1) return res.json({Code: 1, Msg: '获取失败'})
       res.json({
         Code: 0, 
-        data: data[0]
+        Data: {
+          UserInfo: data[0]
+        }
       })
     })
   }
