@@ -45,25 +45,23 @@ export function dateStr(date){
   //去掉 js 时间戳后三位，与php 时间戳保持一致
   var time = parseInt((timeCom-dateCom)/1000);
   //存储转换值 
-  // console.log(time, timeCom, dateCom)
   var s;
   if(time<60*2){//两分钟内
-      return '刚刚';
-  }else if((time<60*60)&&(time>=60*2)){
-      //超过两分钟少于1小时
-      s = Math.floor(time/60);
-      return  s+"分钟前";
-  }else if((time<60*60*24)&&(time>=60*60)){ 
-      //超过1小时少于24小时
-      s = Math.floor(time/60/60);
-      return  s+"小时前";
-  }else if((time<60*60*24*3)&&(time>=60*60*24)){ 
-      //超过1天少于3天内
-      s = Math.floor(time/60/60/24);
-      return s+"天前";
+    return '刚刚';
+  } else if((time<60*60)&&(time>=60*2)){
+    //超过两分钟少于1小时
+    s = Math.floor(time/60);
+    return  s+"分钟前";
+  } else if((time<60*60*24)&&(time>=60*60)){ 
+    //超过1小时少于24小时
+    s = Math.floor(time/60/60);
+    return  s+"小时前";
+  } else if((time<60*60*24*3)&&(time>=60*60*24)){ 
+    //超过1天少于3天内
+    s = Math.floor(time/60/60/24);
+    return s+"天前";
   }else{ 
-      //超过3天
-      var date= new Date(parseInt(date));
-      return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+    //超过3天
+    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
   }
 }

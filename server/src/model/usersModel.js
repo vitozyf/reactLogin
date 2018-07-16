@@ -1,4 +1,4 @@
-import query from './baseDb';
+import {query} from './baseDb';
 
 export default {
   //注册用户

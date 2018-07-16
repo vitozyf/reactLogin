@@ -1,11 +1,35 @@
 // 创建公共数据库连接对象
 
 import mysql from 'mysql';
-import Config from '../../config'
+import Config from '../../config';
+import Sequelize from 'sequelize';
 
-// let connection = mysql.createConnection(Config.mysqlConfig)
+const mysqlConfig = Config.mysqlConfig
+const sequelize = new Sequelize(
+  mysqlConfig.database, 
+  mysqlConfig.user, 
+  mysqlConfig.password, 
+  {
+    host: mysqlConfig.host,
+    dialect: 'mysql',
+    pool: {
+      max: 10,
+      min: 3,
+      acquire: 30000,
+      idle: 10000
+    },
+    operatorsAliases: false
+  }
+);
 
-// export default connection
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
 
 
 var pool = mysql.createPool(Config.mysqlConfig);
@@ -26,4 +50,7 @@ var query = (sql, options, callback) => {
     });
 };
 
-export default query;
+export {
+  query,
+  sequelize
+}

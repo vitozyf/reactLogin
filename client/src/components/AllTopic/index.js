@@ -37,7 +37,7 @@ class Index extends Component {
     http.$post(httpConfig.search, {
       type: 'All'
     }).then(data => {
-      console.log(data.TopicList)
+      console.log(data)
       data && this.setState({
         topicList: data ? data.TopicList : []
       })
