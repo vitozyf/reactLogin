@@ -22,6 +22,7 @@ const sequelize = new Sequelize(
   }
 );
 
+// 链接测试
 // sequelize
 //   .authenticate()
 //   .then(() => {
@@ -30,7 +31,6 @@ const sequelize = new Sequelize(
 //   .catch(err => {
 //     console.error('Unable to connect to the database:', err);
 //   });
-
 
 var pool = mysql.createPool(Config.mysqlConfig);
 

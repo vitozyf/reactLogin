@@ -1,5 +1,5 @@
 import {query} from './baseDb';
-import {Topics} from './data'
+// import {Topics} from './data'
 
 export default {
   // 获取所有话题数据
@@ -7,14 +7,15 @@ export default {
     // Topics
     //   .sync()
     //   .then(() => {
-    //     // Topics
-    //     //   .findAll()
-    //     //   .then(data => {
-    //     //     console.log(111, data)
-    //     //   })
-    //     //   .catch(err => {
-    //     //     console.log(222, err)
-    //     //   })
+    //     Topics
+    //       .findAll()
+    //       .then(data => {
+    //         console.log(111, data[0])
+    //       })
+    //       .catch(err => {
+    //         console.log(222, err)
+    //       })
+    //     })
 
     //     // 增加测试
     //     Topics 
