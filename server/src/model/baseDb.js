@@ -2,25 +2,25 @@
 
 import mysql from 'mysql';
 import Config from '../../config';
-import Sequelize from 'sequelize';
+// import Sequelize from 'sequelize';
 
 const mysqlConfig = Config.mysqlConfig
-const sequelize = new Sequelize(
-  mysqlConfig.database, 
-  mysqlConfig.user, 
-  mysqlConfig.password, 
-  {
-    host: mysqlConfig.host,
-    dialect: 'mysql',
-    pool: {
-      max: 10,
-      min: 3,
-      acquire: 30000,
-      idle: 10000
-    },
-    operatorsAliases: false
-  }
-);
+// const sequelize = new Sequelize(
+//   mysqlConfig.database, 
+//   mysqlConfig.user, 
+//   mysqlConfig.password, 
+//   {
+//     host: mysqlConfig.host,
+//     dialect: 'mysql',
+//     pool: {
+//       max: 10,
+//       min: 3,
+//       acquire: 30000,
+//       idle: 10000
+//     },
+//     operatorsAliases: false
+//   }
+// );
 
 // 链接测试
 // sequelize
@@ -51,6 +51,6 @@ var query = (sql, options, callback) => {
 };
 
 export {
-  query,
-  sequelize
+  query
+  // sequelize
 }

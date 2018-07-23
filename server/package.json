@@ -6,7 +6,8 @@
   "scripts": {
     "start": "./build/developmentStart.sh",
     "dev": "nodemon --watch src --exec babel-node -- src/index.js",
-    "pm2": "./build/productionStart.sh"
+    "pm2": "./build/productionStart.sh",
+    "initsql": "nodemon --exec babel-node -- src/model/model-sequelize/init.js"
   },
   "keywords": [],
   "author": "",

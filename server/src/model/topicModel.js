@@ -1,37 +1,14 @@
 import {query} from './baseDb';
-// import {Topics} from './data'
+import {Topics} from './model-sequelize';
 
 export default {
   // 获取所有话题数据
   getAllTopics (params, cb) {
-    // Topics
-    //   .sync()
-    //   .then(() => {
-    //     Topics
-    //       .findAll()
-    //       .then(data => {
-    //         console.log(111, data[0])
-    //       })
-    //       .catch(err => {
-    //         console.log(222, err)
-    //       })
-    //     })
 
-    //     // 增加测试
-    //     Topics 
-    //       .create({
-    //         TopicName: 'sequelize测试',
-    //         TopicContent: 'afadfadfadf',
-    //         UserID: 'afasdf',
-    //         LastReplyUserId: 'afasdf'
-    //       })
-    //       .then(res => {
-    //         console.log(111, res)
-    //       })
-    //       .catch(err => {
-    //         console.log(222, err)
-    //       })
-    //   })
+    Topics.findAll().then(data => {
+      // console.log(123, data)
+    })
+
     let {PageIndex, PageSize} = params;
     if (!PageIndex) {PageIndex = 1};
     if (!PageSize) {PageSize = 10};

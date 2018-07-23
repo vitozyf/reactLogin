@@ -24,7 +24,7 @@ export default {
   signin (req, res) {
     let userInfo = req.body
     userInfo.PassWord = md5(userInfo.PassWord, config.passwordKey)
-    userInfo.UserId = uuidv1()
+    userInfo.UserID = uuidv1()
     usersMedel.searchUser(userInfo.UserName, (err, data) => {
       if (err || !data) res.json({'Code': 1, 'Msg': '注册失败'})
       if (data.length === 1) return res.json({'Code': 0, 'Msg': '用户名已存在'});
