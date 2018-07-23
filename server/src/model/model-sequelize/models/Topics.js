@@ -25,7 +25,8 @@ const Topics = defineModel('topics', {
     defaultValue: 2
   },
   LastReplyUserId: { // 最后回复id
-    type: Sequelize.CHAR
+    type: Sequelize.CHAR,
+    allowNull: true
   },
   LastReplyTime: { // 最后回复时间
     type: Sequelize.DATE,

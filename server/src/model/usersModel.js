@@ -1,4 +1,4 @@
-import {query} from './baseDb';
+// import {query} from './baseDb';
 import {Users} from './model-sequelize'
 
 export default {
@@ -43,7 +43,7 @@ export default {
   getUserInfo(id, cb){
     Users.findAll({
       attributes: { 
-        exclude: ['IsDelete']
+        exclude: ['IsDelete', 'PassWord']
       },
       where: {
         UserID: id,

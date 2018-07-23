@@ -26,6 +26,10 @@ const Users = defineModel('users', {
   IsDelete: { // 是否删除
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  Address: {
+    type: Sequelize.CHAR,
+    allowNull: true
   }
 });
 

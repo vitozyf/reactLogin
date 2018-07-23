@@ -30,11 +30,11 @@ export default {
   },
   releaseTopic (req, res) {
     let newTopic = Object.assign({}, req.body, {
-      UserID: req.session.UserInfo.UserID,
-      CreateTime: new Date()
+      UserID: req.session.UserInfo.UserID
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {
+      console.log('00', err, data)
       if(err) return res.json({Code: 1, Msg: '发布失败'})
       res.json({Code: 0, Data: {Msg: '发布成功'}})
     })

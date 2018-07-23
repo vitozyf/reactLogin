@@ -25,19 +25,33 @@ export default {
   },
   // 获取未回复话题
   getNoRevertTopics (cb) {
-    let sqlStr = 'select * from topics  where topics.IsDelete=0 and TopicReplies=0 order by CreateTime DESC'
-    query(sqlStr, (err, res) => {
-      if(err) return cb(err)
+    Topics.findAll({
+      attributes: { 
+        exclude: ['IsDelete']
+      },
+      where: {
+        IsDelete: 0,
+        TopicReplies: 0
+      }
+    }).then(res => {
       cb(null, res)
+    }).catch(err => {
+      cb(err)
     })
   },
   // 发布新话题
   releaseTopic (topic, cb) {
-    let sql = 'INSERT INTO topics set ?';
-    query(sql, topic, (err, res) => {
-      // console.log(err, res)
-      if(err) return cb(err);
-      cb(null, res)
+    // let sql = 'INSERT INTO topics set ?';
+    // query(sql, topic, (err, res) => {
+    //   // console.log(err, res)
+    //   if(err) return cb(err);
+    //   cb(null, res)
+    // })
+    console.log(123, topic)
+    Topics.create(topic).then(res => {
+       cb(null, res)
+    }).catch(err => {
+      cb(err)
     })
   },
   // 获取话题详情
