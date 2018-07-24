@@ -42,10 +42,6 @@ const Topics = defineModel('topics', {
   TopicContent: { // 话题内容
     type: Sequelize.CHAR
   },
-  CreateTime: { // 创建时间
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
-  },
   Plate: { // 所属板块
     type: Sequelize.INTEGER,
     defaultValue: 1

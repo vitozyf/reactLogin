@@ -1,26 +1,57 @@
 import {query} from './baseDb';
-import {Topics} from './model-sequelize';
+import {Topics, Users} from './model-sequelize';
+import {paging} from '../utils/utils'
+import Sequelize from 'sequelize';
+
+// Users.hasMany(Topics, {foreignKey : 'UserId', constraints: false});
+// Topics.belongsTo(Users, {foreignKey : 'UserId', constraints: false, targetKey: 'UserId'});
+
+Users.hasMany(Topics, {foreignKey : 'UserID', constraints: false});
+Topics.belongsTo(Users, {foreignKey : 'UserID', constraints: false});
 
 export default {
   // 获取所有话题数据
   getAllTopics (params, cb) {
-
-    Topics.findAll().then(data => {
-      // console.log(123, data)
-    })
-
-    let {PageIndex, PageSize} = params;
-    if (!PageIndex) {PageIndex = 1};
-    if (!PageSize) {PageSize = 10};
-    PageIndex = Number(PageIndex);
-    PageSize = Number(PageSize);
-
-    let Offset = (PageIndex - 1) * PageSize;
-
-    let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC LIMIT ?, ?'
-    query(sqlStr, [Offset, PageSize], (err, res) => {
-      if(err) return cb(err)
+    const {PageIndex, PageSize} = params;
+    const pg = paging(PageIndex, PageSize)
+    Topics.findAll({
+      offset: pg.offset,
+      limit: pg.limit,
+      attributes: {
+        exclude: ['IsDelete']
+      },
+      include:[
+        {
+          model:Users,
+          attributes: ['UserName', 'UserID'],
+          required:false
+        }
+      ],
+      where: {
+        IsDelete: 0
+      },
+      order: [[Sequelize.col('LastReplyTime'), 'DESC']]
+    }).then(res => {
       cb(null, res)
+    }).catch(err => {
+      cb(err)
+    })
+    // let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC LIMIT ?, ?'
+    // query(sqlStr, [Offset, PageSize], (err, res) => {
+    //   if(err) return cb(err)
+    //   cb(null, res)
+    // })
+  },
+  getCounts (params, cb) {
+    const {PageIndex, PageSize} = params;
+    const pg = paging(PageIndex, PageSize)
+    Topics.findAndCountAll({
+      limit: pg.limit,
+      offset: pg.offset
+    }).then(res => {
+      cb(null, res)
+    }).catch(err => {
+      cb(err)
     })
   },
   // 获取未回复话题
@@ -41,13 +72,6 @@ export default {
   },
   // 发布新话题
   releaseTopic (topic, cb) {
-    // let sql = 'INSERT INTO topics set ?';
-    // query(sql, topic, (err, res) => {
-    //   // console.log(err, res)
-    //   if(err) return cb(err);
-    //   cb(null, res)
-    // })
-    console.log(123, topic)
     Topics.create(topic).then(res => {
        cb(null, res)
     }).catch(err => {

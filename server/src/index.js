@@ -2,6 +2,7 @@ import express from 'express';
 import createRouter from './routers/index';
 import bodyParser from 'body-parser';
 import {session, userRemember} from './middlewares/session';
+import {sendJson} from './middlewares/resMethods';
 import SessionValidation from './middlewares/sessionValidation';
 import AccessControl from './middlewares/accessControl';
 import Config from '../config';
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session);
 app.use(SessionValidation); // 全局登录验证
 app.use(userRemember); // 用户是否勾选remeber
+app.use(sendJson); // 封装res自定义方法
 
 createRouter(app)
 // console.log(process.env.NODE_ENV)

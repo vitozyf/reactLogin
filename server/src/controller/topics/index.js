@@ -10,11 +10,35 @@ export default {
     switch(req.body.type){
       case 'All':
         topicModel.getAllTopics(params, (err, data) => {
-          if (err) return res.json({Code: 1,Data: []})
+          if (err) return res.json({Code: 1, Message: '获取话题失败'})
+
           data.forEach(item => {
             item.LastReplyTimeStr = dateStr(item.LastReplyTime)
           })
-          return res.json({Code: 0,Data:{TopicList: data}})
+
+          let TopicList = data
+          const {PageIndex, PageSize} = params;
+
+          topicModel.getCounts(params, (err, Counts) => {
+            if (err) return res.json({Code: 1,Data: [], Message: '获取话题数量失败'})
+            // return res.json({
+            //   Code: 0,
+            //   Data: {
+            //     TopicList, 
+            //     PageIndex, 
+            //     PageSize, 
+            //     TotalCount: Counts.count, 
+            //     TotalPage: Math.ceil(Counts.count/PageSize)
+            //   }
+            // })
+            return res.Fail(0, '获取成功', {
+              TopicList, 
+              PageIndex, 
+              PageSize, 
+              TotalCount: Counts.count, 
+              TotalPage: Math.ceil(Counts.count/PageSize)
+            })
+          })
         })
         break;
       case 'NoRevert':
@@ -42,15 +66,21 @@ export default {
   // 获取详情
   getTopicDetails (req, res) {
     const TopicId = req.body.TopicId
+
     topicModel.getTopicDetails(TopicId, (err, data) => {
+
       if(err) return res.json({Code: 1, Msg: '获取话题详情失败'})
+
       if(data.length === 0) return res.json({Code: 1, Msg: 'id错误'})
+
       topicModel.updateTopicHits(TopicId, (err, res) => {
         if(err) console.log(err)
       })
+
       let topicDetail = data[0];
-      // console.log(111, topicDetail.CreateTime)
+
       topicDetail.CreateTimeStr = dateStr(topicDetail.CreateTime)
+
       res.json({Code: 0, Data: {TopicDetail: data[0]}})
     })
   }

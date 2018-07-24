@@ -41,7 +41,8 @@ function defineModel(name, attributes) {
   attrs.ID = {
     type: ID_TYPE,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    allowNull: false
   };
   attrs.createdAt = {
     type: Sequelize.BIGINT,
