@@ -6,48 +6,41 @@ const uuidv1 = require('uuid/v1');
 export default {
   // 搜索
   search(req, res) {
-    const params = req.body
+    const params = req.body;
+    const {PageIndex, PageSize} = params;
+
     switch(req.body.type){
       case 'All':
         topicModel.getAllTopics(params, (err, data) => {
-          if (err) return res.json({Code: 1, Message: '获取话题失败'})
-
+          if (err) return res.Back(1, '获取话题失败')
           data.forEach(item => {
             item.LastReplyTimeStr = dateStr(item.LastReplyTime)
           })
-
           let TopicList = data
-          const {PageIndex, PageSize} = params;
-
           topicModel.getCounts(params, (err, Counts) => {
-            if (err) return res.json({Code: 1,Data: [], Message: '获取话题数量失败'})
-            // return res.json({
-            //   Code: 0,
-            //   Data: {
-            //     TopicList, 
-            //     PageIndex, 
-            //     PageSize, 
-            //     TotalCount: Counts.count, 
-            //     TotalPage: Math.ceil(Counts.count/PageSize)
-            //   }
-            // })
-            return res.Fail(0, '获取成功', {
-              TopicList, 
-              PageIndex, 
-              PageSize, 
-              TotalCount: Counts.count, 
+            if (err) return res.Back(1, '获取话题数量失败')
+            return res.Back(0, '获取成功', {
+              TopicList,
+              PageIndex,
+              PageSize,
+              TotalCount: Counts.count,
               TotalPage: Math.ceil(Counts.count/PageSize)
             })
           })
         })
         break;
+
       case 'NoRevert':
         topicModel.getNoRevertTopics((err, data) => {
-          if (err) return res.json({Code: 1,Data: []})
+          if (err) return res.Back(1, '获取失败')
           data.forEach(item => {
             item.LastReplyTimeStr = dateStr(item.LastReplyTime)
           })
-          return res.json({Code: 0,Data:{TopicList: data}})
+          return res.Back(0, '获取成功', {
+            TopicList: data,
+            PageIndex,
+            PageSize
+          })
         })
         break;
     }

@@ -1,5 +1,5 @@
 const sendJson = (req, res, next) => {
-  res.Fail = (Code, Message, Data) => {
+  res.Back = (Code, Message, Data = null) => {
     return res.json({
       Code,
       Message,
