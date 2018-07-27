@@ -6,11 +6,11 @@ import {sendJson} from './middlewares/resMethods';
 import SessionValidation from './middlewares/sessionValidation';
 import AccessControl from './middlewares/accessControl';
 import Config from '../config';
-import './log4js.js';
+import {logInit} from './log4js.js';
 
-let path = require('path');
 let app = express();
 
+app = logInit(app); // 日志
 app.all('*', AccessControl);
 app.use(express.static('public')); // 静态资源
 app.use(bodyParser.json());

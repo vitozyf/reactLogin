@@ -43,6 +43,9 @@ export default {
           })
         })
         break;
+      default:
+        return res.Back('1', '参数错误')
+        break;
     }
   },
   releaseTopic (req, res) {
@@ -51,9 +54,8 @@ export default {
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {
-      console.log('00', err, data)
-      if(err) return res.json({Code: 1, Msg: '发布失败'})
-      res.json({Code: 0, Data: {Msg: '发布成功'}})
+      if(err) return res.Back(1, '发布失败')
+      res.Back(0, '发布成功')
     })
   },
   // 获取详情
@@ -62,9 +64,9 @@ export default {
 
     topicModel.getTopicDetails(TopicId, (err, data) => {
 
-      if(err) return res.json({Code: 1, Msg: '获取话题详情失败'})
+      if(err) return res.Back(1, '获取话题详情失败')
 
-      if(data.length === 0) return res.json({Code: 1, Msg: 'id错误'})
+      if(data.length === 0) return res.Back(1, 'id错误')
 
       topicModel.updateTopicHits(TopicId, (err, res) => {
         if(err) console.log(err)
@@ -74,7 +76,7 @@ export default {
 
       topicDetail.CreateTimeStr = dateStr(topicDetail.CreateTime)
 
-      res.json({Code: 0, Data: {TopicDetail: data[0]}})
+      res.Back(0, '获取成功',{TopicDetail: data[0]})
     })
   }
 }

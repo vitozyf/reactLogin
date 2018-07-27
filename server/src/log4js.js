@@ -1,18 +1,14 @@
-// const log4js = require('log4js');
-// log4js.configure({
-//   appenders: { cheese: { type: 'file', filename: 'cheese.log' } },
-//   categories: { default: { appenders: ['cheese'], level: 'error' } }
-// });
+import log4js from 'log4js';
+import path from 'path';
 
-// const logger = log4js.getLogger('cheese');
-// logger.trace('Entering cheese testing');
-// logger.debug('Got cheese.');
-// logger.info('Cheese is Gouda.');
-// logger.warn('Cheese is quite smelly.');
-// logger.error('Cheese is too ripe!');
-// logger.fatal('Cheese was breeding ground for listeria.');
+const logInit = (app) => {
+   log4js.configure(require(path.join(__dirname, './config/log4js-config.js')));
 
-// export default log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' })
-var log4js = require('log4js');
-var logger = log4js.getLogger('example');
-logger.debug("Time:", new Date());
+  app.use(log4js.connectLogger(log4js.getLogger('access'), { level: log4js.levels.INFO }));
+
+  return app
+}
+
+export {
+  logInit
+}
