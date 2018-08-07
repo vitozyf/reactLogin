@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { defineModel } from '../db';
 
-const Users = defineModel('users', {
+const Users = defineModel('dbo.Users', {
   UserHeaderPortrait: { // 用户头像
     type: Sequelize.CHAR,
     allowNull: true

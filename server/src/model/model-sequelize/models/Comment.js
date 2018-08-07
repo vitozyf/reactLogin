@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { defineModel } from '../db';
 
-const Topics = defineModel('dbo.Topics', {
+const Topics = defineModel('dbo.Comment', {
   // TopicId: { // id
   //   primaryKey: false, // 主键
   //   unique: true, // 不能重复
