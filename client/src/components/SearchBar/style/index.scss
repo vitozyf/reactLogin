@@ -1,0 +1,44 @@
+@import '../../../assets/style/common/var.scss';
+.vito-search-bar{
+  line-height: 50px;
+  background-color: $--color-primary-dark-2;
+  .vito-search-bar_box{
+    display: flex;
+    max-width: 1024px;
+    min-width: 960px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .ant-menu{
+    background-color: $--color-primary-dark-2;
+    color: $--color-white;
+    a{
+      color: $--color-white;
+    }
+  }
+  .ant-menu-horizontal {
+    border-bottom: 1px solid $--color-primary-dark-2;
+    .ant-menu-item, .ant-menu-submenu{
+      border-bottom: 2px solid $--color-primary-dark-2;
+      margin-top: 0;
+      a{
+        display: inline-block;
+      }
+    }
+    .ant-menu-item-selected{
+      border-bottom: 2px solid #1890ff;
+    }
+  }
+  .search{
+    margin: 0 10px;
+    height: 100%;
+    display: inline-block;
+    line-height: 50px;
+    width: 240px;
+    .ant-input{
+      height: 30px;
+      line-height: 30px;
+      border-radius: 15px;
+    }
+  }
+}

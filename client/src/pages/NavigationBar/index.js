@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 import NavigationBarUi from './NavigationBarUi'
 import { connect } from 'react-redux';
-import http from 'utils/http';
-import { message } from 'antd';
 import PropTypes from "prop-types";
 import './style/NavigationBar.css'
 
-const urlConfig = {
-  signout: '/signout'
-}
+
 
 const NavigationBarComnect = connect((state, props) => {
   return Object.assign({}, state.user, props) 
@@ -23,47 +19,16 @@ const NavigationBarComnect = connect((state, props) => {
     }
 })(NavigationBarUi)
 
-let state = {
-  searchKeyword: ''
-}
 
 class NavigationBar extends Component{
 
   static contextTypes = {
     router: PropTypes.object
   }
-  constructor (props, context) {
-    super(props, context); 
-    this.state = state
-  }
-
-  onPressEnter = (event) => {
-    console.log(this.state.searchKeyword)
-  }
-
-  onChange = event => {
-    let data = {};
-    data[event.target.name] = event.target.value;
-    this.setState(data);
-  }
-
-  signOut = () => {
-    http.$post(urlConfig.signout).then(data => {
-      if (!data) return message.error('退出失败')
-      // this.context.router.history.push('/');
-      message.success('退出成功')
-    })
-  }
 
   render () {
     return (
-      <NavigationBarComnect
-      searchKeyword = {this.state.searchKeyword}
-      onPressEnter = {this.onPressEnter}
-      onChange = {this.onChange}
-      signOut = { this.signOut }
-      >
-
+      <NavigationBarComnect>
       </NavigationBarComnect>
     )
   }

@@ -1,0 +1,70 @@
+/* Colors
+-------------------------- */
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+
+$--color-primary: #515151 !default;
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 1F466A */
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 385A7A */
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 516F8B */
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 6A839B */
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* 8398AC */
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
+
+$--color-primary-dark-1: mix($--color-black, $--color-primary, 10%) !default; /* 53a8ff */
+$--color-primary-dark-2: mix($--color-black, $--color-primary, 20%) !default; /* 66b1ff */
+$--color-primary-dark-3: mix($--color-black, $--color-primary, 30%) !default; /* 79bbff */
+$--color-primary-dark-4: mix($--color-black, $--color-primary, 40%) !default; /* 8cc5ff */
+$--color-primary-dark-5: mix($--color-black, $--color-primary, 50%) !default; /* a0cfff */
+$--color-primary-dark-6: mix($--color-black, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-dark-7: mix($--color-black, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-dark-8: mix($--color-black, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-dark-9: mix($--color-black, $--color-primary, 90%) !default; /* ecf5ff */
+
+$--color-success: #67c23a !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #f56c6c !default;
+$--color-info: #909399 !default;
+
+$--color-text-primary: #303133 !default;
+$--color-text-regular: #606266 !default;
+$--color-text-secondary: #909399 !default;
+$--color-text-placeholder: #c0c4cc !default;
+
+/* Box-shadow
+-------------------------- */
+$--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+$--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
+$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+
+/* Font
+-------------------------- */
+$--font-path: 'fonts' !default;
+$--font-size-base: 14px !default;
+$--font-size-small: 13px !default;
+$--font-size-large: 18px !default;
+$--font-color-disabled-base: #bbb !default;
+$--font-weight-primary: 500 !default;
+$--font-line-height-primary: 24px !default;
+
+/* Size
+-------------------------- */
+$--size-base: 14px !default;
+
+/* z-index
+-------------------------- */
+$--index-normal: 1 !default;
+$--index-top: 1000 !default;
+$--index-popper: 2000 !default;
+
+/* Transition
+-------------------------- */
+$--all-transition: all .3s cubic-bezier(.645,.045,.355,1) !default;
+$--fade-transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--fade-linear-transition: opacity 200ms linear !default;
+$--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--border-transition-base: border-color .2s cubic-bezier(.645,.045,.355,1) !default;
+$--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;

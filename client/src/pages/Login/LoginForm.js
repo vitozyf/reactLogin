@@ -35,7 +35,7 @@ class NormalLoginForm extends Component {
       const DEBUG = process.env.NODE_ENV !== 'production'
       if (DEBUG) {
         this.props.form.setFieldsValue({
-          UserName: 'zhang',
+          UserName: 'root',
           PassWord: '123'
         });
       }
