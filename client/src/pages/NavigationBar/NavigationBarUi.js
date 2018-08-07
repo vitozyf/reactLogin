@@ -15,6 +15,10 @@ class NavigationBarUi extends Component {
               <img src = { require('assets/images/js-logo.png') } className = "logo" alt="Logo" />
             </Link>
           </div>
+
+          <div className="title-text">
+            个性化的IT技术学习社区
+          </div>
           
         </Header>
       </Layout>

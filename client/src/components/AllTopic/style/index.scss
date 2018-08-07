@@ -1,78 +1,28 @@
+@import '../../../assets/style/common/var.scss';
 .AllTopic.topic_list{
   .cell{
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
     position: relative;
-    display: flex;
-    align-items: center;
-  }
-  .user_avatar{
-   img{
-      width: 30px;
-      height: 30px;
-      border-radius: 3px;
+    max-height: 200px;
+    margin-bottom: 10px;
+    background-color: $--color-white;
+    @include border-tinge-bottom;
+    .subhead{
+      font-size: 12px;
+    }
+    .content{
+      padding: 10px 0;
+      max-height: 98px;
+      @include text-overflow-warp;
+    }
+    .read-more{
+      font-size: 12px;
+      cursor: pointer;
     }
   }
-
-  .reply_count {
-    width: 70px;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .topic_title_wrapper{
-    display: flex;
-    flex: 1;
-    align-items: center;
-  }
-
-  .topic_title{
-    color: #888;
-    max-width: 350px;
-    white-space: nowrap;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 16px;
-    line-height: 30px;
-    padding: 0 10px;
-    overflow:hidden; /*超出的部分隐藏起来。*/ 
-    white-space:nowrap;/*不显示的地方用省略号...代替*/
-    text-overflow:ellipsis;/* 支持 IE */
-  }
-
-  .put_top, .put_ask, .put_share{
-    background: #80bd01;
-    padding: 2px 4px;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    color: #fff;
-    font-size: 12px;
-  }
-  .put_ask, .put_share{
-    background-color: #e5e5e5;
-    color: #999;
-  }
-
-  .last_time {
-    font-size: 11px;
-    display: inline-block;
-    margin-left: 20px;
-    color: #777;
-    .user_small_avatar {
-      height: 18px;
-      width: 18px;
-      vertical-align: middle;
-      margin-right: .5em;
-      border-radius: 3px;
-    }
-    .last_active_time {
-      text-align: right;
-      min-width: 50px;
-      display: inline-block;
-      white-space: nowrap;
-    }
+  img{
+    width: 50px;
+    height: 50px;  
   }
 }

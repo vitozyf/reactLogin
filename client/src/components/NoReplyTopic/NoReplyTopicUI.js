@@ -17,7 +17,7 @@ class Index extends Component {
           {
             topicList.map(item => {
               return (
-                <div className="row" key={item.TopicId}>
+                <div className="row" key={item.ID}>
                   <a>{item.TopicName}</a>
                 </div>
               )

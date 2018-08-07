@@ -12,6 +12,7 @@ export default {
     switch(req.body.type){
       case 'All':
         topicModel.getAllTopics(params, (err, data) => {
+          console.log(err, data)
           if (err) return res.Back(1, '获取话题失败')
           data.forEach(item => {
             item.LastReplyTimeStr = dateStr(item.LastReplyTime)

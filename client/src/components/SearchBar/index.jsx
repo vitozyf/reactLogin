@@ -106,7 +106,7 @@ class SearchBarUi extends Component {
                 prefix = { <Icon type="search" style={{ color: 'rgba(0,0,0,.25)'}}></Icon> }
                 value = { this.state.searchKeyword }
                 name = "searchKeyword"
-                placeholder = "输入搜索条件"
+                placeholder = "输入话题关键字按回车搜索"
                 onPressEnter = { event => this.onPressEnter(event) }
                 onChange = { event => this.onChange(event) }
                 >

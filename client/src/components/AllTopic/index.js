@@ -35,9 +35,11 @@ class Index extends Component {
 
   componentWillMount(){
     http.$post(httpConfig.search, {
-      type: 'All'
+      type: 'All',
+      PageIndex: 1,
+      PageSize: 10
     }).then(data => {
-      console.log(data)
+      console.log(123, data)
       data && this.setState({
         topicList: data ? data.TopicList : []
       })
@@ -46,7 +48,9 @@ class Index extends Component {
 
   enterIntoTopic = (event) => {
     const id = event.target.dataset.id
-    this.props.history.push(`/home/topicDetails/${id}`)
+    if (typeof id !== 'undefined') {
+      this.props.history.push(`/home/topicDetails/${id}`)
+    }
   }
 
   render() {

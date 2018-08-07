@@ -17,6 +17,8 @@
     width: 300px;
     display: flex;
     align-items: center;
+    opacity: 0;
+    animation: ani-top-bottpm 1s ease 2s 1 normal running forwards;
     a, .logo{
       display: inline-block;
       height: 100%;
@@ -24,8 +26,15 @@
       height: 66px;
       margin:0;
       padding:0;
-      // float: left;
-      // margin-left: 50px;
     }
+  }
+  .title-text{
+    flex:1;
+    color: $--color-white;
+    line-height: 120px;
+    font-size: 22px;
+    letter-spacing:20px;
+    @include text-center;
+    animation: text-toggle-fov 2s;
   }
 }

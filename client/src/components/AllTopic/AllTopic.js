@@ -6,45 +6,35 @@ class Index extends Component {
     // console.log(this.props)
     const {topicList, enterIntoTopic} = this.props
     return (
-          <div className="AllTopic topic_list" onClick={event=>{enterIntoTopic(event)}}>
-            {
-              topicList.map((topic, index) => {
-                return (
-                    <div className="cell" key={index}>
+      <div className="AllTopic topic_list" onClick={event=>{enterIntoTopic(event)}}>
+        {
+          topicList.map((topic, index) => {
+            return (
+              <div className="cell" key={index}>
+                <h3>
+                  { topic.TopicName }
+                </h3>
 
-                      <a className="user_avatar">
-                        <img src={topic.UserHeaderPortrait} alt="userName"/>
-                      </a>
+                <div className="subhead">
+                  <span>发表于： </span>
+                  <span>标签： </span>
+                  <span>浏览： </span>
+                </div>
 
-                      <span className="reply_count ">
-                        <span className="count_of_replies" title="回复数">
-                          {topic.TopicReplies}
-                        </span>
-                        <span className="count_seperator">/</span>
-                        <span className="count_of_visits" title="点击数">
-                          {topic.TopicHits}
-                        </span>
-                      </span>
+                <div className="content">
+                  最近有个需求怎么把一个一维数组转换成一个二维数组 数据如上，怎么把每一项title里_前面的数据当初数组的title。如果前一半字符相同，就往children数组里添加一项， 一直用map没有实现，于是我想到了es6 的 reduce函数，花不多说，直接上代码...最近有个需求怎么把一个一维数组转换成一个二维数组 数据如上，怎么把每一项title里_前面的数据当初数组的title。如果前一半字符相同，就往children数组里添加一项， 一直用map没有实现，于是我想到了es6 的 reduce函数，花不多说，直接上代码...
+                </div>
 
-                      <div className="topic_title_wrapper">
-                        <span className={`put_${topic.TopicLabel===0?'top':topic.TopicLabel===1?'share':'ask'}`}>
-                          {topic.TopicLabel===0?'置顶':topic.TopicLabel===1?'分享':'问答'}
-                        </span>
-
-                        <a className="topic_title"  title={topic.TopicName} data-id={topic.TopicId}>
-                          {topic.TopicName}
-                        </a>
-                      </div>
-
-                      <a className="last_time" href="/topic/5b04dbe55cd02be640900dd7#5b24e4ee5cd02be6409014ec">
-                        <img className="user_small_avatar" src="https://avatars2.githubusercontent.com/u/18753430?v=4&amp;s=120" alt="userName"/>
-                        <span className="last_active_time">{topic.LastReplyTimeStr}</span>
-                      </a>
-                    </div>
-                )
-              })
-            }
-          </div>
+                <div 
+                  className="read-more"
+                  data-id={topic.ID}>
+                  阅读全文>>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
       
     )
   }

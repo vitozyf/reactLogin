@@ -68,3 +68,86 @@ $--fade-linear-transition: opacity 200ms linear !default;
 $--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
 $--border-transition-base: border-color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
+
+// mixin
+
+// border
+@mixin border-base {
+  border: 1px solid $--color-primary-light-5;
+}
+@mixin border-base-top {
+  border-top: 1px solid $--color-primary-light-5;
+}
+@mixin border-base-bottom {
+  border-bottom: 1px solid $--color-primary-light-5;
+}
+@mixin border-base-left {
+  border-left: 1px solid $--color-primary-light-5;
+}
+@mixin border-base-right {
+  border-right: 1px solid $--color-primary-light-5;
+}
+
+@mixin border-tinge {
+  border: 1px solid $--color-primary-light-8;
+}
+@mixin border-tinge-top {
+  border-top: 1px solid $--color-primary-light-8;
+}
+@mixin border-tinge-bottom {
+  border-bottom: 1px solid $--color-primary-light-8;
+}
+@mixin border-tinge-left {
+  border-left: 1px solid $--color-primary-light-8;
+}
+@mixin border-tinge-right {
+  border-right: 1px solid $--color-primary-light-8;
+}
+// text
+@mixin text-center {
+  text-align: center;
+}
+@mixin text-left {
+  text-align: left;
+}
+@mixin text-right {
+  text-align: right;
+}
+@mixin text-overflow-nowarp {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@mixin text-overflow-warp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+// keyframes
+@keyframes text-toggle-fov
+{
+  0% {
+    font-size: 12px;
+    letter-spacing: 0px;
+  }
+  50% {
+    font-size: 30px;
+    letter-spacing: 30px;
+  }
+  100% {
+    font-size: 22px;
+    letter-spacing: 20px;
+  }
+}
+@keyframes ani-top-bottpm
+{
+  0% {
+    margin-top: -200px;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0px;
+    opacity: 1;    
+  }
+}

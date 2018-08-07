@@ -1,3 +1,4 @@
+@import './common/var.scss';
 ul, li, p{
   padding: 0;
   margin: 0;
@@ -14,4 +15,10 @@ li{
 }
 .pull-right{
   float: right;
+}
+h3{
+  font-weight: 700;
+  color: $--color-primary-dark-9;
+  font-size: 16px;
+  padding: 3px 0;
 }

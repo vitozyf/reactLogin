@@ -1,0 +1,8 @@
+@import '../../../assets/style/common/var.scss';
+.vito-footer{
+  height: 60px;
+  line-height: 30px;
+  margin-top: 20px;
+  @include border-base-top;
+  @include text-center;
+}
