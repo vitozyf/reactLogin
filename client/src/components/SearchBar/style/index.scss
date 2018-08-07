@@ -12,6 +12,10 @@
   .ant-menu{
     background-color: $--color-primary-dark-2;
     color: $--color-white;
+    .iconfont {
+      font-size: 14px;
+      margin-right: 3px;
+    }
     a{
       color: $--color-white;
     }
@@ -25,8 +29,14 @@
         display: inline-block;
       }
     }
+    .ant-menu-item{
+      padding: 0 25px;
+    }
     .ant-menu-item-selected{
       border-bottom: 2px solid #1890ff;
+    }
+    .ant-menu-item-active{
+      background-color: $--color-primary-dark-4;
     }
   }
   .search{
