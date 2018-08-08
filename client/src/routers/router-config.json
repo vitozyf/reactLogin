@@ -3,7 +3,8 @@
     {
       "name": "Index",
       "path": "/home",
-      "title": "首页"
+      "title": "首页",
+      "children": true
     },
     {
       "name": "About",
@@ -28,7 +29,8 @@
     {
       "name": "Test",
       "path": "/test",
-      "title": "测试"
+      "title": "测试",
+      "disabled": true
     }
   ]
 }

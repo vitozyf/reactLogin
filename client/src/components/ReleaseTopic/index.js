@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {IsLogin} from 'utils/utils';
 import { Button, Message } from 'antd';
-import './style/index.css';
+import './style/index.scss';
 
 class Index extends Component {
   releaseNewTopic = () => {

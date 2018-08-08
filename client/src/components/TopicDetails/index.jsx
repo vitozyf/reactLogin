@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'antd';
 import http from 'utils/http';
 import {withRouter} from 'react-router-dom';
-import './style/index.css';
+import './style/index.scss';
 
 const httpConfig = {
   getTopicDetails: '/topic/getTopicDetails'

@@ -4,8 +4,11 @@ import RouterConfig from 'routers/router-config.json'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import http from 'utils/http';
+import { removeCookie } from '~utils/cookie'
+import Config from '~utils/config'
+import {withRouter} from 'react-router-dom';
 
-import './style/index.css';
+import './style/index.scss';
 
 const Menus = RouterConfig.Menus
 
@@ -22,6 +25,12 @@ class SearchBarUi extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.history.listen((route) => {
+      this.props.ChangeRouter(route)
+    })
+  }
+
   onPressEnter = (event) => {
     console.log(this.state.searchKeyword)
   }
@@ -36,13 +45,19 @@ class SearchBarUi extends Component {
     http.$post(urlConfig.signout).then(data => {
       if (!data) return message.error('退出失败')
       message.success('退出成功')
+      removeCookie(Config.SessionIdName)
+      if (this.props.pathname !== '/home') {
+        this.props.history.push('/home')
+      }
     })
   }
 
   render () {
     const { IsLogin, SetUserInfo } = this.props;
+    console.log(1, this.props.pathname);
     let MenuItems = Menus.map(item => {
-      if (item.name === 'Test') return null
+      if (item.disabled) return null;
+
       if (IsLogin) {
         if (item.name === 'Login' || item.name === 'Signin') {
           return null
@@ -119,7 +134,7 @@ class SearchBarUi extends Component {
 }
 
 const SearchBar = connect((state, props) => {
-  return Object.assign({}, state.user, props) 
+  return Object.assign({}, state.user, state.router, props) 
   }, dispatch => {
     return {
       SetUserInfo: (IsLogin) => {
@@ -127,8 +142,14 @@ const SearchBar = connect((state, props) => {
           type: 'SetUserInfo',
           IsLogin: IsLogin
         })
+      },
+      ChangeRouter: (router) => {
+        return dispatch({
+          type: 'ChangeRouter',
+          router: router
+        })
       }
     }
 })(SearchBarUi)
 
-export default SearchBar
+export default withRouter(SearchBar);

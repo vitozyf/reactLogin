@@ -7,7 +7,7 @@ import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
 import TopicDetails from 'components/TopicDetails/index';
 import {connect} from 'react-redux';
 // import {IsLogin} from 'utils/utils';
-import './style/index.css';
+import './style/index.scss';
 
 const TabPane = Tabs.TabPane;
 
@@ -33,7 +33,7 @@ class App extends Component {
   }
   // tab切换
   callback = (key) => {
-    console.log(key)
+    // console.log(key)
   }
 
   render() {

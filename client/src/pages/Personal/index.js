@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PersonalDetails from 'components/PersonalDetails/index';
 import {connect} from 'react-redux';
 import http from 'utils/http';
-import './style/index.css';
+import './style/index.scss';
 
 const PersonalUI = connect((state, props) => {
   return {user:state.user, ...props}

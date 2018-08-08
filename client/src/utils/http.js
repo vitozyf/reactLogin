@@ -2,7 +2,7 @@ import axios from 'axios';
 import {getCookie, removeCookie} from 'src/utils/cookie';
 import Configs from 'src/utils/config';
 import { message } from 'antd';
-const debug = process.env.NODE_ENV !== 'production'
+const DEBUG = process.env.NODE_ENV !== 'production'
 let httpRequest = async (config) => {
   try {
     let headers = {
@@ -15,7 +15,7 @@ let httpRequest = async (config) => {
     let response = await axios.request(Object.assign({},{
       baseURL: Configs.BaseUrl,
       url: config.url,
-      timeout: debug ? 100000 : 30000,
+      timeout: DEBUG ? 100000 : 30000,
       headers: headers,
       method: config.method,
       data: config.data,
@@ -54,7 +54,7 @@ async function successReponseHandler (data) {
   let errorMsg = ''
   switch (data.Code) {
     case 1: 
-      errorMsg = data.Msg;
+      errorMsg = data.Message;
       break
     case 120:
     case 130:

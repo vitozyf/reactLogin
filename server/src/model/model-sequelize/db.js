@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize';
+import path from 'path';
 import Config from '../../../config';
+const ISPRODUCTION =  process.env.NODE_ENV === 'production'
+const mysqlConfig = ISPRODUCTION ? Config.Production.mysqlConfig : Config.Dev.mysqlConfig
 
-console.log('init sequelize...');
-
-const mysqlConfig = Config.mysqlConfig
+console.log('init sequelize...', process.env.NODE_ENV);
 
 var sequelize = new Sequelize(
   mysqlConfig.database, 
@@ -12,6 +13,7 @@ var sequelize = new Sequelize(
   {
     host: mysqlConfig.host,
     dialect: 'mysql',
+    port: mysqlConfig.port,
     pool: {
       max: 10,
       min: 3,
@@ -52,10 +54,6 @@ function defineModel(name, attributes) {
     type: Sequelize.BIGINT,
     allowNull: false
   };
-  // attrs.version = {
-  //   type: Sequelize.BIGINT,
-  //   allowNull: false
-  // };
   return sequelize.define(name, attrs, {
     tableName: name,
     timestamps: false,
@@ -63,15 +61,10 @@ function defineModel(name, attributes) {
       beforeValidate: function (obj) {
         let now = Date.now();
         if (obj.isNewRecord) {
-          // if (!obj.id) {
-          //   obj.id = generateId();
-          // }
           obj.createdAt = now;
           obj.updatedAt = now;
-          obj.version = 0;
         } else {
           obj.updatedAt = Date.now();
-          obj.version++;
         }
       }
     }

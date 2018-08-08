@@ -1,5 +1,4 @@
 import topicModel from '../../model/topicModel.js'
-import config from '../../../config'
 import {dateStr} from '../../utils/time';
 const uuidv1 = require('uuid/v1');
 
@@ -12,10 +11,10 @@ export default {
     switch(req.body.type){
       case 'All':
         topicModel.getAllTopics(params, (err, data) => {
-          console.log(err, data)
           if (err) return res.Back(1, '获取话题失败')
           data.forEach(item => {
-            item.LastReplyTimeStr = dateStr(item.LastReplyTime)
+            item.dataValues.LastReplyTimeStr = item.LastReplyTime ? dateStr(item.LastReplyTime) : ''
+            item.dataValues.CreatedAtStr = dateStr(item.createdAt)
           })
           let TopicList = data
           topicModel.getCounts(params, (err, Counts) => {
@@ -35,7 +34,7 @@ export default {
         topicModel.getNoRevertTopics((err, data) => {
           if (err) return res.Back(1, '获取失败')
           data.forEach(item => {
-            item.LastReplyTimeStr = dateStr(item.LastReplyTime)
+            item.LastReplyTimeStr = item.LastReplyTime ? dateStr(item.LastReplyTime) : ''
           })
           return res.Back(0, '获取成功', {
             TopicList: data,
@@ -55,8 +54,9 @@ export default {
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {
+      console.log(err)
       if(err) return res.Back(1, '发布失败')
-      res.Back(0, '发布成功')
+      res.Back(0, '发布成功', true)
     })
   },
   // 获取详情

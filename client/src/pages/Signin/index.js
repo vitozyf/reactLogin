@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SigninForm from './SigninForm'
-import './style/blog-signin.css'
+import './style/blog-signin.scss'
 
 class Signin extends Component {
   render() {

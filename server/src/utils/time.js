@@ -4,8 +4,7 @@
 * @param  {[type]} time [description]
 * @return {[type]}      [description]
 */
-export function timeToDate(time) 
-{
+export function timeToDate(time) {
    // 获取当前时间戳
    var currentTime = parseInt(new Date().getTime()/1000);
    var diffTime = currentTime-time;

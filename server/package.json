@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./build/developmentStart.sh",
-    "dev": "nodemon --watch src --exec babel-node -- src/index.js",
-    "pm2": "./build/productionStart.sh",
-    "initsql": "nodemon --exec babel-node -- src/model/model-sequelize/init.js"
+    "start": "nodemon -- src/index.js",
+    "pm2": "pm2 start ./pm2.json",
+    "initsql": "nodemon init-sql.js development"
   },
   "keywords": [],
   "author": "",

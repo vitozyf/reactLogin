@@ -34,3 +34,12 @@ export const showSendBtn = (state = true, action) => {
       return state
   }
 }
+
+export const router = (state = {}, action = {router: {}}) => {
+  switch (action.type) {
+    case 'ChangeRouter':
+      return Object.assign({}, state, action.router)
+    default:
+      return state
+  }
+}

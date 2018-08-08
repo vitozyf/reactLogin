@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { defineModel } from '../db';
 
-const Users = defineModel('users', {
+const Users = defineModel('Db.Users', {
   UserHeaderPortrait: { // 用户头像
     type: Sequelize.CHAR,
     allowNull: true
@@ -17,7 +17,10 @@ const Users = defineModel('users', {
   },
   Email: { // Email
     type: Sequelize.CHAR,
-    allowNull: true
+    allowNull: true,
+    validate: {
+      isEmail: true
+    }
   },
   Phone: { // 电话
     type: Sequelize.CHAR,

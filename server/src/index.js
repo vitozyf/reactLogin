@@ -8,6 +8,8 @@ import AccessControl from './middlewares/accessControl';
 import Config from '../config';
 import {logInit} from './log4js.js';
 
+const ISPRODUCTION =  process.env.NODE_ENV === 'production'
+const PORT = Config[ISPRODUCTION ? 'Production' : 'Dev'].port
 let app = express();
 
 app = logInit(app); // 日志
@@ -22,6 +24,6 @@ app.use(sendJson); // 封装res自定义方法
 
 createRouter(app)
 // console.log(process.env.NODE_ENV)
-app.listen(Config.port, () => {
-  console.log('Running on http://localhost:6060/api-docs')
+app.listen(PORT, () => {
+  console.log(`Running on http://localhost:${PORT}/api-docs`)
 })

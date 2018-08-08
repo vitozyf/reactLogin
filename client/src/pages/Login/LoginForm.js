@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import http from 'utils/http'
-import './style/login-form.css'
+import './style/login-form.scss'
 
 const FormItem = Form.Item;
 
@@ -20,7 +20,7 @@ class NormalLoginForm extends Component {
         http.$post(config.login, values).then((res) => {
           if (res) {
             this.props.SetUserInfo(true)
-            this.props.history.push('/') 
+            this.props.history.push('/home') 
           } else {
             setTimeout(() => {
               SetUserInfo(false);

@@ -6,6 +6,7 @@ export default {
     Name: '',
     UserInfo: {}
   },
+  router: {},
   pageLoading: false,
   showSendBtn: true
 };

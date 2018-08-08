@@ -6,8 +6,8 @@ import Sequelize from 'sequelize';
 // Users.hasMany(Topics, {foreignKey : 'UserId', constraints: false});
 // Topics.belongsTo(Users, {foreignKey : 'UserId', constraints: false, targetKey: 'UserId'});
 
-Users.hasMany(Topics, {foreignKey : 'UserID', constraints: false});
-Topics.belongsTo(Users, {foreignKey : 'UserID', constraints: false});
+// Users.hasMany(Topics, {foreignKey : 'UserID', constraints: false});
+// Topics.belongsTo(Users, {foreignKey : 'UserID', constraints: false});
 
 export default {
   // 获取所有话题数据
@@ -20,13 +20,13 @@ export default {
       attributes: {
         exclude: ['IsDelete']
       },
-      include:[
-        {
-          model:Users,
-          attributes: ['UserName', 'UserID'],
-          required:false
-        }
-      ],
+      // include:[
+      //   {
+      //     model:Users,
+      //     attributes: ['UserName', 'UserID'],
+      //     required:false
+      //   }
+      // ],
       where: {
         IsDelete: 0
       },
@@ -34,6 +34,7 @@ export default {
     }).then(res => {
       cb(null, res)
     }).catch(err => {
+      console.log(err)
       cb(err)
     })
     // let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC LIMIT ?, ?'

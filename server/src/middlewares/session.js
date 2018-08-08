@@ -1,9 +1,14 @@
 import Session from 'express-session';
-import config from '../../config'
+import Config from '../../config'
+
+const ISPRODUCTION =  process.env.NODE_ENV === 'production'
+const SessionId = Config[ISPRODUCTION ? 'Production' : 'Dev'].SessionId
+const SessionSecret = Config[ISPRODUCTION ? 'Production' : 'Dev'].SessionSecret
+
 // 配置session中间件
 const session = Session({
-  name: config.SessionId,
-  secret: config.SessionSecret,
+  name: SessionId,
+  secret: SessionSecret,
   resave:false,
   saveUninitialized: false,
   cookie: {

@@ -3,7 +3,7 @@ import ReactMde from "react-mde/lib/js";
 import {Input, Button, Select} from 'antd';
 
 import 'react-mde/lib/styles/css/react-mde-all.css';
-import './style/index.css';
+import './style/index.scss';
 
 const Option = Select.Option;
 
@@ -22,7 +22,7 @@ class ReleaseTopicPanel extends Component {
       Plate, 
       releaseTopic, 
       handleChange} = this.props;
-
+      // console.log(releaseTopic)
     return(
       <div className="m-ui-ReactMde">
           <div className="title">
@@ -53,7 +53,7 @@ class ReleaseTopicPanel extends Component {
           />
 
           <div className="footer">
-            <Button onClick={releaseTopic}>发布</Button>
+            <Button onClick={() => releaseTopic()}>发布</Button>
           </div>
       </div>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/index.css';
+import './style/index.scss';
 
 class PersonalDetails extends Component {
   // componentWillMount() {

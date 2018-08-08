@@ -10,11 +10,14 @@
     @include border-tinge-bottom;
     .subhead{
       font-size: 12px;
+      span{
+        margin-right: 5px;
+      }
     }
     .content{
       padding: 10px 0;
       max-height: 98px;
-      @include text-overflow-warp;
+      overflow: hidden;
     }
     .read-more{
       font-size: 12px;

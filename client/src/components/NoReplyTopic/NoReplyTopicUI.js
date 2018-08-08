@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './style/index.css';
+import './style/index.scss';
 
 class Index extends Component {
   // constructor (props) {

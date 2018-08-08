@@ -1,14 +1,14 @@
 import Sequelize from 'sequelize';
+import Users from './Users';
 import { defineModel } from '../db';
 
-const Topics = defineModel('topics', {
-  // TopicId: { // id
-  //   primaryKey: false, // 主键
-  //   unique: true, // 不能重复
-  //   allowNull: false, // 是否允许为null
-  //   type: Sequelize.INTEGER, // 数据类型
-  //   autoIncrement: true // 自增
-  // },
+const Topics = defineModel('Db.Topics', {
+  ID: { // 外键
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
   TopicReplies: { // 回复数量
     type: Sequelize.INTEGER,
     defaultValue: 0
@@ -18,29 +18,33 @@ const Topics = defineModel('topics', {
     defaultValue: 0
   },
   TopicName: { // 话题名称
-    type: Sequelize.CHAR
+    type: Sequelize.STRING
   },
   TopicLabel: { // 标记类型
     type: Sequelize.INTEGER,
     defaultValue: 2
   },
   LastReplyUserId: { // 最后回复id
-    type: Sequelize.CHAR,
+    type: Sequelize.STRING,
     allowNull: true
   },
   LastReplyTime: { // 最后回复时间
     type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
+    allowNull: true
   },
   IsDelete: { // 是否删除
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
   UserID: { // 作者id
-    type: Sequelize.CHAR
+    type: Sequelize.CHAR,
+    references: {
+      model: Users, // 引用user
+      key: 'UserID' // 引用模型的列名称
+    }
   },
   TopicContent: { // 话题内容
-    type: Sequelize.CHAR
+    type: Sequelize.STRING(8000),
   },
   Plate: { // 所属板块
     type: Sequelize.INTEGER,

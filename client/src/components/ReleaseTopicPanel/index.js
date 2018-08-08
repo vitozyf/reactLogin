@@ -35,23 +35,24 @@ class ReleaseTopicPanel extends Component {
   }
 
   handleChange = (value) => {
-    console.log(this.props)
     this.setState({
       Plate: value
     })
   }
 
   releaseTopic = () => {
-    http.$post(Config.releaseTopic, {
-      TopicName: this.state.Title,
-      TopicContent: this.state.mdeState.html,
-      Plate: this.state.Plate
-    }).then((data) => {
-      if(data && data.Code === 0) {
-        Message.success('发布成功！')
-        this.props.history.push('/')
-      }
-    })
+    if (this.state.mdeState) {
+      http.$post(Config.releaseTopic, {
+        TopicName: this.state.Title,
+        TopicContent: this.state.mdeState.html,
+        Plate: this.state.Plate
+      }).then((data) => {
+        if(data) {
+          Message.success('发布成功！')
+          this.props.history.push('/home')
+        }
+      })
+    }
   }
 
   render() {

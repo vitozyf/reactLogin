@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import NavigationBarUi from './NavigationBarUi'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import './style/NavigationBar.css'
+import './style/NavigationBar.scss'
 
 
 
