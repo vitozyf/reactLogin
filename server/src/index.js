@@ -7,7 +7,7 @@ import SessionValidation from './middlewares/sessionValidation';
 import AccessControl from './middlewares/accessControl';
 import Config from '../config';
 import {logInit} from './log4js.js';
-import '../init-sql';
+// import '../init-sql';
 
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const PORT = Config[ISPRODUCTION ? 'Production' : 'Dev'].port
