@@ -11,5 +11,5 @@ import * as models from './src/model/model-sequelize/index.js';
 //     })
 //   }
 // }
-// models.Topics.sync({force: true})
+models.Topics.sync({force: true})
 models.Users.sync({force: true})
