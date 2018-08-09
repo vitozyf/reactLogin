@@ -7,7 +7,7 @@ import SessionValidation from './middlewares/sessionValidation';
 import AccessControl from './middlewares/accessControl';
 import Config from '../config';
 import {logInit} from './log4js.js';
-// import '../init-sql';
+import '../init-sql';
 
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const PORT = Config[ISPRODUCTION ? 'Production' : 'Dev'].port
@@ -24,7 +24,6 @@ app.use(SessionValidation); // 全局登录验证
 app.use(userRemember); // 用户是否勾选remeber
 
 createRouter(app)
-// console.log(process.env.NODE_ENV)
 app.listen(PORT, () => {
   console.log(`Running on http://localhost:${PORT}/api-docs`)
 })

@@ -26,7 +26,6 @@ export default {
     userInfo.UserID = uuidv1()
     usersMedel.searchUser(userInfo.UserName, (err, data) => {
       if (err || !data) res.Back(120, '注册失败')
-      console.log(err, data)
       if (data && data.length === 1) return res.Back(1, '用户名已存在')
       usersMedel.signInUser(userInfo, (err, data) => {
         if (err) return res.Back(1, '注册失败')

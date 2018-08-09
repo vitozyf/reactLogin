@@ -70,7 +70,7 @@ function defineModel(name, attributes) {
     }
   });
 }
-
 export {
-  defineModel
+  defineModel,
+  sequelize
 }

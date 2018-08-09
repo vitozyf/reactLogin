@@ -22,7 +22,7 @@ export default {
     }).then(res => {
       cb(null,res)
     }).catch(err => {
-      return cb(err);
+      cb(err);
     })
   },
   // 查找用户（按用户名）
