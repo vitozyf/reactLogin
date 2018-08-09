@@ -8,8 +8,8 @@ logger.level = 'debug';
 
 export default function (req, res, next) {
   if(crossDomainWhiteList.indexOf(req.hostname) > -1){
-    logger.debug('headerinfo', req, req.hostname, req.headers.origin, crossDomainWhiteList, crossDomainWhiteList[crossDomainWhiteList.indexOf(req.hostname)]);
-    res.header('Access-Control-Allow-Origin', ISPRODUCTION ? 'www.vitock.cn' : req.headers.origin);
+    logger.debug('headerinfo', req, req.hostname, req.headers.origin, crossDomainWhiteList);
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
     res.header('Access-Control-Allow-Credentials', true)
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
