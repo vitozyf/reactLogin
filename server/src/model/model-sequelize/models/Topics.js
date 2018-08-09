@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import Users from './Users';
+// import Users from './Users';
 import { defineModel } from '../db';
 
 const Topics = defineModel('Db.Topics', {
@@ -18,7 +18,7 @@ const Topics = defineModel('Db.Topics', {
     defaultValue: 0
   },
   TopicName: { // 话题名称
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   TopicLabel: { // 标记类型
     type: Sequelize.INTEGER,
@@ -38,13 +38,13 @@ const Topics = defineModel('Db.Topics', {
   },
   UserID: { // 作者id
     type: Sequelize.CHAR,
-    references: {
-      model: Users, // 引用user
-      key: 'UserID' // 引用模型的列名称
-    }
+    // references: {
+    //   model: Users, // 引用user
+    //   key: 'UserID' // 引用模型的列名称
+    // }
   },
   TopicContent: { // 话题内容
-    type: Sequelize.STRING(8000),
+    type: Sequelize.TEXT('tiny'),
   },
   Plate: { // 所属板块
     type: Sequelize.INTEGER,
