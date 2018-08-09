@@ -7,10 +7,9 @@ var logger = log4js.getLogger();
 logger.level = 'debug';
 
 export default function (req, res, next) {
-  // 设置响应头，允许跨域
   if(crossDomainWhiteList.indexOf(req.hostname) > -1){
-    logger.debug('headerinfo', req, req.hostname, req.headers.origin, crossDomainWhiteList);
-    res.header('Access-Control-Allow-Origin', req.headers.origin); // 跨域白名单
+    logger.debug('headerinfo', req, req.hostname, req.headers.origin, crossDomainWhiteList, crossDomainWhiteList[crossDomainWhiteList.indexOf(req.hostname)]);
+    res.header('Access-Control-Allow-Origin', ISPRODUCTION ? crossDomainWhiteList[crossDomainWhiteList.indexOf(req.hostname)] : req.headers.origin);
     res.header('Access-Control-Allow-Credentials', true)
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
