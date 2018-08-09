@@ -39,7 +39,6 @@ class Index extends Component {
       PageIndex: 1,
       PageSize: 10
     }).then(data => {
-      console.log(123, data)
       data && this.setState({
         topicList: data ? data.TopicList : []
       })

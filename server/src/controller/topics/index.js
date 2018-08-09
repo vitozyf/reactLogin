@@ -54,7 +54,6 @@ export default {
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {
-      console.log(err)
       if(err) return res.Back(1, '发布失败')
       res.Back(0, '发布成功', true)
     })

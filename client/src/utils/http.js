@@ -9,17 +9,18 @@ let httpRequest = async (config) => {
       'Content-Type': 'application/json'
     }
     let auth = getCookie(Configs.SessionIdName)
+    // console.log(auth)
     auth && Object.assign({}, headers, {
-      'Authorization': 'REACTLOGIN ' + auth
+      'Authorization': Configs.SessionIdName + auth
     })
     let response = await axios.request(Object.assign({},{
       baseURL: Configs.BaseUrl,
       url: config.url,
-      timeout: DEBUG ? 100000 : 30000,
+      timeout: DEBUG ? 100000 : 50000,
       headers: headers,
       method: config.method,
       data: config.data,
-      withCredentials: true
+      withCredentials: true // 跨域
     }))
     // 网络层
     if (!response.data || response.status !== 200) {

@@ -7,12 +7,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+const DEBUG = process.env.NODE_ENV !== 'production'
+
 export default () => {
   return  createStore(
     rootReducers, 
     initialState,
     composeWithDevTools(
-      applyMiddleware(thunk, logger)
+      DEBUG ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)
     )
   )
 }

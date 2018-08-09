@@ -54,7 +54,6 @@ class SearchBarUi extends Component {
 
   render () {
     const { IsLogin, SetUserInfo } = this.props;
-    console.log(1, this.props.pathname);
     let MenuItems = Menus.map(item => {
       if (item.disabled) return null;
 
