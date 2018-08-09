@@ -39,8 +39,7 @@ const session = Session({
   saveUninitialized: false,
   cookie: {
     maxAge : 1000 * 60 * 60 * 24 * 2,
-    httpOnly: false,
-    domain: '*.vitock.cn'
+    httpOnly: false
   }
 })
 
