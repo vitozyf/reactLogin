@@ -13,7 +13,7 @@ router
    *    tags:
    *      - Topic
    *    summary: '查询话题'
-   *    description: 'type类型： All (所有); NoRevert(未回复)'
+   *    description: 'type类型： All (所有); NoRevert(未回复), Share(分享),Ask(问答), Test(测试)'
    *    author: 'vito 更新于2015/06/17 19:56'
    *    operationId: 'topicSearch'
    *    produces: 

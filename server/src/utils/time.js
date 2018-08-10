@@ -38,6 +38,7 @@ export function timeToDate(time) {
  * @return {[type]}      [description]
  */
 export function dateStr(date){
+  if (!date) return ''
   //获取js 时间戳
   var timeCom = new Date().getTime();
   var dateCom = new Date(date).getTime();

@@ -4,6 +4,8 @@ $--color-white: #fff !default;
 $--color-black: #000 !default;
 
 $--color-primary: #4F4F4F !default;
+$--color-bright : #1890FF !default;
+
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default;
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default;
 $--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default;

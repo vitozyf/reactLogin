@@ -1,4 +1,4 @@
-@import '../../../assets/style/common/var.scss';
+@import '~assets/style/common/var.scss';
 .vito-search-bar{
   line-height: 50px;
   background-color: $--color-primary-dark-2;
@@ -44,11 +44,20 @@
     height: 100%;
     display: inline-block;
     line-height: 50px;
-    width: 240px;
     .ant-input{
       height: 30px;
       line-height: 30px;
       border-radius: 15px;
+      width: 220px;
+      &:focus{
+        width: 250px;
+      }
     }
+  }
+  
+  .ant-input, 
+  .ant-input:focus,
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled){
+    border-color: $--color-primary-dark-2;
   }
 }

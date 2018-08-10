@@ -3,53 +3,59 @@ import {Topics, Users} from './model-sequelize';
 import {paging} from '../utils/utils'
 import Sequelize from 'sequelize';
 
-// Users.hasMany(Topics, {foreignKey : 'UserId', constraints: false});
-// Topics.belongsTo(Users, {foreignKey : 'UserId', constraints: false, targetKey: 'UserId'});
+/**
+ * 话题查询
+ * @param {Object} pg 
+ * @param {Function} cb 
+ * @param {Object} where 
+ */
+function getTopics (pg, cb, where) {
+  let query = {
+    IsDelete: 0
+  }
+  if (where) {
+    query = Object.assign({}, query, where)
+  }
 
-// Users.hasMany(Topics, {foreignKey : 'UserID', constraints: false});
-// Topics.belongsTo(Users, {foreignKey : 'UserID', constraints: false});
+  let findQuery = {
+    attributes: {
+      exclude: ['IsDelete']
+    },
+    where: query,
+    order: [[Sequelize.col('updatedAt'), 'DESC']]
+  }
 
+  if (pg) {
+    findQuery = Object.assign({}, findQuery, {
+      offset: pg.offset,
+      limit: pg.limit
+    })
+  }
+  Topics.findAndCountAll(findQuery).then(res => {
+    cb(null, res)
+  }).catch(err => {
+    cb(err)
+  })
+}
 export default {
   // 获取所有话题数据
-  getAllTopics (params, cb) {
+  getAllTopics (params, cb, where) {
     const {PageIndex, PageSize} = params;
     const pg = paging(PageIndex, PageSize)
-    Topics.findAll({
-      offset: pg.offset,
-      limit: pg.limit,
-      attributes: {
-        exclude: ['IsDelete']
-      },
-      // include:[
-      //   {
-      //     model:Users,
-      //     attributes: ['UserName', 'UserID'],
-      //     required:false
-      //   }
-      // ],
-      where: {
-        IsDelete: 0
-      },
-      order: [[Sequelize.col('LastReplyTime'), 'DESC']]
-    }).then(res => {
-      cb(null, res)
-    }).catch(err => {
-      console.log(err)
-      cb(err)
-    })
-    // let sqlStr = 'select topics.*, users.UserHeaderPortrait from topics left join users on topics.UserID = users.UserID where topics.IsDelete=0 order by topics.LastReplyTime DESC LIMIT ?, ?'
-    // query(sqlStr, [Offset, PageSize], (err, res) => {
-    //   if(err) return cb(err)
-    //   cb(null, res)
-    // })
+    getTopics(pg, cb, where)
   },
-  getCounts (params, cb) {
+  getCounts (params, cb, where) {
     const {PageIndex, PageSize} = params;
     const pg = paging(PageIndex, PageSize)
-    Topics.findAndCountAll({
-      limit: pg.limit,
-      offset: pg.offset
-    }).then(res => {
+    let findQuery = {
+      // limit: pg.limit,
+      // offset: pg.offset
+    }
+    if (where) {
+      findQuery.where = where
+    }
+    // console.log(123, findQuery)
+    Topics.findAndCountAll(findQuery).then(res => {
       cb(null, res)
     }).catch(err => {
       cb(err)
@@ -57,19 +63,10 @@ export default {
   },
   // 获取未回复话题
   getNoRevertTopics (cb) {
-    Topics.findAll({
-      attributes: { 
-        exclude: ['IsDelete']
-      },
-      where: {
-        IsDelete: 0,
-        TopicReplies: 0
-      }
-    }).then(res => {
-      cb(null, res)
-    }).catch(err => {
-      cb(err)
-    })
+    let where = {
+      TopicReplies: 0
+    }
+    getTopics(null, cb, where)
   },
   // 发布新话题
   releaseTopic (topic, cb) {
@@ -81,18 +78,32 @@ export default {
   },
   // 获取话题详情
   getTopicDetails (topicId, cb) {
-    let sql = 'select topics.*, users.UserName from topics left join users on topics.UserID=users.UserID where topics.TopicId=? and topics.IsDelete=0 ';
-    query(sql, topicId, (err, res) => {
-      if(err) return cb(err);
+    Topics.findAll({
+      attributes: { 
+        exclude: ['IsDelete']
+      },
+      where: {
+        IsDelete: 0,
+        ID: topicId
+      }
+    }).then(res => {
       cb(null, res)
+    }).catch(err => {
+      cb(err)
     })
   },
   // 更新点击量
-  updateTopicHits (id, cb) {
-    let sql = 'update topics set TopicHits=TopicHits+1 where topics.topicId=?';
-    query(sql, id, (err, res) => {
-      if(err) return cb(err);
-      cb(null, res)
+  updateTopicHits (id, topicDetail, cb) {
+    Topics.update({
+      TopicHits: topicDetail.TopicHits + 1
+    }, {
+      where: {
+        ID: id
+      }
+    }).then(data => {
+      cb(null, data)
+    }).catch(err => {
+      cb(err)
     })
   }
 }

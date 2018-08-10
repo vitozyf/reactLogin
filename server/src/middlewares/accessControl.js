@@ -2,9 +2,9 @@ import Config from '../../config'
 
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const crossDomainWhiteList = Config[ISPRODUCTION ? 'Production' : 'Dev'].crossDomainWhiteList
-var log4js = require('log4js');
-var logger = log4js.getLogger();
-logger.level = 'debug';
+// var log4js = require('log4js');
+// var logger = log4js.getLogger();
+// logger.level = 'debug';
 
 export default function (req, res, next) {
   if(crossDomainWhiteList.indexOf(req.hostname) > -1){

@@ -31,23 +31,40 @@ class Index extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      pageIndex: 1,
+      pageSize: 30,
+      total: 0,
       topicList: []
     }
   }
 
-   componentWillMount(){
+  getData = (index = 1) => {
     http.$post(httpConfig.search, {
-      type: 'NoRevert'
+      type: 'NoRevert',
+      PageIndex: index,
+      PageSize: this.state.pageSize
     }).then(data => {
       data && this.setState({
+        pageIndex: data.PageIndex,
+        pageSize: data.PageSize,
+        total: data.TotalCount,
         topicList: data ? data.TopicList : []
       })
     })
   }
 
+   componentWillMount(){
+    this.getData()
+  }
+
   render() {
     return (
-      <Info topicList={this.state.topicList} />
+      <Info 
+        pageIndex = { this.state.pageIndex }
+        pageSize = { this.state.pageSize }
+        total = { this.state.total }
+        onPageChange = {this.getData}
+        topicList={this.state.topicList} />
     )
   }
 }

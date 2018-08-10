@@ -74,7 +74,7 @@ async function successReponseHandler (data) {
   return null
 }
 
-let $httpPost = async (url, data, config) => {
+let httpPost = async (url, data, config) => {
   let response = await httpRequest(Object.assign({}, {
     url: url, 
     data: data
@@ -85,6 +85,6 @@ let $httpPost = async (url, data, config) => {
 }
 
 export default {
-  $post: $httpPost
+  $post: httpPost
 }
 

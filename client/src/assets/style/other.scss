@@ -1,0 +1,57 @@
+@import '~assets/style/common/var.scss';
+ #root{
+  min-width: 960px;
+  background-color: $--color-primary-light-9;
+}
+.blog-app{
+  // height: 100%;
+  position: relative;
+  .ant-layout{
+    height: 120px;
+  }
+}
+.container{
+  max-width: 1024px;
+  min-width: 960px;
+  margin: 0px auto;
+  min-height: 600px;
+
+  .App{
+    padding-top: 15px;
+    display: flex;
+    .ant-tabs{
+      flex:1;
+    }
+    .app-info{
+      width: 240px;
+      margin-left: 10px;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}
+ /*滚动条样式*/
+ ::-webkit-scrollbar{
+  height: 8px;
+  width: 8px!important;
+  background:#f2f2f2!important;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 4px;
+  background: #888888!important;
+}
+::-webkit-scrollbar:horizontal{
+  height:8px!important;
+}
+::-webkit-scrollbar-button:vertical:start{
+  background:url(~assets/images/scroll-bar__up.png) no-repeat;
+}
+::-webkit-scrollbar-button:vertical:end{
+  background:url(~assets/images/scroll-bar__down.png) no-repeat;
+}
+::-webkit-scrollbar-button:horizontal:start{
+  background:url(~assets/images/scroll-bar__left.png) no-repeat;
+}
+::-webkit-scrollbar-button:horizontal:end{
+  background:url(~assets/images/scroll-bar__right.png) no-repeat;
+}

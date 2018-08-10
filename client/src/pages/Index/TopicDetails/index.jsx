@@ -83,11 +83,11 @@ class TopicDetails extends Component {
           </div>
 
           <div className="topic-info">
-            <span className="info"><i className="iconfont icon-dot1"></i>发布于 {topicDetail.CreateTimeStr}</span>
-            <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>{topicDetail.UserName}</a></span>
-            <span className="info"><i className="iconfont icon-dot1"></i>{topicDetail.TopicHits} 次浏览</span>
-            <span className="info"><i className="iconfont icon-dot1"></i>最后一次编辑是 1 个月前</span>
-            <span className="info"><i className="iconfont icon-dot1"></i>来自 {fromPlate}</span>
+            <span className="info"><i className="iconfont icon-dot1"></i>发布于 {topicDetail.CreateTimeStr}</span>&nbsp;
+            <span className="info"><i className="iconfont icon-dot1"></i>作者 <a>{topicDetail.UserName}</a></span>&nbsp;
+            <span className="info"><i className="iconfont icon-dot1"></i>{topicDetail.TopicHits}次浏览</span>&nbsp;
+            <span className="info"><i className="iconfont icon-dot1"></i>最后一次编辑是 {topicDetail.UpdatedTimeStr}</span>&nbsp;
+            <span className="info"><i className="iconfont icon-dot1"></i>来自 {fromPlate}</span>&nbsp;
             <Button type="primary" className="collect" size="small">收藏</Button>
           </div>
         </div>

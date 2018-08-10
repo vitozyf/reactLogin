@@ -16,9 +16,11 @@ li{
 .pull-right{
   float: right;
 }
-h3{
+h1, h2, h3, h4, h5, h6{
   font-weight: 700;
-  color: $--color-primary-dark-9;
+  color: $--color-primary-dark-6;
+}
+h3{
   font-size: 16px;
   padding: 3px 0;
 }

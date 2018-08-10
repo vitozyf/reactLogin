@@ -18,7 +18,7 @@ const Topics = defineModel('Db.Topics', {
     defaultValue: 0
   },
   TopicName: { // 话题名称
-    type: Sequelize.TEXT
+    type: Sequelize.STRING,
   },
   TopicLabel: { // 标记类型
     type: Sequelize.INTEGER,
@@ -44,7 +44,7 @@ const Topics = defineModel('Db.Topics', {
     // }
   },
   TopicContent: { // 话题内容
-    type: Sequelize.TEXT('tiny'),
+    type: Sequelize.STRING(8000),
   },
   Plate: { // 所属板块
     type: Sequelize.INTEGER,
