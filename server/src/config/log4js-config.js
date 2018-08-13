@@ -1,6 +1,8 @@
 const config =  {
   appenders: {
-    out: { type: 'stdout' },
+    out: { 
+      type: 'stdout' 
+    },
     app: { 
       type: 'file', 
       filename: 'application.log' 
@@ -11,6 +13,7 @@ const config =  {
       appenders: [ 'out', 'app' ], 
       level: 'debug' 
     }
-  }
+  },
+  pm2: true
 }
 module.exports =config

@@ -5,7 +5,6 @@ function getTopics(req, res, where) {
   const params = req.body;
   const {PageIndex, PageSize} = params;
   topicModel.getAllTopics(params, (err, data) => {
-    console.log(err)
     if (err) return res.Back(1, '获取话题失败')
     data.rows.forEach(item => {
       item.dataValues.LastReplyTimeStr = item.LastReplyTime ? dateStr(item.LastReplyTime) : ''
