@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import NoReplyTopic from 'components/NoReplyTopic/index';
-import BlogRoll from 'components/BlogRoll/index';
-import ReleaseTopic from 'components/ReleaseTopic/index';
+import NoReplyTopic from 'components/Info/NoReplyTopic/index';
+import BlogRoll from 'components/Info/BlogRoll/index';
+import ReleaseTopic from 'components/Info/ReleaseTopic/index';
 import {withRouter} from 'react-router-dom';
 import './style/index.scss';
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TopicList from 'components/TopicList';
 import {connect} from 'react-redux';
-import {withGetdata} from 'components/HOC';
+import {withGetdata} from 'components/HOC/TopicList';
 
 const httpConfig = {
   search: '/topic/search'

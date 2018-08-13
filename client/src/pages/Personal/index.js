@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PersonalDetails from 'components/PersonalDetails/index';
+import PersonalDetails from 'pages/Personal/PersonalDetails/index';
 import {connect} from 'react-redux';
 import http from 'utils/http';
 import './style/index.scss';

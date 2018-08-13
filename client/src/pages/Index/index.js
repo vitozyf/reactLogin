@@ -9,10 +9,10 @@ import ShareTopic from 'pages/Index/ShareTopic/index';
 import AskTopic from 'pages/Index/AskTopic/index';
 import TestTopic from 'pages/Index/TestTopic/index';
 import TopicDetails from 'pages/Index/TopicDetails/index';
+import ReleaseTopicPanel from 'pages/Index/ReleaseTopicPanel/index';
 
 // 右栏
 import Info from 'components/Info/index';
-import ReleaseTopicPanel from 'components/ReleaseTopicPanel/index';
 import './style/index.scss';
 
 const TabPane = Tabs.TabPane;
