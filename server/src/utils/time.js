@@ -39,29 +39,30 @@ export function timeToDate(time) {
  */
 export function dateStr(date){
   if (!date) return ''
-  //获取js 时间戳
+  //获取时间戳
   var timeCom = new Date().getTime();
   var dateCom = new Date(date).getTime();
-  //去掉 js 时间戳后三位，与php 时间戳保持一致
   var time = parseInt((timeCom-dateCom)/1000);
   //存储转换值 
   var s;
-  if(time<60*2){//两分钟内
+  if (time < 60*2) {
+    //两分钟内
     return '刚刚';
-  } else if((time<60*60)&&(time>=60*2)){
+  } else if ((time < 60*60) && (time >= 60*2)) {
     //超过两分钟少于1小时
-    s = Math.floor(time/60);
-    return  s+"分钟前";
-  } else if((time<60*60*24)&&(time>=60*60)){ 
+    s = Math.floor(time / 60);
+    return  s + "分钟前";
+  } else if ((time < 60*60*24) && (time >= 60*60)) { 
     //超过1小时少于24小时
-    s = Math.floor(time/60/60);
-    return  s+"小时前";
-  } else if((time<60*60*24*3)&&(time>=60*60*24)){ 
+    s = Math.floor(time / 60 / 60);
+    return  s + "小时前";
+  } else if ((time < 60*60*24*3) && (time >= 60*60*24)) { 
     //超过1天少于3天内
-    s = Math.floor(time/60/60/24);
-    return s+"天前";
-  }else{ 
+    s = Math.floor(time / 60 / 60 / 24);
+    return s + "天前";
+  } else { 
     //超过3天
-    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+    var dateCom = new Date(parseInt(date));
+    return dateCom.getFullYear() + "/" + (dateCom.getMonth() + 1) + "/" + dateCom.getDate();
   }
 }
