@@ -32,7 +32,7 @@ swaggerSpec = Object.assign({}, swaggerSpec, Definitions)
 
 swaggerRouter
   .get('/api-docs.json', function(req, res) {
-    // res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
   });
 

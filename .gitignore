@@ -4,3 +4,4 @@ server/config.js
 server/logs/
 server/package-lock.json
 client/package-lock.json
+server/certificate/
