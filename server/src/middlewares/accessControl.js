@@ -1,4 +1,4 @@
-import Config from '../../config'
+import Config from 'config'
 
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const crossDomainWhiteList = Config[ISPRODUCTION ? 'Production' : 'Dev'].crossDomainWhiteList

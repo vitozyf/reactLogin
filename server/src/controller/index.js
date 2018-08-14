@@ -1,5 +1,5 @@
-import users from './users/index.js';
-import topics from './topics/index.js';
+import users from './users';
+import topics from './topics';
 
 export default {
   users,

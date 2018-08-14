@@ -1,5 +1,5 @@
-import topicModel from '../../model/topicModel.js'
-import {dateStr} from '../../utils/time';
+import topicModel from 'model/topicModel.js'
+import {dateStr} from 'utils/time';
 
 function getTopics(req, res, where) {
   const params = req.body;

@@ -1,5 +1,5 @@
 import express from 'express';
-import Controllers from '../../controller/index.js'
+import Controllers from 'controller';
 
 let {topics} = Controllers
 

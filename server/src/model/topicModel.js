@@ -1,6 +1,6 @@
-import {query} from './baseDb';
+
 import {Topics, Users} from './model-sequelize';
-import {paging} from '../utils/utils'
+import {paging} from 'utils/utils'
 import Sequelize from 'sequelize';
 
 /**

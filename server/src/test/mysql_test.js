@@ -2,9 +2,7 @@ import mysql from 'mysql';
 
 let connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'zyf535069215',
-  database: 'reactlogin'
+  user: 'root'
 })
 
 connection.connect();

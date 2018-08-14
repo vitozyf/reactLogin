@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import path from 'path';
-import Config from '../../../config';
+import Config from 'config';
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const mysqlConfig = ISPRODUCTION ? Config.Production.mysqlConfig : Config.Dev.mysqlConfig
 

@@ -1,7 +1,7 @@
-import usersMedel from '../../model/usersModel.js'
+import usersMedel from 'model/usersModel.js'
+import config from 'config'
 import querystring from 'querystring'
 import md5 from 'blueimp-md5';
-import config from '../../../config'
 const ISPRODUCTION =  process.env.NODE_ENV === 'production'
 const PASSWORDKEY = config[ISPRODUCTION ? 'Production' : 'Dev'].passwordKey
 const uuidv1 = require('uuid/v1');
