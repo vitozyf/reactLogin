@@ -1,5 +1,6 @@
 import topicModel from 'model/topicModel.js'
 import {dateStr} from 'utils/time';
+import {Logger} from 'Logger';
 
 function getTopics(req, res, where) {
   const params = req.body;
@@ -11,6 +12,9 @@ function getTopics(req, res, where) {
       item.dataValues.CreatedAtStr = dateStr(item.createdAt)
     })
     let TopicList = data.rows
+    Logger.error('测试报错')
+    Logger.info('测试信息')
+    Logger.debug('测试调试')
     return res.Back(0, '获取成功', {
       TopicList,
       PageIndex,

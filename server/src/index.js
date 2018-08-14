@@ -10,7 +10,7 @@ import {session, userRemember} from 'middlewares/session';
 import {sendJson} from 'middlewares/resMethods';
 import SessionValidation from 'middlewares/sessionValidation';
 import AccessControl from 'middlewares/accessControl';
-import {logInit} from 'log4js.js';
+import {logInit} from 'Logger';
 import Config from 'config';
 import 'init-sql';
 
