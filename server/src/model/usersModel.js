@@ -1,5 +1,5 @@
-// import {query} from './baseDb';
-import {Users} from './model-sequelize'
+import {Users} from './model-sequelize';
+import {Logger} from 'Logger';
 
 export default {
   //注册用户
@@ -7,6 +7,7 @@ export default {
     Users.create(user).then(res => {
       cb(null, res)
     }).catch(err => {
+      Logger.error(err)
       cb(err)
     })
   },
@@ -22,20 +23,22 @@ export default {
     }).then(res => {
       cb(null,res)
     }).catch(err => {
+      Logger.error(err)
       cb(err);
     })
   },
   // 查找用户（按用户名）
-  searchUser(UserName, cb) {
+  searchUser(userInfo, cb) {
     Users.findAll({
       attributes: ['UserName'],
       where: {
-        UserName: UserName,
+        UserName: userInfo.UserName,
         IsDelete: 0
       }
     }).then(res => {
       cb(null, res)
     }).catch(err => {
+      Logger.error(err)
       cb(err)
     })
   },
@@ -52,6 +55,7 @@ export default {
     }).then(res => {
       cb(null, res)
     }).catch(err => {
+      Logger.error(err)
       cb(err)
     })
   }

@@ -72,5 +72,25 @@ router
    *            type: string
    */
   .post('/topic/getTopicDetails', topics.getTopicDetails)
+  /**
+   * @swagger
+   * /topic/comment:
+   *   post:
+   *    tags:
+   *      - Topic
+   *    summary: '评论话题'
+   *    description: ''
+   *    operationId: 'commentTopic'
+   *    produces: 
+   *     - 'application/json'
+   *    parameters:
+   *     - name: search
+   *       in: body
+   *       description: '发布话题'
+   *       required: true
+   *       schema: 
+   *        $ref: "#/definitions/TopicComment"
+   */
+  .post('/topic/comment', topics.commentTopic)
 
 export default router

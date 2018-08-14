@@ -1,13 +1,30 @@
 import Sequelize from 'sequelize';
 import { defineModel } from '../db';
+import Topics from '../index';
 
 const Users = defineModel('Db.Users', {
-  UserHeaderPortrait: { // 用户头像
+  // Users_id: {
+  //   type: Sequelize.CHAR,
+  //   allowNull: true,
+  //   get () {
+  //     return this.getDataValue('UserID')
+  //   }
+  // },
+  UserHeaderPortrait: {
     type: Sequelize.CHAR,
-    allowNull: true
+    allowNull: true,
+    comment: '用户头像'
   },
   UserID: { // 用户ID
-    type: Sequelize.CHAR
+    type: Sequelize.CHAR,
+    field: 'user_id',
+    references: {
+      model: 'Topics',
+      key: 'ID'
+    }
+    // set (val) {
+    //   this.setDataValue('UserID', uuidv1());
+    // }
   },
   UserName: { // 用户名
     type: Sequelize.CHAR

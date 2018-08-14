@@ -14,6 +14,7 @@ var sequelize = new Sequelize(
     host: mysqlConfig.host,
     dialect: 'mysql',
     port: mysqlConfig.port,
+    logging: !ISPRODUCTION,
     pool: {
       max: 10,
       min: 3,
@@ -26,7 +27,7 @@ var sequelize = new Sequelize(
 
 const ID_TYPE = Sequelize.INTEGER;
 
-function defineModel(name, attributes) {
+function defineModel(name, attributes, options = {}) {
   var attrs = {};
   for (let key in attributes) {
     let value = attributes[key];
@@ -54,7 +55,8 @@ function defineModel(name, attributes) {
     type: Sequelize.BIGINT,
     allowNull: false
   };
-  return sequelize.define(name, attrs, {
+
+  let modelOptions = Object.assign({}, {
     tableName: name,
     timestamps: false,
     hooks: {
@@ -68,7 +70,9 @@ function defineModel(name, attributes) {
         }
       }
     }
-  });
+  }, options)
+
+  return sequelize.define(name, attrs, modelOptions);
 }
 export {
   defineModel,

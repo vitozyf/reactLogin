@@ -1,7 +1,15 @@
-
-import {Topics, Users} from './model-sequelize';
-import {paging} from 'utils/utils'
+import {Topics, Users, Comments} from './model-sequelize';
+import {paging} from 'utils/utils';
 import Sequelize from 'sequelize';
+import {Logger} from 'Logger';
+
+
+// Topics.hasOne(Users);
+// Topics.belongsTo(Users);
+// Users.belongsTo(Topics, 
+//   // {targetKey: 'UserId'}
+//   {foreignKey: 'UserId'}
+// );
 
 /**
  * 话题查询
@@ -22,7 +30,10 @@ function getTopics (pg, cb, where) {
       exclude: ['IsDelete']
     },
     where: query,
-    order: [[Sequelize.col('updatedAt'), 'DESC']]
+    // include: [Users],
+    order: [
+      ['updatedAt', 'DESC']
+    ]
   }
 
   if (pg) {
@@ -34,8 +45,10 @@ function getTopics (pg, cb, where) {
   Topics.findAndCountAll(findQuery).then(res => {
     cb(null, res)
   }).catch(err => {
+    Logger.error(err)
     cb(err)
   })
+  
 }
 export default {
   // 获取所有话题数据
@@ -43,23 +56,6 @@ export default {
     const {PageIndex, PageSize} = params;
     const pg = paging(PageIndex, PageSize)
     getTopics(pg, cb, where)
-  },
-  getCounts (params, cb, where) {
-    const {PageIndex, PageSize} = params;
-    const pg = paging(PageIndex, PageSize)
-    let findQuery = {
-      // limit: pg.limit,
-      // offset: pg.offset
-    }
-    if (where) {
-      findQuery.where = where
-    }
-    // console.log(123, findQuery)
-    Topics.findAndCountAll(findQuery).then(res => {
-      cb(null, res)
-    }).catch(err => {
-      cb(err)
-    })
   },
   // 获取未回复话题
   getNoRevertTopics (cb) {
@@ -71,24 +67,29 @@ export default {
   // 发布新话题
   releaseTopic (topic, cb) {
     Topics.create(topic).then(res => {
-       cb(null, res)
+      cb(null, res)
     }).catch(err => {
+      Logger.error(err)
       cb(err)
     })
   },
   // 获取话题详情
   getTopicDetails (topicId, cb) {
-    Topics.findAll({
+    Topics.findOne({
       attributes: { 
         exclude: ['IsDelete']
       },
       where: {
         IsDelete: 0,
         ID: topicId
-      }
-    }).then(res => {
-      cb(null, res)
+      },
+      // include: [ Users ]
+    }).then(data => {
+      console.log(123, JSON.stringify(data))
+      cb(null, data)
     }).catch(err => {
+      console.log(222, err)
+      Logger.error(err)
       cb(err)
     })
   },
@@ -103,6 +104,16 @@ export default {
     }).then(data => {
       cb(null, data)
     }).catch(err => {
+      Logger.error(err)
+      cb(err)
+    })
+  },
+  // 评论话题
+  commentTopic (newComment, cb) {
+    Comments.create(newComment).then(res => {
+      cb(null, res)
+    }).catch(err => {
+      Logger.error(err)
       cb(err)
     })
   }

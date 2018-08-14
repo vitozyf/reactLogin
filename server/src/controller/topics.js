@@ -1,20 +1,12 @@
 import topicModel from 'model/topicModel.js'
-import {dateStr} from 'utils/time';
 import {Logger} from 'Logger';
 
-function getTopics(req, res, where) {
+function getTopics (req, res, where) {
   const params = req.body;
   const {PageIndex, PageSize} = params;
   topicModel.getAllTopics(params, (err, data) => {
     if (err) return res.Back(1, '获取话题失败')
-    data.rows.forEach(item => {
-      item.dataValues.LastReplyTimeStr = item.LastReplyTime ? dateStr(item.LastReplyTime) : ''
-      item.dataValues.CreatedAtStr = dateStr(item.createdAt)
-    })
     let TopicList = data.rows
-    Logger.error('测试报错')
-    Logger.info('测试信息')
-    Logger.debug('测试调试')
     return res.Back(0, '获取成功', {
       TopicList,
       PageIndex,
@@ -22,22 +14,12 @@ function getTopics(req, res, where) {
       TotalCount: data.count,
       TotalPage: Math.ceil(data.count / PageSize)
     })
-    // topicModel.getCounts(params, (error, Counts) => {
-    //   if (error) return res.Back(1, '获取话题数量失败')
-    //   return res.Back(0, '获取成功', {
-    //     TopicList,
-    //     PageIndex,
-    //     PageSize,
-    //     TotalCount: Counts.count,
-    //     TotalPage: Math.ceil(Counts.count/PageSize)
-    //   })
-    // }, where)
   }, where)
 }
 
 export default {
   // 搜索
-  search(req, res) {
+  search (req, res) {
     switch(req.body.type){
       case 'All':
         getTopics(req, res)
@@ -78,18 +60,25 @@ export default {
 
     topicModel.getTopicDetails(TopicId, (err, data) => {
       if(err) return res.Back(1, '获取话题详情失败')
-
       if(data.length === 0) return res.Back(1, 'id错误')
-      
-      let topicDetail = data[0];
-      
-      topicDetail.dataValues.CreateTimeStr = dateStr(topicDetail.createdAt)
-      topicDetail.dataValues.UpdatedTimeStr = dateStr(topicDetail.updatedAt)
-      topicModel.updateTopicHits(TopicId, topicDetail, (err, res) => {
-        if(err) console.log(err)
-      })
-
+      let topicDetail = data;
+      if (TopicId) {
+        topicModel.updateTopicHits(TopicId, topicDetail, (err, res) => {
+          if(err) throw err;
+        })
+      }
       res.Back(0, '获取成功',{TopicDetail: topicDetail})
+    })
+  },
+  // 评论话题
+  commentTopic (req, res) {
+    const {TopicId, CommentContent} = req.body
+    const newComment = Object.assign({}, {TopicId, CommentContent}, {
+      UserID: req.session.UserInfo.UserID
+    })
+    topicModel.commentTopic(newComment, (err, data) => {
+      if(err) return res.Back(1, '评论失败')
+      res.Back(0, '评论成功', true)
     })
   }
 }

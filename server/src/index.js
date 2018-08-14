@@ -41,5 +41,5 @@ createRouter(app)
 
 // 启动服务
 https.createServer(credentials, app).listen(PORT, () => {
-  console.log(`Running on http://localhost:${PORT}/api-docs`)
+  console.log(`Running on https://localhost:${PORT}/api-docs`)
 })

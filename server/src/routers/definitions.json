@@ -44,6 +44,20 @@
       "xml": {
         "name": "TopicSearch"
       }
+    },
+    "TopicComment": {
+      "type": "object",
+      "properties": {
+        "TopicId": {
+          "type": "number"
+        },
+        "CommentContent": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "TopicComment"
+      }
     }
   },
   "tags": [

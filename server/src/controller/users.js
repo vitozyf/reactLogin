@@ -24,7 +24,7 @@ export default {
     let userInfo = req.body
     userInfo.PassWord = md5(userInfo.PassWord, PASSWORDKEY)
     userInfo.UserID = uuidv1()
-    usersMedel.searchUser(userInfo.UserName, (err, data) => {
+    usersMedel.searchUser(userInfo, (err, data) => {
       if (err || !data) res.Back(120, '注册失败')
       if (data && data.length === 1) return res.Back(1, '用户名已存在')
       usersMedel.signInUser(userInfo, (err, data) => {

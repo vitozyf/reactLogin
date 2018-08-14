@@ -1,14 +1,16 @@
 import Sequelize from 'sequelize';
 // import Users from './Users';
 import { defineModel } from '../db';
+import {dateStr} from 'utils/time';
 
 const Topics = defineModel('Db.Topics', {
-  ID: { // 外键
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
-  },
+  // Topics_id: {
+  //   type: Sequelize.CHAR,
+  //   allowNull: true,
+  //   get () {
+  //     return this.getDataValue('UserID')
+  //   }
+  // },
   TopicReplies: { // 回复数量
     type: Sequelize.INTEGER,
     defaultValue: 0
@@ -19,6 +21,9 @@ const Topics = defineModel('Db.Topics', {
   },
   TopicName: { // 话题名称
     type: Sequelize.STRING,
+    get () {
+      return this.getDataValue('TopicName')
+    }
   },
   TopicLabel: { // 标记类型
     type: Sequelize.INTEGER,
@@ -31,6 +36,22 @@ const Topics = defineModel('Db.Topics', {
   LastReplyTime: { // 最后回复时间
     type: Sequelize.DATE,
     allowNull: true
+  },
+  LastReplyTimeStr: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    get () {
+      let time = this.getDataValue('LastReplyTime')
+      return time ? dateStr(time) : ''
+    }
+  },
+  CreatedAtStr: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    get () {
+      let time = this.getDataValue('createdAt')
+      return time ? dateStr(time) : ''
+    }
   },
   IsDelete: { // 是否删除
     type: Sequelize.INTEGER,
@@ -51,5 +72,4 @@ const Topics = defineModel('Db.Topics', {
     defaultValue: 1
   }
 });
-
 export default Topics
