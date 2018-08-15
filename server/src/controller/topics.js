@@ -1,5 +1,4 @@
 import topicModel from 'model/topicModel.js'
-import {Logger} from 'Logger';
 
 function getTopics (req, res, where) {
   const params = req.body;
@@ -25,13 +24,13 @@ export default {
         getTopics(req, res)
         break;
       case 'Share':
-        getTopics(req, res, {Plate: 1})
+        getTopics(req, res, {Plate: 0})
         break;
       case 'Ask':
-        getTopics(req, res, {Plate: 2})
+        getTopics(req, res, {Plate: 1})
         break;
       case 'Test':
-        getTopics(req, res, {Plate: 3})
+        getTopics(req, res, {Plate: 2})
         break;
       case 'NoRevert':
         getTopics(req, res, {TopicReplies: 0})
@@ -46,7 +45,8 @@ export default {
   },
   releaseTopic (req, res) {
     let newTopic = Object.assign({}, req.body, {
-      UserID: req.session.UserInfo.UserID
+      UserId: req.session.UserInfo.Id,
+      'Db.UserId': req.session.UserInfo.Id
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {
@@ -74,11 +74,20 @@ export default {
   commentTopic (req, res) {
     const {TopicId, CommentContent} = req.body
     const newComment = Object.assign({}, {TopicId, CommentContent}, {
-      UserID: req.session.UserInfo.UserID
+      UserId: req.session.UserInfo.Id
     })
     topicModel.commentTopic(newComment, (err, data) => {
       if(err) return res.Back(1, '评论失败')
       res.Back(0, '评论成功', true)
+    })
+  },
+  // 删除评论
+  deleteComment (req, res) {
+    const {Id} = req.body
+    const UserId = req.session.UserInfo.Id
+    topicModel.deleteComment(Id, UserId, (err, data) => {
+      if(err || data === 0) return res.Back(1, '删除失败')
+      res.Back(0, '删除成功', true)
     })
   }
 }

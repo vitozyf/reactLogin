@@ -9,7 +9,6 @@ let httpRequest = async (config) => {
       'Content-Type': 'application/json'
     }
     let auth = getCookie(Configs.SessionIdName)
-    // console.log(auth)
     auth && Object.assign({}, headers, {
       'Authorization': Configs.SessionIdName + auth
     })

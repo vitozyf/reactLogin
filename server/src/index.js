@@ -12,7 +12,6 @@ import SessionValidation from 'middlewares/sessionValidation';
 import AccessControl from 'middlewares/accessControl';
 import {logInit} from 'Logger';
 import Config from 'config';
-import 'init-sql';
 
 const ISPRODUCTION = process.env.NODE_ENV === 'production'
 const PORT = Config[ISPRODUCTION ? 'Production' : 'Dev'].port

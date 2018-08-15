@@ -20,13 +20,13 @@ class Index extends Component {
             topicList.map((topic, index) => {
               let Plate = '';
               switch (topic.Plate) {
-                case 1:
+                case 0:
                   Plate = '分享'
                   break;
-                case 2:
+                case 1:
                   Plate = '问答'
                   break;
-                case 3:
+                case 2:
                   Plate = '测试'
                   break;
                 default:
@@ -51,7 +51,7 @@ class Index extends Component {
                   <div 
                     className="read-more"
                     >
-                    <span data-id={topic.ID}>
+                    <span data-id={topic.Id}>
                       阅读全文>>
                     </span>
                   </div>

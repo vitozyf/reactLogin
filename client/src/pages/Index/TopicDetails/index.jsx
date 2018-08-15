@@ -56,11 +56,11 @@ class TopicDetails extends Component {
     const topicDetail = this.state.topicDetail
     let fromPlate = ''
     switch (topicDetail.Plate) {
-      case 2:
+      case 1:
         fromPlate = '问答'
         break;
 
-      case 3:
+      case 2:
         fromPlate = '测试'
         break;
     

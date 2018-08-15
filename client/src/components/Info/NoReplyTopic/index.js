@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import NoReplyTopicUI from './NoReplyTopicUI';
 import {connect} from 'react-redux';
-// import http from 'utils/http';
-
-// const httpConfig = {
-//   search: '/topic/search'
-// }
+import {withRouter} from 'react-router-dom';
 
 const mapStateToProps = (state, props) => {
   return props
@@ -36,12 +32,22 @@ class Index extends Component {
 
   }
 
+  enterIntoTopic = (event) => {
+    const id = event.target.dataset.id
+    if (typeof id !== 'undefined') {
+      this.props.history.push(`/home/topicDetails/${id}`)
+    }
+  }
+
   render() {
     // console.log(123, this.props)
     const {topicList} = this.props;
     return (
-      <NoReplyTopic domref={this.refCb} topicList={topicList}/>
+      <NoReplyTopic 
+        domref={this.refCb} 
+        topicList={topicList}
+        enterIntoTopic={this.enterIntoTopic}/>
     )
   }
 }
-export default Index
+export default withRouter(Index)

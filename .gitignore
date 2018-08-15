@@ -6,3 +6,4 @@ server/package-lock.json
 client/package-lock.json
 server/certificate/
 server/Logs/
+server/src/test/

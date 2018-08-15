@@ -29,9 +29,9 @@ class ReleaseTopicPanel extends Component {
             <div className="plate">
               <label>请选择板块：</label>
               <Select defaultValue={Plate} style={{width: '200px'}} onChange={handleChange} name="Plate">
-                <Option value={1}>分享</Option>
-                <Option value={2}>问答</Option>
-                <Option value={3}>测试</Option>
+                <Option value={0}>分享</Option>
+                <Option value={1}>问答</Option>
+                <Option value={2}>测试</Option>
               </Select>
             </div>
 

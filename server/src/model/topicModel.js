@@ -1,15 +1,14 @@
-import {Topics, Users, Comments} from './model-sequelize';
-import {paging} from 'utils/utils';
-import Sequelize from 'sequelize';
-import {Logger} from 'Logger';
-
-
-// Topics.hasOne(Users);
-// Topics.belongsTo(Users);
-// Users.belongsTo(Topics, 
-//   // {targetKey: 'UserId'}
-//   {foreignKey: 'UserId'}
-// );
+import {
+  paging
+} from 'utils/utils';
+import {
+  Logger
+} from 'Logger';
+import {
+  Topics,
+  Comments,
+  Users
+} from './model-sequelize';
 
 /**
  * 话题查询
@@ -17,22 +16,38 @@ import {Logger} from 'Logger';
  * @param {Function} cb 
  * @param {Object} where 
  */
-function getTopics (pg, cb, where) {
+function getTopics(pg, cb, where) {
   let query = {
-    IsDelete: 0
+
   }
   if (where) {
     query = Object.assign({}, query, where)
   }
 
   let findQuery = {
-    attributes: {
-      exclude: ['IsDelete']
-    },
     where: query,
-    // include: [Users],
+    include: [
+      {
+        model: Users,
+        attributes: ['UserName', 'UserHeaderPortrait']
+      },
+      {
+        model: Comments,
+        order: [
+          ['Id', 'ASC']
+        ],
+        include: [ 
+          {
+            model: Users,
+            attributes: ['UserName', 'UserHeaderPortrait']
+          } 
+        ]
+      }
+    ],
     order: [
-      ['updatedAt', 'DESC']
+      ['updatedAt', 'DESC'],
+      ['createdAt', 'DESC'],
+      [Comments, 'createdAt', 'ASC']
     ]
   }
 
@@ -48,24 +63,27 @@ function getTopics (pg, cb, where) {
     Logger.error(err)
     cb(err)
   })
-  
+
 }
 export default {
   // 获取所有话题数据
-  getAllTopics (params, cb, where) {
-    const {PageIndex, PageSize} = params;
+  getAllTopics(params, cb, where) {
+    const {
+      PageIndex,
+      PageSize
+    } = params;
     const pg = paging(PageIndex, PageSize)
     getTopics(pg, cb, where)
   },
   // 获取未回复话题
-  getNoRevertTopics (cb) {
+  getNoRevertTopics(cb) {
     let where = {
       TopicReplies: 0
     }
     getTopics(null, cb, where)
   },
   // 发布新话题
-  releaseTopic (topic, cb) {
+  releaseTopic(topic, cb) {
     Topics.create(topic).then(res => {
       cb(null, res)
     }).catch(err => {
@@ -74,32 +92,25 @@ export default {
     })
   },
   // 获取话题详情
-  getTopicDetails (topicId, cb) {
+  getTopicDetails(topicId, cb) {
     Topics.findOne({
-      attributes: { 
-        exclude: ['IsDelete']
-      },
       where: {
-        IsDelete: 0,
-        ID: topicId
+        Id: topicId
       },
-      // include: [ Users ]
     }).then(data => {
-      console.log(123, JSON.stringify(data))
       cb(null, data)
     }).catch(err => {
-      console.log(222, err)
       Logger.error(err)
       cb(err)
     })
   },
   // 更新点击量
-  updateTopicHits (id, topicDetail, cb) {
+  updateTopicHits(id, topicDetail, cb) {
     Topics.update({
       TopicHits: topicDetail.TopicHits + 1
     }, {
       where: {
-        ID: id
+        Id: id
       }
     }).then(data => {
       cb(null, data)
@@ -109,8 +120,22 @@ export default {
     })
   },
   // 评论话题
-  commentTopic (newComment, cb) {
+  commentTopic(newComment, cb) {
     Comments.create(newComment).then(res => {
+      cb(null, res)
+    }).catch(err => {
+      Logger.error(err)
+      cb(err)
+    })
+  },
+  // 删除话题
+  deleteComment(Id, UserId, cb) {
+    Comments.destroy({
+      where: {
+        Id: Id,
+        UserId: UserId
+      }
+    }).then(res => {
       cb(null, res)
     }).catch(err => {
       Logger.error(err)

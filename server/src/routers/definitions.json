@@ -39,6 +39,9 @@
         },
         "TopicName": {
           "type": "string"
+        },
+        "Plate": {
+          "type": "number"
         }
       },
       "xml": {
@@ -57,6 +60,17 @@
       },
       "xml": {
         "name": "TopicComment"
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "number"
+        }
+      },
+      "xml": {
+        "name": "Comment"
       }
     }
   },

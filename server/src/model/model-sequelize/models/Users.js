@@ -1,56 +1,54 @@
-import Sequelize from 'sequelize';
-import { defineModel } from '../db';
-import Topics from '../index';
 
-const Users = defineModel('Db.Users', {
-  // Users_id: {
-  //   type: Sequelize.CHAR,
-  //   allowNull: true,
-  //   get () {
-  //     return this.getDataValue('UserID')
-  //   }
-  // },
-  UserHeaderPortrait: {
-    type: Sequelize.CHAR,
-    allowNull: true,
-    comment: '用户头像'
-  },
-  UserID: { // 用户ID
-    type: Sequelize.CHAR,
-    field: 'user_id',
-    references: {
-      model: 'Topics',
-      key: 'ID'
+export default function (sequelize, DataTypes) {
+  return sequelize.define('Users', {
+    Id: {
+      type: DataTypes.CHAR,
+      primaryKey: true,
+      // field: 'UserId',
+      unique: true,
+      comment: '用户Id',
+      allowNull: false
+    },
+    UserHeaderPortrait: {
+      type: DataTypes.CHAR,
+      allowNull: true,
+      comment: '用户头像'
+    },
+    UserName: {
+      type: DataTypes.CHAR,
+      comment: '用户名',
+      allowNull: false
+    },
+    PassWord: {
+      type: DataTypes.CHAR,
+      comment: '用户密码',
+      allowNull: false
+    },
+    Email: {
+      type: DataTypes.CHAR,
+      allowNull: true,
+      comment: 'Email',
+      validate: {
+        isEmail: true
+      }
+    },
+    Phone: {
+      type: DataTypes.CHAR,
+      allowNull: true,
+      comment: '联系电话'
+    },
+    Address: {
+      type: DataTypes.CHAR,
+      allowNull: true,
+      comment: '地址'
     }
-    // set (val) {
-    //   this.setDataValue('UserID', uuidv1());
-    // }
-  },
-  UserName: { // 用户名
-    type: Sequelize.CHAR
-  },
-  PassWord: { // 用户密码
-    type: Sequelize.CHAR
-  },
-  Email: { // Email
-    type: Sequelize.CHAR,
-    allowNull: true,
-    validate: {
-      isEmail: true
-    }
-  },
-  Phone: { // 电话
-    type: Sequelize.CHAR,
-    allowNull: true
-  },
-  IsDelete: { // 是否删除
-    type: Sequelize.INTEGER,
-    defaultValue: 0
-  },
-  Address: {
-    type: Sequelize.CHAR,
-    allowNull: true
-  }
-});
-
-export default Users
+  }, {
+    // tableName: name,
+    timestamps: true, // 添加时间戳属性
+    paranoid: true, // 删除操作不从数据库中删除数据，而只是增加一个 deletedAt 标识当前时间
+    underscored: false, // 使用驼峰式命令规则，不使用下划线分隔
+    freezeTableName: false, // 设置为false时sequelize会自动使用传入的模型名（define的第一个参数）做为表名，否则禁止修改表名
+    charset: 'utf8',
+    collate: 'utf8_general_ci'
+  });
+}

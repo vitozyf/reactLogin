@@ -86,11 +86,31 @@ router
    *    parameters:
    *     - name: search
    *       in: body
-   *       description: '发布话题'
+   *       description: '评论话题'
    *       required: true
    *       schema: 
    *        $ref: "#/definitions/TopicComment"
    */
   .post('/topic/comment', topics.commentTopic)
+    /**
+   * @swagger
+   * /topic/deleteComment:
+   *   post:
+   *    tags:
+   *      - Topic
+   *    summary: '删除话题'
+   *    description: ''
+   *    operationId: 'commentTopic'
+   *    produces: 
+   *     - 'application/json'
+   *    parameters:
+   *     - name: search
+   *       in: body
+   *       description: '删除话题'
+   *       required: true
+   *       schema: 
+   *        $ref: "#/definitions/Comment"
+   */
+  .post('/topic/deleteComment', topics.deleteComment)
 
 export default router

@@ -1,56 +1,47 @@
-import {Users} from './model-sequelize';
-import {Logger} from 'Logger';
+import {
+  Logger
+} from 'Logger';
+import {
+  Users
+} from './model-sequelize';
 
 export default {
-  //注册用户
-  signInUser (user,cb) {
-    Users.create(user).then(res => {
-      cb(null, res)
-    }).catch(err => {
-      Logger.error(err)
-      cb(err)
-    })
-  },
   // 登录
-  login (user, cb) {
-    Users.findAll({
-      attributes: ['UserName', 'PassWord', 'UserID'],
+  login(user, cb) {
+    Users.findOne({
       where: {
         UserName: user.UserName,
-        PassWord: user.PassWord, 
-        IsDelete: 0
+        PassWord: user.PassWord,
       }
     }).then(res => {
-      cb(null,res)
+      cb(null, res)
     }).catch(err => {
       Logger.error(err)
       cb(err);
     })
   },
-  // 查找用户（按用户名）
-  searchUser(userInfo, cb) {
-    Users.findAll({
-      attributes: ['UserName'],
+  // 注册用户
+  signin(userInfo, cb) {
+    Users.findCreateFind({
+      defaults: userInfo,
       where: {
-        UserName: userInfo.UserName,
-        IsDelete: 0
+        UserName: userInfo.UserName
       }
     }).then(res => {
-      cb(null, res)
+      cb(null, res[1])
     }).catch(err => {
       Logger.error(err)
       cb(err)
     })
   },
   // 获取用户信息
-  getUserInfo(id, cb){
+  getUserInfo(id, cb) {
     Users.findAll({
-      attributes: { 
-        exclude: ['IsDelete', 'PassWord']
+      attributes: {
+        exclude: ['PassWord', 'deletedAt']
       },
       where: {
-        UserID: id,
-        IsDelete: 0
+        Id: id
       }
     }).then(res => {
       cb(null, res)
