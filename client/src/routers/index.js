@@ -13,7 +13,7 @@ const Menus = RouterConfig.Menus
 export default (
   <div className = "container" >
     <Switch>
-      {/*<Redirect exact from = "/" to = "/home"></Redirect>*/}
+      <Redirect exact from = "/" to = "/home"></Redirect>
       {
         Menus.map(item => {
           return (
