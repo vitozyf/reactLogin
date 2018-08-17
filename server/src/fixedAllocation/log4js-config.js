@@ -1,35 +1,48 @@
 // ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < MARK < OFF
-const config =  {
+const config = {
   appenders: {
-    info: { 
-      type: 'file', 
+    loginfo: {
+      type: 'dateFile',
       filename: 'Logs/application.log',
       pattern: "yyyy-MM-dd",
+      maxLogSize : 20971520,
       level: 'DEBUG',
       maxLevel: 'WARN',
-      layout: { 
-        type: 'json', 
-        separator: ',' 
+      category: 'loginfo',
+      layout: {
+        type: 'json',
+        separator: ';'
       }
     },
-    error: { 
-      type: 'dateFile', 
+    logerror: {
+      type: 'dateFile',
       filename: 'Logs/error.log',
       pattern: "yyyy-MM-dd",
+      maxLogSize : 20971520,
       level: 'error',
       maxLevel: 'error',
-      layout: { 
-        type: 'json', 
-        separator: ',' 
+      category: 'logerror',
+      layout: {
+        type: 'json',
+        separator: ';'
       }
     }
   },
   categories: {
-    default: { 
-      appenders: [ 'info', 'error' ], 
-      level: 'debug' 
+    default: {
+      appenders: ['loginfo', 'logerror'],
+      level: 'debug'
+    },
+    // 自定义category
+    loginfo: {
+      appenders: ['loginfo'],
+      level: 'info'
+    },
+    logerror: {
+      appenders: ['logerror'],
+      level: 'error'
     }
   },
   pm2: true
 }
-module.exports =config
+module.exports = config

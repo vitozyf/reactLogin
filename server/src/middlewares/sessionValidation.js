@@ -6,7 +6,7 @@ export default function (req, res, next) {
   if (Config.NoValidationRequiredList.indexOf(req.url) > -1) {
     next();
   } else {
-    if (!session.IsLogin) return res.Back(401, '用户未登录');
+    if (!session.UserInfo) return res.Back(401, '用户未登录');
     next();
   }
 }

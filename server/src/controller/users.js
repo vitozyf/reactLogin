@@ -12,11 +12,14 @@ export default {
     let loginInfo = req.body;
     loginInfo.PassWord = md5(loginInfo.PassWord, PASSWORDKEY);
     usersModel.login(loginInfo, (err, data) => {
-      if (err) return res.Back(1, '登录失败,请检查账号密码是否正确', err);
+      if (err || !data) return res.Back(1, '登录失败,请检查账号密码是否正确', err);
       // 保存登录状态和数据到session
-      req.session.IsLogin = true;
-      req.session.UserInfo = data;
-      req.session.Ip = req.ip;
+      try {
+        req.session.UserInfo = data;
+        req.session.Ip = req.ip;
+      } catch (error) {
+        console.log(22222222)
+      }
       res.Back(0, '登录成功', true)
     })
   },

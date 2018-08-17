@@ -32,7 +32,7 @@ app.use(bodyParser.json()); // bodyparse
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(sendJson); // 封装res自定义方法
 app.use(session); // session
-app.use(SessionValidation); // 全局登录验证
+app.all('*', SessionValidation); // 全局登录验证
 app.use(userRemember); // 用户是否勾选remeber
 
 // 路由

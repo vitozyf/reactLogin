@@ -2,7 +2,7 @@ import {
   paging
 } from 'utils/utils';
 import {
-  Logger
+  LoggerErr
 } from 'Logger';
 import {
   Topics,
@@ -60,7 +60,7 @@ function getTopics(pg, cb, where) {
   Topics.findAndCountAll(findQuery).then(res => {
     cb(null, res)
   }).catch(err => {
-    Logger.error(err)
+    LoggerErr.error(err)
     cb(err)
   })
 
@@ -87,7 +87,7 @@ export default {
     Topics.create(topic).then(res => {
       cb(null, res)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   },
@@ -100,7 +100,7 @@ export default {
     }).then(data => {
       cb(null, data)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   },
@@ -115,7 +115,7 @@ export default {
     }).then(data => {
       cb(null, data)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   },
@@ -124,7 +124,7 @@ export default {
     Comments.create(newComment).then(res => {
       cb(null, res)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   },
@@ -138,7 +138,7 @@ export default {
     }).then(res => {
       cb(null, res)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   }

@@ -37,6 +37,7 @@ const session = Session({
   saveUninitialized: false,
   cookie: {
     maxAge : 1000 * 60 * 60 * 24 * 2,
+    // domain: seaverConfig.domain, // 设置domain后cookie写不进？
     httpOnly: false
   }
 })

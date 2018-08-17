@@ -1,5 +1,5 @@
 import {
-  Logger
+  LoggerErr
 } from 'Logger';
 import {
   Users
@@ -16,7 +16,7 @@ export default {
     }).then(res => {
       cb(null, res)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err);
     })
   },
@@ -30,7 +30,7 @@ export default {
     }).then(res => {
       cb(null, res[1])
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   },
@@ -46,7 +46,7 @@ export default {
     }).then(res => {
       cb(null, res)
     }).catch(err => {
-      Logger.error(err)
+      LoggerErr.error(err)
       cb(err)
     })
   }
