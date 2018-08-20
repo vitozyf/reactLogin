@@ -1,29 +1,24 @@
 import React, {Component} from 'react';
+import InfoCommon from 'components/InfoCommon';
 import './style/index.scss';
 
 class Index extends Component {
-  // constructor (props) {
-  //   super(props);
-
-  // }
-
   render() {
-    const {domref, topicList, enterIntoTopic} = this.props;
+    const {topicList, enterIntoTopic} = this.props;
     return (
-      <div className="app-info_NoReplyTopicUI app-info_model"  ref={domref}>
-        <div className="title">无人回复的话题</div>
-        <div className="body" onClick={event=>{enterIntoTopic(event)}}>
+      <InfoCommon title = "无人回复的话题" className="app-info_NoReplyTopicUI">
+        <div  onClick={enterIntoTopic}>
           {
             topicList.map(item => {
               return (
-                <div className="row" key={item.Id}>
+                <p key={item.Id}>
                   <a data-id={item.Id}>{item.TopicName}</a>
-                </div>
+                </p>
               )
             })
           }
         </div>
-      </div>
+      </InfoCommon>
     )
   }
 }

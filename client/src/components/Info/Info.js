@@ -1,28 +1,41 @@
 import React, {Component} from 'react';
-import NoReplyTopic from 'components/Info/NoReplyTopic/index';
+import NoReplyTopicUi from 'components/Info/NoReplyTopic/index';
 import BlogRoll from 'components/Info/BlogRoll/index';
 import ReleaseTopic from 'components/Info/ReleaseTopic/index';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import './style/index.scss';
 
+
+const mapStateToProps = (state, props) => {
+  return props
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ChangeTopicDetail : (topicDetail) => {
+      return dispatch({
+        type: 'ChangeTopicDetail',
+        topicDetail: topicDetail
+      })
+    }
+  }
+}
+const NoReplyTopic = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NoReplyTopicUi) 
 class Index extends Component {
-  // componentWillMount() {
-  //   const {changeSendState, location} = this.props
-  //   changeSendState(location.pathname === '/home' || location.pathname === '/')
-  //   this.props.history.listen((route) => {
-  //     changeSendState(route.pathname === '/home' || route.pathname === '/')
-  //   })
-  // }
 
   render() {
     const {topicList, showSendBtn} = this.props
 
     return (
       <div className="app-info">
-        <NoReplyTopic topicList={topicList} />
         {
           showSendBtn ? <ReleaseTopic /> : null
         }
+        <NoReplyTopic topicList={topicList} />
         <BlogRoll />
       </div>
     )

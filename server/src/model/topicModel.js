@@ -17,9 +17,7 @@ import {
  * @param {Object} where 
  */
 function getTopics(pg, cb, where) {
-  let query = {
-
-  }
+  let query = {}
   if (where) {
     query = Object.assign({}, query, where)
   }
@@ -28,26 +26,28 @@ function getTopics(pg, cb, where) {
     where: query,
     include: [
       {
-        model: Users,
-        attributes: ['UserName', 'UserHeaderPortrait']
-      },
-      {
         model: Comments,
-        order: [
-          ['Id', 'ASC']
-        ],
-        include: [ 
-          {
-            model: Users,
-            attributes: ['UserName', 'UserHeaderPortrait']
-          } 
+        attributes: [
+          'Id'
         ]
       }
     ],
+    attributes: [
+        'EditAt',
+        'CreatedAt',
+        'CreatedAtStr',
+        'Id',
+        'Plate',
+        'TopicContent',
+        'TopicHits',
+        'TopicReplies',
+        'TopicLabel',
+        'TopicName',
+        'UserId'
+    ],
     order: [
-      ['updatedAt', 'DESC'],
-      ['createdAt', 'DESC'],
-      [Comments, 'createdAt', 'ASC']
+      ['EditAt', 'DESC'],
+      ['createdAt', 'DESC']
     ]
   }
 
@@ -58,7 +58,8 @@ function getTopics(pg, cb, where) {
     })
   }
   Topics.findAndCountAll(findQuery).then(res => {
-    cb(null, res)
+    cb(null, res);
+    return null;
   }).catch(err => {
     LoggerErr.error(err)
     cb(err)
@@ -85,7 +86,8 @@ export default {
   // 发布新话题
   releaseTopic(topic, cb) {
     Topics.create(topic).then(res => {
-      cb(null, res)
+      cb(null, res);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)
@@ -97,8 +99,27 @@ export default {
       where: {
         Id: topicId
       },
+      include: [{
+          model: Users,
+          attributes: ['UserName', 'UserHeaderPortrait']
+        },
+        {
+          model: Comments,
+          order: [
+            ['Id', 'ASC']
+          ],
+          include: [{
+            model: Users,
+            attributes: ['UserName', 'UserHeaderPortrait']
+          }]
+        }
+      ],
+      order: [
+        [Comments, 'createdAt', 'ASC']
+      ]
     }).then(data => {
-      cb(null, data)
+      cb(null, data);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)
@@ -113,7 +134,8 @@ export default {
         Id: id
       }
     }).then(data => {
-      cb(null, data)
+      cb(null, data);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)
@@ -122,7 +144,8 @@ export default {
   // 评论话题
   commentTopic(newComment, cb) {
     Comments.create(newComment).then(res => {
-      cb(null, res)
+      cb(null, res);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)
@@ -136,7 +159,8 @@ export default {
         UserId: UserId
       }
     }).then(res => {
-      cb(null, res)
+      cb(null, res);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)

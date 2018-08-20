@@ -8,37 +8,48 @@ export default function (sequelize, DataTypes) {
       unique: true,
       autoIncrement: true,
       comment: 'Id',
-      allowNull: false
+      allowNull: false,
+      comment: 'Id'
     },
-    TopicReplies: { // 回复数量
+    TopicReplies: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
-      allowNull: false
+      allowNull: false,
+      get () {
+        let Comments = this.getDataValue('Comments');
+        return Comments ? Comments.length : 0;
+      },
+      comment: '回复数量'
     },
-    TopicHits: { // 点击量
+    TopicHits: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
-      allowNull: false
+      allowNull: false,
+      comment: '点击量'
     },
-    TopicName: { // 话题名称
+    TopicName: {
       type: DataTypes.STRING,
       allowNull: false,
       get () {
         return this.getDataValue('TopicName')
-      }
+      },
+      comment: '话题名称'
     },
-    TopicLabel: { // 标记类型
+    TopicLabel: {
       type: DataTypes.INTEGER,
       defaultValue: 2,
-      allowNull: false
+      allowNull: false,
+      comment: '标记类型'
     },
-    LastReplyUserId: { // 最后回复id
+    LastReplyUserId: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      comment: '最后回复id'
     },
-    LastReplyTime: { // 最后回复时间
+    LastReplyTime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
+      comment: '最后回复时间'
     },
     LastReplyTimeStr: {
       type: DataTypes.STRING,
@@ -48,11 +59,21 @@ export default function (sequelize, DataTypes) {
         return time ? dateStr(time) : ''
       }
     },
+    EditAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false,
+      get (field) {
+        let time = this.getDataValue(field)
+        return time ? dateStr(time) : ''
+      },
+      comment: '最后编辑时间'
+    },
     CreatedAtStr: {
       type: DataTypes.STRING,
       allowNull: true,
       get () {
-        let time = this.getDataValue('createdAt')
+        let time = this.getDataValue('CreatedAt')
         return time ? dateStr(time) : ''
       }
     },

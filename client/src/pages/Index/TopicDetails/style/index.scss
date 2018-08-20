@@ -1,3 +1,4 @@
+@import '~assets/style/common/var.scss';
 .m-TopicDetails{
   flex: 1;
   background-color: #fff;
@@ -19,6 +20,7 @@
     position: relative;
     padding: 10px 0;
     box-sizing: content-box;
+    padding-right: 60px;
     .state{
       position: absolute;
       background-color: #80bd01;
@@ -33,6 +35,7 @@
     h2{
       font-weight: 900;
       margin-left: 50px;
+      @include text-overflow-nowarp;
     }
     .operate{
       position: absolute;

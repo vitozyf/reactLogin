@@ -45,6 +45,7 @@ class SearchBarUi extends Component {
     http.$post(urlConfig.signout).then(data => {
       if (!data) return message.error('退出失败')
       message.success('退出成功')
+      console.log(123, Config.SessionIdName)
       removeCookie(Config.SessionIdName)
       if (this.props.pathname !== '/home') {
         this.props.history.push('/home')

@@ -7,6 +7,7 @@ export default {
     UserInfo: {}
   },
   router: {},
+  topicDetail: {},
   pageLoading: false,
   showSendBtn: true
 };

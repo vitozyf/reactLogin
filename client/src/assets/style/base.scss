@@ -4,8 +4,12 @@ ul, li, p{
   margin: 0;
 }
 a{
-  color: #333;
+  color: $--color-primary-dark-3;
   text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+    color: $--color-primary-dark-3;
+  }
 }
 li{
   list-style: none;
@@ -20,7 +24,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 700;
   color: $--color-primary-dark-6;
 }
-h3{
-  font-size: 16px;
-  padding: 3px 0;
-}
+// h3{
+//   font-size: 16px;
+//   padding: 3px 0;
+// }

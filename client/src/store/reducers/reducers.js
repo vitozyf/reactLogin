@@ -43,3 +43,12 @@ export const router = (state = {}, action = {router: {}}) => {
       return state
   }
 }
+
+export const topicDetail = (state = {}, action = {topicDetail: {}}) => {
+  switch (action.type) {
+    case 'ChangeTopicDetail':
+      return Object.assign({}, state, action.topicDetail)
+    default:
+      return state
+  }
+}

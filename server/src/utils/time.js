@@ -62,7 +62,7 @@ export function dateStr(date){
     return s + "天前";
   } else { 
     //超过3天
-    var dateCom = new Date(parseInt(date));
-    return dateCom.getFullYear() + "/" + (dateCom.getMonth() + 1) + "/" + dateCom.getDate();
+    var dateformatting = new Date(date);
+    return dateformatting.getFullYear() + "/" + (dateformatting.getMonth() + 1) + "/" + dateformatting.getDate();
   }
 }

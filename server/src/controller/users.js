@@ -4,8 +4,9 @@ import md5 from 'blueimp-md5';
 import {
   LoggerErr
 } from 'Logger';
-const ISPRODUCTION = process.env.NODE_ENV === 'production'
-const PASSWORDKEY = config[ISPRODUCTION ? 'Production' : 'Dev'].passwordKey
+const ISPRODUCTION = process.env.NODE_ENV === 'production';
+// const CONFIGPRO = config[ISPRODUCTION ? 'Production' : 'Dev'];
+const PASSWORDKEY = config[ISPRODUCTION ? 'Production' : 'Dev'].passwordKey;
 const uuidv1 = require('uuid/v1');
 
 export default {
@@ -38,10 +39,12 @@ export default {
   signout(req, res) {
     // 销毁session
     req.session.destroy((err) => {
-      LoggerErr.error(err);
-      if (err) return res.Back(1, '注销失败');
+      if (err) {
+        LoggerErr.error(err);
+        return res.Back(1, '注销失败');
+      }
       // 清除cookie
-      res.clearCookie(config.SessionId);
+      // res.clearCookie(CONFIGPRO.SessionId);
       res.Back(0, '注销成功', true)
     });
   },

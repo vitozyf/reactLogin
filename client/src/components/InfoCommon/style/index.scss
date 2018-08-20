@@ -1,0 +1,8 @@
+@import '~assets/style/common/var.scss';
+.app-info_common{
+  margin-bottom: 1em;
+  p{
+    margin-bottom: 1em;
+    @include text-overflow-nowarp;
+  }
+}

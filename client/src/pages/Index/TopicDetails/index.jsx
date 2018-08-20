@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {Button} from 'antd';
 import http from 'utils/http';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import './style/index.scss';
 
-const httpConfig = {
+const Config = {
   getTopicDetails: '/topic/getTopicDetails'
 }
 
@@ -16,16 +17,17 @@ class TopicDetails extends Component {
     }
   }
   componentWillMount () {
-    const TopicId = this.props.match.params.id
-    http.$post(httpConfig.getTopicDetails, {
-      TopicId: TopicId
-    }).then(data => {
-      if (data) {
-        this.setState({
-          topicDetail: data.TopicDetail
-        })
-      }
-    })
+    console.log(123, this.props)
+    // const TopicId = this.props.match.params.id
+    // http.$post(Config.getTopicDetails, {
+    //   TopicId: TopicId
+    // }).then(data => {
+    //   if (data) {
+    //     this.setState({
+    //       topicDetail: data.TopicDetail
+    //     })
+    //   }
+    // })
   }
 
   operateHandler = (event) => {
@@ -110,4 +112,12 @@ class TopicDetails extends Component {
   }
 }
 
-export default withRouter(TopicDetails)
+const mapStateToProps = (state, props) => {
+  console.log(222, state.topicDetail)
+  return Object.assign({}, state.topicDetail, props);
+}
+
+
+export default connect(
+  mapStateToProps,
+)(withRouter(TopicDetails))

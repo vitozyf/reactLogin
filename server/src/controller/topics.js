@@ -72,7 +72,7 @@ export default {
   commentTopic (req, res) {
     const {TopicId, CommentContent} = req.body
     const newComment = Object.assign({}, {TopicId, CommentContent}, {
-      UserId: req.session.UserInfo.Id
+      UserId: req.session.UserId
     })
     topicModel.commentTopic(newComment, (err, data) => {
       if(err) return res.Back(1, '评论失败')

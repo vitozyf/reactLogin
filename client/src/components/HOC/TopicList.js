@@ -2,6 +2,11 @@ import React from 'react';
 import http from 'utils/http';
 import {withRouter} from 'react-router-dom';
 import { Spin } from 'antd';
+
+const Config = {
+  getTopicDetails: '/topic/getTopicDetails'
+}
+
 // This function takes a component...
 function withGetdata(WrappedComponent, params) {
   // ...and returns another component...
@@ -55,6 +60,13 @@ function withGetdata(WrappedComponent, params) {
       const id = event.target.dataset.id
       if (typeof id !== 'undefined') {
         this.props.history.push(`/home/topicDetails/${id}`)
+        http.$post(Config.getTopicDetails, {
+          TopicId: id
+        }).then(data => {
+          if (data && data.TopicDetail) {
+            this.props.ChangeTopicDetail(data.TopicDetail)
+          }
+        })
       }
     }
 

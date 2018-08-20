@@ -1,7 +1,7 @@
 
-.app-info_model.app-info_NoReplyTopicUI{
-  .body{
-    max-height: 190px;
-    overflow-y: auto;
-  }
+.app-info_NoReplyTopicUI{
+  .ant-card-body{
+      max-height: 340px;
+      overflow-y: auto;
+    }
 }
