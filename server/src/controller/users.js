@@ -38,6 +38,7 @@ export default {
   signout(req, res) {
     // 销毁session
     req.session.destroy((err) => {
+      LoggerErr.error(err);
       if (err) return res.Back(1, '注销失败');
       // 清除cookie
       res.clearCookie(config.SessionId);
@@ -46,8 +47,8 @@ export default {
   },
   // 获取用户信息
   getUserInfo(req, res) {
-    if (!req.session || !req.session.UserInfo) return res.Back(1, '用户身份失效');
-    usersModel.getUserInfo(req.session.UserInfo.Id, (err, data) => {
+    if (!req.session || !req.session.UserId) return res.Back(1, '用户身份失效');
+    usersModel.getUserInfo(req.session.UserId, (err, data) => {
       if (err || data.length !== 1) return res.Back(120, '获取失败', err);
       res.Back(0, '获取成功', {
         UserInfo: data[0]

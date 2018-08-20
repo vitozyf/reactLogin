@@ -39,8 +39,7 @@ export default {
         getTopics(req, res, {TopicLabel: 1})
         break;
       default:
-        return res.Back('1', '参数错误')
-        break;
+        return res.Back('1', '参数错误');
     }
   },
   releaseTopic (req, res) {
@@ -82,8 +81,8 @@ export default {
   },
   // 删除评论
   deleteComment (req, res) {
-    const {Id} = req.body
-    const UserId = req.session.UserInfo.Id
+    const {Id} = req.body;
+    const UserId = req.session.UserId;
     topicModel.deleteComment(Id, UserId, (err, data) => {
       if(err || data === 0) return res.Back(1, '删除失败')
       res.Back(0, '删除成功', true)
