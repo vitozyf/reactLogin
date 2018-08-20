@@ -14,7 +14,8 @@ export default {
         PassWord: user.PassWord,
       }
     }).then(res => {
-      cb(null, res)
+      cb(null, res);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err);
@@ -28,7 +29,8 @@ export default {
         UserName: userInfo.UserName
       }
     }).then(res => {
-      cb(null, res[1])
+      cb(null, res[1]);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)
@@ -44,7 +46,8 @@ export default {
         Id: id
       }
     }).then(res => {
-      cb(null, res)
+      cb(null, res);
+      return null;
     }).catch(err => {
       LoggerErr.error(err)
       cb(err)

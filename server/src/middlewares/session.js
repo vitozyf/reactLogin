@@ -12,9 +12,9 @@ function extendDefaultFields(defaults, session) {
   return {
     data: defaults.data,
     expires: defaults.expires,
-    userId: session.UserInfo.Id,
-    PassWord: session.UserInfo.PassWord,
-    UserName: session.UserInfo.UserName,
+    UserId: session.UserId,
+    PassWord: session.PassWord,
+    UserName: session.UserName,
     maxAge: session.cookie.maxAge,
     Ip: session.Ip
   };

@@ -45,8 +45,7 @@ export default {
   },
   releaseTopic (req, res) {
     let newTopic = Object.assign({}, req.body, {
-      UserId: req.session.UserInfo.Id,
-      'Db.UserId': req.session.UserInfo.Id
+      UserId: req.session.UserId
     })
     
     topicModel.releaseTopic(newTopic, (err, data) => {

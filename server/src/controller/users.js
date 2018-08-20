@@ -1,7 +1,9 @@
 import usersModel from 'model/usersModel.js'
 import config from 'config'
 import md5 from 'blueimp-md5';
-
+import {
+  LoggerErr
+} from 'Logger';
 const ISPRODUCTION = process.env.NODE_ENV === 'production'
 const PASSWORDKEY = config[ISPRODUCTION ? 'Production' : 'Dev'].passwordKey
 const uuidv1 = require('uuid/v1');
@@ -14,12 +16,10 @@ export default {
     usersModel.login(loginInfo, (err, data) => {
       if (err || !data) return res.Back(1, '登录失败,请检查账号密码是否正确', err);
       // 保存登录状态和数据到session
-      try {
-        req.session.UserInfo = data;
-        req.session.Ip = req.ip;
-      } catch (error) {
-        console.log(22222222)
-      }
+      req.session.UserId = data.Id;
+      req.session.UserName = data.UserName;
+      req.session.PassWord = data.PassWord;
+      req.session.Ip = req.ip;
       res.Back(0, '登录成功', true)
     })
   },
