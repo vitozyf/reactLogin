@@ -7,8 +7,8 @@ a{
   color: $--color-primary-dark-3;
   text-decoration: none;
   &:hover{
-    text-decoration: underline;
-    color: $--color-primary-dark-3;
+    color: $--color-bright;
+    transition: color .1s;
   }
 }
 li{

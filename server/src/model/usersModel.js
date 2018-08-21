@@ -38,7 +38,7 @@ export default {
   },
   // 获取用户信息
   getUserInfo(id, cb) {
-    Users.findAll({
+    Users.findOne({
       attributes: {
         exclude: ['PassWord', 'deletedAt']
       },

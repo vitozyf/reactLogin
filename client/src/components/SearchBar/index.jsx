@@ -45,8 +45,8 @@ class SearchBarUi extends Component {
     http.$post(urlConfig.signout).then(data => {
       if (!data) return message.error('退出失败')
       message.success('退出成功')
-      console.log(123, Config.SessionIdName)
       removeCookie(Config.SessionIdName)
+      this.props.SetUserInfo({});
       if (this.props.pathname !== '/home') {
         this.props.history.push('/home')
       }
@@ -54,7 +54,7 @@ class SearchBarUi extends Component {
   }
 
   render () {
-    const { IsLogin, SetUserInfo } = this.props;
+    const { IsLogin } = this.props;
     let MenuItems = Menus.map(item => {
       if (item.disabled) return null;
 
@@ -100,7 +100,7 @@ class SearchBarUi extends Component {
       MenuItems.push(
         <Menu.Item key = { 'signout' }>
             <i className="iconfont icon-zhuxiaologout8"></i>
-            <a title="退出登录" onClick = { () => {this.signOut(); SetUserInfo(false)} }>退出登录</a>
+            <a title="退出登录" onClick = { () => {this.signOut();} }>退出登录</a>
         </Menu.Item>
       )
     }
@@ -137,10 +137,10 @@ const SearchBar = connect((state, props) => {
   return Object.assign({}, state.user, state.router, props) 
   }, dispatch => {
     return {
-      SetUserInfo: (IsLogin) => {
+      SetUserInfo: (UserInfo) => {
         return dispatch({
           type: 'SetUserInfo',
-          IsLogin: IsLogin
+          UserInfo: UserInfo
         })
       },
       ChangeRouter: (router) => {

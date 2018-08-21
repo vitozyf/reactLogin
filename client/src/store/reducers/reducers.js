@@ -1,17 +1,24 @@
-
+import {IsLogin} from '~utils/utils'
 export const user = (state = '', action) => {
   switch (action.type) {
     case 'SetUserInfo':
       // 设置登录状态失效时清除cookie
       let UserInfo
-      if (action.userInfo) {
-         UserInfo = action.userInfo
+      if (action.UserInfo) {
+         UserInfo = action.UserInfo
       }
-      return Object.assign({}, state, {
-        IsLogin: action.IsLogin,
-        Name: action.Name,
-        UserInfo: UserInfo ? UserInfo : state.UserInfo
-      })
+      if (IsLogin()) {
+        return Object.assign({}, state, {
+          IsLogin: true,
+          ...UserInfo
+        })
+      } else {
+        return Object.assign({}, state, {
+          IsLogin: false,
+          UserName: '',
+          Id: ''
+        })
+      }
     default:
       return state
   }

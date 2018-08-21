@@ -76,7 +76,13 @@ export default {
     })
     topicModel.commentTopic(newComment, (err, data) => {
       if(err) return res.Back(1, '评论失败')
-      res.Back(0, '评论成功', true)
+      topicModel.getTopicDetails(newComment.TopicId, (err, data) => {
+        if (err) throw err;
+        const length = data.Comments ? data.Comments.length : 0
+        topicModel.updateTopicReplies(newComment.TopicId, length, () => {
+          res.Back(0, '评论成功', true)
+        })
+      })
     })
   },
   // 删除评论
@@ -85,7 +91,9 @@ export default {
     const UserId = req.session.UserId;
     topicModel.deleteComment(Id, UserId, (err, data) => {
       if(err || data === 0) return res.Back(1, '删除失败')
-      res.Back(0, '删除成功', true)
+      topicModel.updateTopicReplies(newComment.TopicId, 'cut', () => {
+        res.Back(0, '删除成功', true)
+      })
     })
   }
 }

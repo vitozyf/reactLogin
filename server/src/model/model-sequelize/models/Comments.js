@@ -1,3 +1,5 @@
+import {dateStr} from 'utils/time';
+
 export default function (sequelize, DataTypes) {
   return sequelize.define('Comments', {
     Id: {
@@ -16,10 +18,14 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.CHAR,
       allowNull: false
     },
-    // TopicId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
-    // },
+    CreatedAtStr: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      get () {
+        let time = this.getDataValue('CreatedAt') || this.getDataValue('createdAt')
+        return time ? dateStr(time) : ''
+      }
+    },
     LikedCount: {
       type: DataTypes.INTEGER,
       defaultValue: 0,

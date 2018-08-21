@@ -59,6 +59,7 @@ function getTopics(pg, cb, where) {
   }
   Topics.findAndCountAll(findQuery).then(res => {
     cb(null, res);
+    console.log(res.count)
     return null;
   }).catch(err => {
     LoggerErr.error(err)
@@ -145,6 +146,22 @@ export default {
   commentTopic(newComment, cb) {
     Comments.create(newComment).then(res => {
       cb(null, res);
+      return null;
+    }).catch(err => {
+      LoggerErr.error(err)
+      cb(err)
+    })
+  },
+  // 更新评论数
+  updateTopicReplies (id, length, cb) {
+    Topics.update({
+      TopicReplies: length
+    }, {
+      where: {
+        Id: id
+      }
+    }).then(data => {
+      cb(null, data);
       return null;
     }).catch(err => {
       LoggerErr.error(err)

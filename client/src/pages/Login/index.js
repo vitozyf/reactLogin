@@ -7,10 +7,10 @@ const LoginUI = connect((state, props) => {
   return Object.assign({}, {pageLoading: state.pageLoading}, props) 
 }, dispatch => {
   return {
-    SetUserInfo: (IsLogin) => {
+    SetUserInfo: (UserInfo) => {
       return dispatch({
         type: 'SetUserInfo',
-        IsLogin: IsLogin
+        UserInfo: UserInfo
       })
     }
   }

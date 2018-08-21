@@ -15,10 +15,15 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0,
       allowNull: false,
-      get () {
-        let Comments = this.getDataValue('Comments');
-        return Comments ? Comments.length : 0;
-      },
+      // set (type) {
+      //   let Comments = this.getDataValue('Comments');
+      //   console.log(123, type, Comments ? Comments.length : 0, this.getDataValue('TopicReplies'))
+      //   this.setDataValue('TopicReplies', Comments ? Comments.length : 0)
+      // },
+      // get () {
+      //   let Comments = this.getDataValue('Comments');
+      //   return Comments ? Comments.length : 0;
+      // },
       comment: '回复数量'
     },
     TopicHits: {
@@ -39,7 +44,7 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 2,
       allowNull: false,
-      comment: '标记类型'
+      comment: '标记类型, 0(指定), 1(加精), 2(普通)'
     },
     LastReplyUserId: {
       type: DataTypes.STRING,
@@ -73,7 +78,7 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
       get () {
-        let time = this.getDataValue('CreatedAt')
+        let time = this.getDataValue('CreatedAt') || this.getDataValue('createdAt')
         return time ? dateStr(time) : ''
       }
     },

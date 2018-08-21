@@ -1,10 +1,22 @@
 @import '~assets/style/common/var.scss';
 .m-TopicDetails{
   flex: 1;
-  background-color: #fff;
-  padding: 10px 5px 0;
+  padding: 0px 5px 0;
   box-sizing: border-box;
   overflow-y: auto;
+  .header,
+  .topic-content,
+  .replylist,
+  .addrevert{
+    background-color: $--color-white;
+  }
+  .topic-content,
+  .replylist,
+  .addrevert{
+    margin-bottom: 5px;
+    padding: 10px 10px;
+  }
+
   .bottom-line{
     border-bottom: 1px solid #E6E6E6;
   }
@@ -22,19 +34,21 @@
     box-sizing: content-box;
     padding-right: 60px;
     .state{
-      position: absolute;
-      background-color: #80bd01;
+      font-size: $--font-size-base;
+      background-color: $--color-success;
+      font-weight: 300;
+      font-size: $--font-size-small;
       height: 18px;
       line-height: 18px;
-      color: #fff;
+      margin-right: 5px;
+      color: $--color-white;
       padding: 0px 5px;
-      bottom: 14px;
-      left: 5px;
       border-radius: 2px;
     }
     h2{
       font-weight: 900;
-      margin-left: 50px;
+      display: flex;
+      align-items: center;
       @include text-overflow-nowarp;
     }
     .operate{
@@ -61,9 +75,5 @@
       position: absolute;
       right: 5px;
     }
-  }
-
-  .topic-content, .revert, .addrevert{
-    min-height: 300px;
   }
 }

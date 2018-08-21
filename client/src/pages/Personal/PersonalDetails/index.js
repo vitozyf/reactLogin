@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import './style/index.scss';
 
 class PersonalDetails extends Component {
-  // componentWillMount() {
-  //   console.log(this)
-  // }
-
  render () {
    const {userInfo} = this.props
-  //  SetUserInfo(userInfo)
    return (
     <div className="PersonalDetails">
 

@@ -2,9 +2,25 @@ import React from 'react';
 import http from 'utils/http';
 import {withRouter} from 'react-router-dom';
 import { Spin } from 'antd';
+import {connect} from 'react-redux';
 
 const Config = {
   getTopicDetails: '/topic/getTopicDetails'
+}
+
+const mapStateToProps = (state, props) => {
+  return Object.assign({}, state.topicDetail, props);
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ChangeTopicDetail : (topicDetail) => {
+      return dispatch({
+        type: 'ChangeTopicDetail',
+        topicDetail: topicDetail
+      })
+    }
+  }
 }
 
 // This function takes a component...
@@ -59,10 +75,10 @@ function withGetdata(WrappedComponent, params) {
     enterIntoTopic = (event) => {
       const id = event.target.dataset.id
       if (typeof id !== 'undefined') {
-        this.props.history.push(`/home/topicDetails/${id}`)
         http.$post(Config.getTopicDetails, {
           TopicId: id
         }).then(data => {
+          this.props.history.push(`/home/topicDetails/${id}`)
           if (data && data.TopicDetail) {
             this.props.ChangeTopicDetail(data.TopicDetail)
           }
@@ -92,7 +108,10 @@ function withGetdata(WrappedComponent, params) {
     }
   };
 
-  return withRouter(getDataHOC)
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withRouter(getDataHOC))
 }
 
 export {

@@ -1,5 +1,6 @@
 import dom from './dom'
-
-export default {
-  dom
+import createdAuth from './jurisdiction'
+export {
+  dom,
+  createdAuth
 }

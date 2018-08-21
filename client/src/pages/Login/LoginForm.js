@@ -7,7 +7,8 @@ const FormItem = Form.Item;
 
 const config = {
   search: 'getAllUsers',
-  login: 'login'
+  login: 'login',
+  getUserInfo: '/getUserInfo'
 }
 
 class NormalLoginForm extends Component {
@@ -16,15 +17,15 @@ class NormalLoginForm extends Component {
     const SetUserInfo = this.props.SetUserInfo
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        SetUserInfo(true);
         http.$post(config.login, values).then((res) => {
-          console.log(123, res)
           if (res) {
-            this.props.SetUserInfo(true)
-            this.props.history.push('/home') 
+            http.$post(config.getUserInfo).then(data => {
+              data &&  this.props.SetUserInfo(data)
+              this.props.history.push('/home') 
+            })
           } else {
             setTimeout(() => {
-              SetUserInfo(false);
+              SetUserInfo({});
             }, 200)
           }
         })
@@ -69,7 +70,7 @@ class NormalLoginForm extends Component {
             })(
               <Input 
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} 
-                type="password" 
+                type="password"
                 placeholder="请输入密码" />
             )}
           </FormItem>
