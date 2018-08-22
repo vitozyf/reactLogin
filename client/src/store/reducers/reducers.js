@@ -33,15 +33,6 @@ export const pageLoading = (state = false, action) => {
   }
 }
 
-export const showSendBtn = (state = true, action) => {
-  switch (action.type) {
-    case 'ChangeSendState':
-      return action.State
-    default:
-      return state
-  }
-}
-
 export const router = (state = {}, action = {router: {}}) => {
   switch (action.type) {
     case 'ChangeRouter':

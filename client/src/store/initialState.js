@@ -3,6 +3,5 @@ export default {
   user: {},
   router: {},
   topicDetail: {},
-  pageLoading: false,
-  showSendBtn: true
+  pageLoading: false
 };

@@ -4,7 +4,7 @@ const config = {
   getUserInfo: '/getUserInfo'
 }
 
-let createdAuth = (store) => {
+let setUserInfo = (store) => {
   let user = store.getState().user
   if (!user.UserName) {
     http.$post(config.getUserInfo).then(data => {
@@ -21,6 +21,12 @@ let createdAuth = (store) => {
       UserInfo: {}
     })
   }
+}
+
+// app加载前
+let createdAuth = (store) => {
+  // 设置用户信息
+  setUserInfo(store)
 }
 
 export default createdAuth;

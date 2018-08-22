@@ -8,23 +8,11 @@ const httpConfig = {
 }
 
 const mapStateToProps = (state, props) => {
-  return Object.assign({}, {showSendBtn: state.showSendBtn}, props)
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeSendState : (state) => {
-      return dispatch({
-        type: 'ChangeSendState',
-        State: state
-      })
-    }
-  }
+  return Object.assign({}, {router: state.router}, props)
 }
 
 const Info = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(InfoUI) 
 
 class Index extends Component {

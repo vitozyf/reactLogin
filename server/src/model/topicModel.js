@@ -48,7 +48,8 @@ function getTopics(pg, cb, where) {
     order: [
       ['EditAt', 'DESC'],
       ['createdAt', 'DESC']
-    ]
+    ],
+    distinct: true
   }
 
   if (pg) {
@@ -59,7 +60,6 @@ function getTopics(pg, cb, where) {
   }
   Topics.findAndCountAll(findQuery).then(res => {
     cb(null, res);
-    console.log(res.count)
     return null;
   }).catch(err => {
     LoggerErr.error(err)

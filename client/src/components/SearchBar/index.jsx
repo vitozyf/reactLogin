@@ -26,6 +26,7 @@ class SearchBarUi extends Component {
   }
 
   componentDidMount() {
+    this.props.ChangeRouter(this.props.location)
     this.props.history.listen((route) => {
       this.props.ChangeRouter(route)
     })

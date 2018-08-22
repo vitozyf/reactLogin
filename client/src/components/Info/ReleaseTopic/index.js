@@ -17,9 +17,7 @@ class Index extends Component {
   render() {
     return (
       <InfoCommon className = "app-info_ReleaseTopic">
-        <div className="body">
          <Button type="primary" onClick={() => {this.releaseNewTopic()}}>发布新话题</Button>
-        </div>
       </InfoCommon>
     )
   }

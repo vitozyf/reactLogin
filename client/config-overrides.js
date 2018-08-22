@@ -1,4 +1,4 @@
-var webpack =  require('webpack');
+// var webpack =  require('webpack');
 const path = require("path");
 const { injectBabelPlugin } = require('react-app-rewired');
 const rewireSass = require('react-app-rewire-scss'); // scss

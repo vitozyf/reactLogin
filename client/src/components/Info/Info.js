@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import NoReplyTopicUi from 'components/Info/NoReplyTopic/index';
+import PersonInfo from 'components/Info/PersonInfo/index';
 import BlogRoll from 'components/Info/BlogRoll/index';
 import ReleaseTopic from 'components/Info/ReleaseTopic/index';
 import {withRouter} from 'react-router-dom';
@@ -28,12 +29,12 @@ const NoReplyTopic = connect(
 class Index extends Component {
 
   render() {
-    const {topicList, showSendBtn} = this.props
-
+    const {topicList, router} = this.props
     return (
       <div className="app-info">
+        <PersonInfo />
         {
-          showSendBtn ? <ReleaseTopic /> : null
+          router.pathname !== '/home/release' ? <ReleaseTopic /> : null
         }
         <NoReplyTopic topicList={topicList} />
         <BlogRoll />
